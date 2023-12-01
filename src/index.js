@@ -1,14 +1,25 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import LogIn from "./Components/LogIn/LogIn";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <BrowserRouter>
+    <Routes>
+      {/* <Route path="/help" element={<Index />} />
+      <Route path="/nucleo-icons" element={<NucleoIcons />} />
+      <Route path="/landing-page" element={<LandingPage />} />
+      <Route path="/profile-page" element={<ProfilePage />} /> */}
+      <Route path="/App" element={<App />} />
+      <Route path="/login-page" element={<LogIn />} />
+
+      <Route path="*" element={<Navigate to="/login-page" replace />} />
+    </Routes>
+  </BrowserRouter>
 );
 
 // If you want to start measuring performance in your app, pass a function
