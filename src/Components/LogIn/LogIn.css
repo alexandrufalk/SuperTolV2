@@ -1,5 +1,5 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200&display=swap');
+ @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200&display=swap');
 
 
 .container {
@@ -81,15 +81,15 @@
 .googleLI{
     color: var(--gray-900, #171C26);
     font-family: Plus Jakarta Sans;
-    font-size: 16px;
+    font-size: 20px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
 }
 
 .googleLogo{
-    width: 32px;
-    height: 32px;
+    width: 48px;
+    height: 48px;
 }
 
 .login2{
@@ -111,22 +111,23 @@
 .containerLI{
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: center;
     gap: 40px;
 }
 .containerLI1 {
     display: flex;
     width: 361px;
     flex-direction: column;
-    align-items: flex-start;
-    gap: 32px;
+    align-items: center;
+    gap: 40px;
 }
 
 .containerEmail{
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;}
+    align-items: center;
+    gap: 8px;
+}
 
 .email{
     color: var(--indigo-100, #D0CFFC);
@@ -146,4 +147,51 @@
     gap: 7.11px;
     border-radius: 12px;
     border: 0.889px solid #BDC4CD;
+}
+
+.textEnter{
+    color: var(--gray-50, #E9EDF5);
+    font-family: Plus Jakarta Sans;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.remember{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-self: stretch;
+}
+
+.check{
+    display: flex;
+    align-items: center;
+    gap: 7.11px;
+}
+
+.rectangle {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    border: 1.5px solid var(--gray-100, #D5DBE5);
+}
+
+.forgot{
+    color: var(--indigo-200, #B9B6FA);
+    font-family: Plus Jakarta Sans;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.14px;
+}
+.rememberme{
+    color: var(--gray-100, #D5DBE5);
+    font-family: Plus Jakarta Sans;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
 }

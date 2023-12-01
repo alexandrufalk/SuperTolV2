@@ -38,11 +38,24 @@ const LogIn = () => {
           <div className="containerLI">
             <div className="containerLI1">
               <div className="containerEmail">
-                <p className="email">Email</p>
+                <div className="email">Email</div>
                 <div className="containerEnter">
-                  <p>Enter your email</p>
+                  <div className="textEnter">Enter your email</div>
                 </div>
               </div>
+              <div className="containerEmail">
+                <div className="email">Password</div>
+                <div className="containerEnter">
+                  <div className="textEnter">Enter your password</div>
+                </div>
+              </div>
+            </div>
+            <div className="remember">
+              <div className="check">
+                <div className="rectangle"></div>
+                <div className="rememberme">Remember Me</div>
+              </div>
+              <div className="forgot">Forgot Password</div>
             </div>
           </div>
         </div>
