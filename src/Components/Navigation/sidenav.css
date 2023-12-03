@@ -1,0 +1,7 @@
+.containerside{
+    width: 194.816px;
+    height: 761px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    background: linear-gradient(180deg, rgba(23, 28, 38, 0.85) 60.26%, rgba(90, 99, 118, 0.85) 87.88%);
+}

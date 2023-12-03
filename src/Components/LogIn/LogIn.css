@@ -3,19 +3,59 @@
 
 
 .container {
+    
     background-size: cover;
     background-position: center;
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: rgb(255, 255, 255); /* Text color on top of the background */
+    /* color: rgb(255, 255, 255); */
   }
 
+ 
 
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 4px;
+    
+  }
+
+.column {
+    flex: 25%;
+    max-width: 25%;
+    padding: 0 4px;
+  }
+  
+.column img {
+    margin-top: 8px;
+    vertical-align: middle;
+    width: 100%;
+  }
+
+.containerlogoLI{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.containerLI>img{
+    background-size: cover;
+    width: 100%;
+    height: auto;
+    
+}
 .logoLI{
+    /* width: 100%;
+    max-width: 806px;
+    min-height:634 ; */
+    max-width: 100%;
     width: 806px;
     height: 634px;
+    
+
+    
 
 }
 
@@ -25,7 +65,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 16px;
+    gap: 8px;
     margin: 64px;
     border-radius: 25px;
     background: linear-gradient(156deg, rgba(23, 28, 38, 0.68) 13.71%, #5A6376 61.66%);
@@ -44,7 +84,7 @@
 .wb{
     color: var(--indigo-100, #D0CFFC);
     font-family: Plus Jakarta Sans;
-    font-size: 64px;
+    font-size: 40px;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
@@ -56,7 +96,7 @@
     color: var(--indigo-50, #DFDEFC);
     text-align: center;
     font-family: Plus Jakarta Sans;
-    font-size: 24px;
+    font-size: 14px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -98,7 +138,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 40px;
+    gap: 24px;
 }
 .containerGoogle{
     display: flex;
@@ -132,7 +172,7 @@
 .email{
     color: var(--indigo-100, #D0CFFC);
     font-family: Plus Jakarta Sans;
-    font-size: 14px;
+    font-size: 18px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
@@ -193,5 +233,50 @@
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
+    line-height: normal;
+}
+.btnLogin{
+    display: flex;
+    height: 56px;
+    padding: 7.11px 71.097px;
+    justify-content: center;
+    align-items: center;
+    gap: 7.11px;
+    align-self: stretch;
+    border-radius: 16px;
+    border: 2px solid var(--indigo-50, #DFDEFC);
+    background: linear-gradient(91deg, #BCC2CE 36.54%, rgba(90, 99, 118, 0.48) 87.7%, rgba(255, 255, 255, 0.00) 97.08%);
+}
+.LoginTxt{
+    color: var(--indigo-50, #DFDEFC);
+    font-family: Plus Jakarta Sans;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -0.36px;
+}
+
+.containerbottom{
+    width: 444px;
+}
+
+.bottomTxt{
+    color: var(--gray-50, #E9EDF5);
+    text-align: center;
+    font-family: Plus Jakarta Sans;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.bottomSignUp{
+    color: var(--indigo-300, #9E9BF5);
+    text-align: center;
+    font-family: Plus Jakarta Sans;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
     line-height: normal;
 }

@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+.containernav{
+    display: flex;
+    padding: 0px 24px;
+    justify-content: center;
+    align-items: center;
+    gap: auto;
+    flex-shrink: 0;
+    border-radius: 15px;
+    border: 0.38px solid var(--Stroke-Nav, #B86E9F);
+    opacity: 0.85;
+    background: linear-gradient(90deg, #171C26 42.2%, #5A6376 89.58%);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(2px);
+    justify-content: space-between;
+    height: 75px;
+}
+.sticky{ 
+    top: 0;
+}
+
+
+.brand{
+   
+    display: flex;  
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+
+.brand img{
+    width: 24px;
+    height: 24px;
+}
+
+.center{
+    display: flex;
+    
+    width: 405px;
+    height: 72px;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+    flex-shrink: 0;
+}
+
+.right{
+    display: flex;
+    
+    width: 263px;
+    padding: 10px 0px;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+    align-self: stretch;
+}
+.setimg{
+    display: flex;
+    width: 20px;
+    height: 20px;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+.set{
+    color: var(--dark-theme-subheader-text, #CFD1D4);
+    font-family: Poppins;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px; /* 142.857% */
+}
+.profile{
+    width: 40px;
+    height: 37px;
+    flex-shrink: 0;
+}
+
+
+.logotxt{
+    color: var(--gray-50, #E9EDF5);
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family: Poppins;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 32px; /* 177.778% */
+}
+
+.center1{
+    display: flex;
+    padding: 10px 0px;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    align-self: stretch;
+}
+.center1 img{
+    cursor: pointer;
+    display: flex;
+    width: 20px;
+    height: 20px;
+    justify-content: center;
+    align-items: center;
+}
+.summary{
+    cursor: pointer;
+    color: var(--gray-50, #E9EDF5);
+    font-family: Poppins;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px; /* 142.857% */
+
+}
+
+.summary:hover{
+    
+    color: var(--indigo-300, #9E9BF5);
+    font-family: Poppins;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px; /* 142.857% */
+}
