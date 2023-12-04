@@ -17,7 +17,7 @@ root.render(
       <Route path="/landing-page" element={<LandingPage />} />
       <Route path="/profile-page" element={<ProfilePage />} /> */}
       <Route path="/App" element={<App />} />
-      <Route path="/login-page" element={<SideNav />} />
+      <Route path="/login-page" element={<App />} />
 
       <Route path="*" element={<Navigate to="/login-page" replace />} />
     </Routes>

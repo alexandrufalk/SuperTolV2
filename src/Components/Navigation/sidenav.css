@@ -1,7 +1,198 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 .containerside{
-    width: 194.816px;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items:center ;
+    gap: auto;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    top: 91px;
+    
     height: 761px;
     flex-shrink: 0;
     border-radius: 10px;
     background: linear-gradient(180deg, rgba(23, 28, 38, 0.85) 60.26%, rgba(90, 99, 118, 0.85) 87.88%);
 }
+
+@media screen and (max-width:600px){
+    .containerside{
+        position: fixed;
+        display: flex;
+        flex-direction: column;
+        align-items:center ;
+        gap: auto;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        top: 91px;
+        
+        height: 761px;
+        flex-shrink: 0;
+        border-radius: 10px;
+        background: linear-gradient(180deg, rgba(23, 28, 38, 0.85) 60.26%, rgba(90, 99, 118, 0.85) 87.88%);
+    }
+}
+
+.header{
+    display: flex;
+    padding: 16px 16px 16px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+}
+
+.profile{
+    display: flex;
+    
+    align-items: flex-start;
+    gap: 409px;
+}
+
+.profiles img{
+    width: 30px;
+    height: 30px;
+}
+
+.proilename{
+    display: flex;
+    flex-direction: column;
+    width: 90px;
+    height: 32.742px;
+}
+
+.jobtitle{
+    color: rgba(255, 255, 255, 0.32);
+    font-family: Inter;
+    font-size: 8.371px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16.742px; /* 200% */
+    letter-spacing: 0.304px;
+    text-transform: uppercase;
+    }
+.name{
+    color: #FFF;
+    /* text-shadow: 0px 0px 12.176px #FFF; */
+    font-family: Inter;
+    font-size: 10.654px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 15.22px; /* 142.857% */
+}
+
+.arrow{
+    position: absolute;
+    left: 162px;
+    top: 60px;
+    width: 18.264px;
+    height: 18.264px;
+    transform: rotate(360deg);
+    flex-shrink: 0;
+    fill: var(--gray-900, #171C26);
+    stroke-width: 0.38px;
+    stroke: #B86E9F;
+    opacity: 0.85;
+    /* backdrop-filter: blur(68.48999786376953px); */
+    }
+@media screen and (max-width:600px){
+    .arrow{
+        position: absolute;
+        left: 66px;
+        top: 60px;
+        transform: rotate(180deg);
+    }
+}
+
+.main{
+    display: flex;
+    align-content: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+    
+    gap: 4px;
+}
+
+.title{
+    display: flex;
+    padding: 0px 3.044px 0px 15.22px;
+    align-items: center;
+    gap: 12.176px;
+    align-self: stretch;
+}
+.title div{
+    flex: 1 0 0;
+    color: rgba(255, 255, 255, 0.32);
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 18.264px; /* 218.182% */
+    letter-spacing: 0.304px;
+    text-transform: uppercase;
+}
+
+.List{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .con{
+        cursor: pointer;
+        display: flex;
+        padding: 12.176px 15.22px;
+        align-items: center;
+        gap: 12.176px;
+        align-self: stretch;
+        border-radius: 9.132px;
+        &:hover{
+            display: flex;
+            padding: 12.176px 15.22px;
+            align-items: center;
+            gap: 12.176px;
+            align-self: stretch;
+            border-radius: 9.132px;
+            border: 0.38px solid #B86E9F;
+            background: rgba(90, 99, 118, 0.20);
+        }
+
+        .txt{
+            flex: 1 0 0;
+            color: rgba(255, 255, 255, 0.56);
+            font-feature-settings: 'clig' off, 'liga' off;
+            /* text-shadow: 0px 0px 12.176px #FFF; */
+            font-family: Inter;
+            font-size: 10.654px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 15.22px; /* 142.857% */
+            &:hover{
+                flex: 1 0 0;
+                color: var(--indigo-300, #9E9BF5);
+                font-feature-settings: 'clig' off, 'liga' off;
+                /* text-shadow: 0px 0px 12.176px #FFF; */
+                font-family: Inter;
+                font-size: 10.654px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 15.22px; /* 142.857% */
+            }
+        
+        }
+    }
+}
+
+@media screen and (max-width:600px){
+    .txt,.profilename,.title{
+        display: none;
+    }
+
+}
+
+.List img{
+    width: 15px;
+    height: 15px;
+}
+
