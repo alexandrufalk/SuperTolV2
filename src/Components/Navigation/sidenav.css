@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 .containerside{
-    position: fixed;
+    /* position: fixed; */
     display: flex;
     flex-direction: column;
     align-items:center ;
@@ -17,7 +17,7 @@
 
 @media screen and (max-width:600px){
     .containerside{
-        position: fixed;
+        /* position: fixed; */
         display: flex;
         flex-direction: column;
         align-items:center ;
@@ -82,8 +82,8 @@
 
 .arrow{
     position: absolute;
-    left: 162px;
-    top: 60px;
+    left: 139px;
+    top: 100px;
     width: 18.264px;
     height: 18.264px;
     transform: rotate(360deg);
@@ -98,10 +98,25 @@
     .arrow{
         position: absolute;
         left: 66px;
-        top: 60px;
+        top: 100px;
         transform: rotate(180deg);
     }
 }
+
+.arrow2{
+    position: absolute;
+    left: 66px;
+    top: 100px;
+    width: 18.264px;
+    height: 18.264px;
+    transform: rotate(180deg);
+    flex-shrink: 0;
+    fill: var(--gray-900, #171C26);
+    stroke-width: 0.38px;
+    stroke: #B86E9F;
+    opacity: 0.85;
+    /* backdrop-filter: blur(68.48999786376953px); */
+    }
 
 .main{
     display: flex;
@@ -112,6 +127,7 @@
     justify-items: center;
     
     gap: 4px;
+    
 }
 
 .title{
@@ -189,6 +205,11 @@
         display: none;
     }
 
+}
+
+.logout{
+    position: absolute;
+    top: 550px;
 }
 
 .List img{

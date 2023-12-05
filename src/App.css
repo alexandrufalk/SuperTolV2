@@ -1,38 +1,29 @@
-.App {
-  text-align: center;
+.appcontainer{
+  display: grid;
+  grid-template-columns: min-content 1fr;
+  grid-template-rows:min-content 1fr ;
+  gap: 16px 16px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.navigationbar{
+  background: rgba(0, 255, 34, 0.103);
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row: 1/2;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.sidebar {
+  background: rgba(0, 255, 34, 0.103);
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 2; /* This specifies that the sidebar should start at the beginning of the second row */
+  grid-row-end: 3; /* This specifies that the sidebar should span from the start to the end of the second row */
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.maincontainer {
+  background: rgba(0, 255, 34, 0.103);
+  grid-column-start: 2;
+  grid-column-end: 3; /* This specifies that the class should span from the start of column 2 to the end of column 2 */
+  grid-row-start: 2;
+  grid-row-end: 3; /* This specifies that the class should span from the start of row 2 to the end of row 2 */
 }

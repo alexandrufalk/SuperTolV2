@@ -4,9 +4,14 @@ import SideNav from "./Components/Navigation/SideNav";
 
 function App() {
   return (
-    <div>
-      <NavigationBar />
-      <SideNav />
+    <div className="appcontainer">
+      <div className="navigationbar">
+        <NavigationBar />
+      </div>
+      <div className="sidebar">
+        <SideNav />
+      </div>
+      <div className="maincontainer">Main</div>
     </div>
   );
 }
