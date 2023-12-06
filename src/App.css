@@ -6,14 +6,14 @@
 }
 
 .navigationbar{
-  background: rgba(0, 255, 34, 0.103);
+  /* background: rgba(0, 255, 34, 0.103); */
   grid-column-start: 1;
   grid-column-end: 3;
   grid-row: 1/2;
 }
 
 .sidebar {
-  background: rgba(0, 255, 34, 0.103);
+  /* background: rgba(0, 255, 34, 0.103); */
   grid-column-start: 1;
   grid-column-end: 2;
   grid-row-start: 2; /* This specifies that the sidebar should start at the beginning of the second row */
@@ -21,7 +21,7 @@
 }
 
 .maincontainer {
-  background: rgba(0, 255, 34, 0.103);
+  /* background: rgba(0, 255, 34, 0.103); */
   grid-column-start: 2;
   grid-column-end: 3; /* This specifies that the class should span from the start of column 2 to the end of column 2 */
   grid-row-start: 2;

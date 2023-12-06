@@ -63,7 +63,7 @@
 .jobtitle{
     color: rgba(255, 255, 255, 0.32);
     font-family: Inter;
-    font-size: 8.371px;
+    font-size: 10px;
     font-style: normal;
     font-weight: 500;
     line-height: 16.742px; /* 200% */
@@ -74,7 +74,7 @@
     color: #FFF;
     /* text-shadow: 0px 0px 12.176px #FFF; */
     font-family: Inter;
-    font-size: 10.654px;
+    font-size: 12px;
     font-style: normal;
     font-weight: 500;
     line-height: 15.22px; /* 142.857% */
@@ -82,7 +82,7 @@
 
 .arrow{
     position: absolute;
-    left: 139px;
+    left: 146px;
     top: 100px;
     width: 18.264px;
     height: 18.264px;
@@ -134,7 +134,7 @@
     display: flex;
     padding: 0px 3.044px 0px 15.22px;
     align-items: center;
-    gap: 12.176px;
+    gap: 12px;
     align-self: stretch;
 }
 .title div{
@@ -180,7 +180,7 @@
             font-feature-settings: 'clig' off, 'liga' off;
             /* text-shadow: 0px 0px 12.176px #FFF; */
             font-family: Inter;
-            font-size: 10.654px;
+            font-size: 14px;
             font-style: normal;
             font-weight: 500;
             line-height: 15.22px; /* 142.857% */
@@ -209,11 +209,11 @@
 
 .logout{
     position: absolute;
-    top: 550px;
+    top: 750px;
 }
 
 .List img{
-    width: 15px;
-    height: 15px;
+    width: 20px;
+    height: 20px;
 }
 
