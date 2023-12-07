@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./sidenav.css";
 import profile from "./🦆 icon _profile circled_ (1).png";
 import arrow from "./Arrow.png";
@@ -13,6 +14,11 @@ const SideNav = () => {
   const [viewNav, setViewNav] = useState(true);
   const toggleArrow = () => {
     setViewNav(!viewNav);
+  };
+  const navigate = useNavigate();
+
+  const navigateToLogin = () => {
+    navigate("/login-page");
   };
   return (
     <div className="containerside">
@@ -58,7 +64,9 @@ const SideNav = () => {
               </div>
               <div className="con logout">
                 <img src={logout}></img>
-                <div className="txt">Logout</div>
+                <div className="txt" onClick={navigateToLogin}>
+                  Logout
+                </div>
               </div>
             </div>
           </div>
@@ -93,7 +101,7 @@ const SideNav = () => {
                 <img src={pdf}></img>
               </div>
               <div className="con logout">
-                <img src={logout}></img>
+                <img src={logout} onClick={navigateToLogin}></img>
               </div>
             </div>
           </div>
