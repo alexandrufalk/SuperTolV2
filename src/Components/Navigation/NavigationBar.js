@@ -11,7 +11,7 @@ import logout from "./🦆 icon _log out_.png";
 // import pdf from "./🦆 icon _save action floppy_.png";
 
 const NavigationBar = () => {
-  const [isDropdownOpen, setDropdownOpen] = useState(true);
+  const [isDropdownOpen, setDropdownOpen] = useState(false);
 
   const handleDropdownToggle = () => {
     console.log("Dropdown");
