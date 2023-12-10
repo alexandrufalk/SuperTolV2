@@ -11,7 +11,7 @@ import pdf from "./🦆 icon _save action floppy_.png";
 import logout from "./🦆 icon _log out_.png";
 
 const SideNav = () => {
-  const [viewNav, setViewNav] = useState(true);
+  const [viewNav, setViewNav] = useState(false);
   const toggleArrow = () => {
     setViewNav(!viewNav);
   };
