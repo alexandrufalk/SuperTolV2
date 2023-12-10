@@ -120,11 +120,9 @@
 
 .main{
     display: flex;
+    flex-flow: column wrap;
     align-content: center;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
-    justify-items: center;
     
     gap: 4px;
     
@@ -135,7 +133,7 @@
     padding: 0px 3.044px 0px 15.22px;
     align-items: center;
     gap: 12px;
-    align-self: stretch;
+    
 }
 .title div{
     flex: 1 0 0;
