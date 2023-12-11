@@ -49,116 +49,6 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
   const [viewAddCase, setViewAddCase] = useState(false);
   const [caseCaseName, setCaseCaseName] = useState("");
 
-  // const DatabaseSummry = [
-  //   {
-  //     ProjectName: "Test Name1",
-  //     TemplateName: "Test Template1",
-  //     DataCase: [
-  //       {
-  //         ID: 1,
-  //         CaseName: "Case1",
-  //         Description: "Gap housing-cover",
-  //         Author: "Alex",
-  //         Date: "Data",
-  //       },
-  //       {
-  //         ID: 2,
-  //         CaseName: "Case2",
-  //         Description: "Gap housing-PCB",
-  //         Author: "Alex",
-  //         Date: "Data",
-  //       },
-  //       {
-  //         ID: 3,
-  //         CaseName: "Case3",
-  //         Description: "Gap PCB-cover",
-  //         Author: "Alex",
-  //         Date: "Data",
-  //       },
-  //     ],
-  //   },
-  //   {
-  //     ProjectName: "Test Name2",
-  //     TemplateName: "Test Template2",
-  //     DataCase: [
-  //       {
-  //         ID: 1,
-  //         CaseName: "Case1",
-  //         Description: "Gap housing-cover",
-  //         Author: "Alex",
-  //         Date: "Data",
-  //       },
-  //       {
-  //         ID: 2,
-  //         CaseName: "Case2",
-  //         Description: "Gap housing-PCB",
-  //         Author: "Alex",
-  //         Date: "Data",
-  //       },
-  //       {
-  //         ID: 3,
-  //         CaseName: "Case3",
-  //         Description: "Gap PCB-cover",
-  //         Author: "Alex",
-  //         Date: "Data",
-  //       },
-  //     ],
-  //   },
-  // ];
-  // const DatabaseTemplateName = [
-  //   {
-  //     TemplateName: "Test Template1",
-  //     Data: [
-  //       {
-  //         Index: 1,
-  //         ComponentName: "Housing",
-  //         Color: "Blue",
-  //       },
-  //       {
-  //         Index: 2,
-  //         ComponentName: "Cover",
-  //         Color: "Red",
-  //       },
-  //       {
-  //         Index: 3,
-  //         ComponentName: "PCB",
-  //         Color: "Green",
-  //       },
-  //     ],
-  //   },
-  //   {
-  //     TemplateName: "Test Template2",
-  //     Data: [
-  //       {
-  //         Index: 1,
-  //         ComponentName: "Cover",
-  //         Color: "Blue",
-  //       },
-  //       {
-  //         Index: 2,
-  //         ComponentName: "Housing",
-  //         Color: "Red",
-  //       },
-  //       {
-  //         Index: 3,
-  //         ComponentName: "Connector",
-  //         Color: "Green",
-  //       },
-  //     ],
-  //   },
-  // ];
-
-  // const DatabaseProject = [
-  //   {
-  //     ProjectName: "Test Name1",
-  //     ProjectTemplate: "Test Template1",
-  //   },
-  //   {
-  //     ProjectName: "Test Name2",
-  //     ProjectTemplate: "Test Template2",
-  //   },
-  // ];
-
   const [databaseSummryUpdate, setDatabaseSummryUpdate] =
     useState(databaseProjects);
   console.log("databaseSummryUpdate", databaseSummryUpdate);
@@ -285,6 +175,7 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
   };
 
   const RemoveProject = (e) => {
+    console.log("delete project ID", e);
     removeProject(e);
   };
 
@@ -369,6 +260,12 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
     }
   };
 
+  const handleProjectClick = (projectName) => {
+    // Call your functions with the projectName parameter
+    DatabaseFilter(projectName);
+    handleSelectProjectname(projectName);
+  };
+
   const SetNewCase = (e) => {
     e.preventDefault();
     if (projectSelected) {
@@ -410,14 +307,27 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
           </div>
           {viewItems && (
             <div className="item-container">
-              <div className="item-content">
-                <div className="item-list">
-                  <img src={rectangle}></img>
-                  <div className="text-item">Option 1</div>
-                  <img src={del}></img>
-                </div>
-              </div>
-              <div className="item-content">
+              {isDatabaseProjects &&
+                databaseSummryUpdate.map((n) => (
+                  <div className="item-content">
+                    <div className="item-list">
+                      <img src={rectangle}></img>
+                      <div
+                        className="text-item"
+                        onClick={() => handleProjectClick(n.ProjectName)}
+                      >
+                        {n.ProjectName}
+                      </div>
+                      <img
+                        src={del}
+                        onClick={() => {
+                          RemoveProject(n.ID);
+                        }}
+                      ></img>
+                    </div>
+                  </div>
+                ))}
+              {/* <div className="item-content">
                 <div className="item-list">
                   <img src={rectangle}></img>
                   <div className="text-item">Option 2</div>
@@ -430,7 +340,7 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
                   <div className="text-item">Option 3</div>
                   <img src={del}></img>
                 </div>
-              </div>
+              </div> */}
               <div className="item-content">
                 <div className="item-list">
                   <img src={rectangle}></img>
@@ -445,7 +355,24 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
         {" "}
         <img src={background} className="background"></img>
       </div>
-      <div className="main-item">Item 3</div>
+      <div className="main-item">
+        <div className="newproject-container">
+          <div className="newproject-heder">
+            <div className="text">Add new project</div>
+            <div className="line"></div>
+          </div>
+          <div className="project-input">
+            <form>
+              <label>Project Name</label>
+              <input
+                type="text"
+                name="project"
+                placeholder="Enter project name"
+              ></input>
+            </form>
+          </div>
+        </div>
+      </div>
       <div className="main-item">Item 4</div>
       <div className="main-item">Item 5</div>
       <div className="main-item">Item 6</div>
