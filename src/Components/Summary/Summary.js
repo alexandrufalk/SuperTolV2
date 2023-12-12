@@ -327,20 +327,6 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
                     </div>
                   </div>
                 ))}
-              {/* <div className="item-content">
-                <div className="item-list">
-                  <img src={rectangle}></img>
-                  <div className="text-item">Option 2</div>
-                  <img src={del}></img>
-                </div>
-              </div>
-              <div className="item-content">
-                <div className="item-list">
-                  <img src={rectangle}></img>
-                  <div className="text-item">Option 3</div>
-                  <img src={del}></img>
-                </div>
-              </div> */}
               <div className="item-content">
                 <div className="item-list">
                   <img src={rectangle}></img>
@@ -363,11 +349,12 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
           </div>
           <div className="project-input">
             <form>
-              <label>Project Name</label>
+              <label className="project-input-label">Project Name</label>
               <input
                 type="text"
                 name="project"
                 placeholder="Enter project name"
+                className="project-input-container"
               ></input>
             </form>
           </div>
