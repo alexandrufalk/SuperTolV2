@@ -8,6 +8,7 @@ import useDatabaseProjects from "../../Hooks/useDatabaseProject";
 import useTemplate from "../../Hooks/useTemplate";
 import { ToastContainer, toast, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import DropDown from "../DropDown/DropDown";
 
 const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
   const [viewItems, setViewItems] = useState(false);
@@ -237,6 +238,7 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
   };
 
   const handleSelectProjectname = (e) => {
+    console.log("Selected project", e);
     setSelectproject(e);
   };
 
@@ -360,8 +362,59 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
           </div>
         </div>
       </div>
-      <div className="main-item">Item 4</div>
-      <div className="main-item">Item 5</div>
+      <div className="main-item">
+        <DropDown
+          name={"Project"}
+          database={databaseSummryUpdate}
+          isDatabaseProjects={isDatabaseProjects}
+          handleProjectClick={handleProjectClick}
+        />
+      </div>
+      <div className="main-item">
+        <table id="Projects">
+          <tr>
+            <th>ID</th>
+            <th>Case Name</th>
+            <th>Case Description</th>
+            <th>Author</th>
+            <th>Date</th>
+            <th>Action</th>
+          </tr>
+          {projectSelected &&
+            databaseSummryFiltered[0].DataCase.map((n) => (
+              <tr key={n.ID + "Summary table"}>
+                <td key={n.ID + "Summary table td"}> {n.ID}</td>
+                <td key={n.ID + "CaseName"}>
+                  <button
+                    type="button"
+                    variant="outline-secondary"
+                    onClick={() => {
+                      SelectCase(n.ID);
+                      // forceUpdate();
+                    }}
+                  >
+                    {n.CaseName}
+                  </button>{" "}
+                </td>
+                <td key={n.ID + "nDescription"}> {n.Description}</td>
+                <td key={n.ID + n.Author}> {n.Author}</td>
+                <td key={n.ID + n.Date}> {n.Date}</td>
+                <td key={n.ID + "Remove case summary"}>
+                  <button
+                    type="button"
+                    variant="outline-danger"
+                    onClick={() => {
+                      RemoveCase(n.ID);
+                      // forceUpdate();
+                    }}
+                  >
+                    X
+                  </button>
+                </td>
+              </tr>
+            ))}
+        </table>
+      </div>
       <div className="main-item">Item 6</div>
     </div>
   );
