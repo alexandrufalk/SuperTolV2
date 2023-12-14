@@ -360,6 +360,21 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
               ></input>
             </form>
           </div>
+          <div className="project-input">
+            <DropDown
+              name={"Project"}
+              database={databaseSummryUpdate}
+              isDatabaseProjects={isDatabaseProjects}
+              handleProjectClick={handleProjectClick}
+            />
+          </div>
+
+          <div className="project-bottom project-input">
+            <div className="buttons-frame">
+              <button className="button">Cancel</button>
+              <button className="button">Add project</button>
+            </div>
+          </div>
         </div>
       </div>
       <div className="main-item">
@@ -384,8 +399,14 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
             databaseSummryFiltered[0].DataCase.map((n) => (
               <tr key={n.ID + "Summary table"}>
                 <td key={n.ID + "Summary table td"}> {n.ID}</td>
-                <td key={n.ID + "CaseName"}>
-                  <button
+                <td
+                  key={n.ID + "CaseName"}
+                  onClick={() => {
+                    SelectCase(n.ID);
+                  }}
+                >
+                  {n.CaseName}
+                  {/* <button
                     type="button"
                     variant="outline-secondary"
                     onClick={() => {
@@ -394,7 +415,7 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
                     }}
                   >
                     {n.CaseName}
-                  </button>{" "}
+                  </button>{" "} */}
                 </td>
                 <td key={n.ID + "nDescription"}> {n.Description}</td>
                 <td key={n.ID + n.Author}> {n.Author}</td>
