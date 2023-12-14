@@ -258,6 +258,12 @@
             flex-shrink: 0;
             border-radius: 6px;
             background: var(--gray-100, #D5DBE5);
+            font-family: Inter;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 20px; /* 142.857% */
+            letter-spacing: 0.28px;
 
             /* input/default */
             box-shadow: 0px 0px 0px 1px rgba(134, 143, 160, 0.16), 0px 1px 2px 0px rgba(0, 0, 0, 0.06);
@@ -291,9 +297,18 @@
 
                 /* pr-button/default */
                 box-shadow: 0px 0px 0px 1px #5E5ADB, 0px 1px 1px 0px rgba(0, 0, 0, 0.10);
+                color: var(--Indigo-700, #3734A3);
+
+                /* Button/Default */
+                font-family: Inter;
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 20px; /* 142.857% */
+                letter-spacing: 0.28px;
             }
             .button:hover{
-                
+
             }
             
             
@@ -347,11 +362,12 @@
     padding-bottom: 12px;
     
     color: white;
-    border: 0.5px solid var(--Indigo-200, #B9B6FA);
+    border: 0.5px solid var(--Indigo-50, #DFDEFC);
     opacity: 0.75;
     background: var(--Gray-900, #171C26);
     backdrop-filter: blur(4px);
     color: var(--Indigo-500, #5E5ADB);
+    color: var(--Indigo-50, #DFDEFC);
     /* Overline */
     font-family: Inter;
     font-size: 12px;
