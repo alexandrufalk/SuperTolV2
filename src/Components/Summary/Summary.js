@@ -9,6 +9,7 @@ import useTemplate from "../../Hooks/useTemplate";
 import { ToastContainer, toast, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import DropDown from "../DropDown/DropDown";
+import PaginationTable from "../Table/PaginationTable";
 
 const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
   const [viewItems, setViewItems] = useState(false);
@@ -406,16 +407,6 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
                   }}
                 >
                   {n.CaseName}
-                  {/* <button
-                    type="button"
-                    variant="outline-secondary"
-                    onClick={() => {
-                      SelectCase(n.ID);
-                      // forceUpdate();
-                    }}
-                  >
-                    {n.CaseName}
-                  </button>{" "} */}
                 </td>
                 <td key={n.ID + "nDescription"}> {n.Description}</td>
                 <td key={n.ID + n.Author}> {n.Author}</td>
@@ -436,7 +427,9 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
             ))}
         </table>
       </div>
-      <div className="main-item">Item 6</div>
+      <div className="main-item">
+        <PaginationTable data={databaseSummryUpdate} />
+      </div>
     </div>
   );
 };
