@@ -339,10 +339,10 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
           )}
         </div>
       </div>
-      <div className="main-item">
+      {/* <div className="main-item">
         {" "}
         <img src={background} className="background"></img>
-      </div>
+      </div> */}
       <div className="main-item">
         <div className="newproject-container">
           <div className="newproject-heder">
@@ -362,7 +362,7 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
           </div>
           <div className="project-input">
             <DropDown
-              name={"Project"}
+              name={"Template"}
               database={databaseSummryUpdate}
               isDatabaseProjects={isDatabaseProjects}
               handleProjectClick={handleProjectClick}
@@ -379,7 +379,7 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
       </div>
       <div className="main-item">
         <DropDown
-          name={"Project"}
+          name={"Template"}
           database={databaseSummryUpdate}
           isDatabaseProjects={isDatabaseProjects}
           handleProjectClick={handleProjectClick}

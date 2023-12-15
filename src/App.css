@@ -20,6 +20,12 @@
   grid-row-end: 3; /* This specifies that the sidebar should span from the start to the end of the second row */
 }
 
+@media screen and (max-width: 767px){
+  .sidebar{
+    display: none;
+  }
+}
+
 .maincontainer {
   /* background: rgba(0, 255, 34, 0.103); */
   grid-column-start: 2;

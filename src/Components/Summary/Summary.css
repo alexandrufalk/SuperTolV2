@@ -4,17 +4,67 @@
 .main-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr); 
+    
     gap: 16px; 
   }
   
   .main-item {
     /* Additional styles for grid items within Main */
-    border: 1px solid #ccc;
-    padding: 8px;
+    /* border: 1px solid #ccc; */
+    padding: 16px;
+    justify-self: center;
+    box-sizing: border-box;
     /* text-align: center; */
   }
 
+  /* Desktop styles (for screens larger than 1200px) */
+/* @media only screen and (min-width: 1200px) {
+    .main-container {
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+    }
+  } */
+  
+  /* Tablet styles (for screens between 768px and 1199px) */
+  /* @media only screen and (min-width: 768px) and (max-width: 1199px) {
+    .main-container {
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 12px;
+    }
+  } */
+  
+  /* Mobile styles (for screens up to 767px) */
+  /* @media only screen and (max-width: 767px) {
+    .main-container {
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      gap: 8px;
+    }
+  } */
+  
 
+@media screen and (max-width: 1200px){
+    .main-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 16px; 
+      }
+}
+
+@media screen and (max-width: 800px){
+    .main-container {
+        display: grid;
+        grid-template-columns: 1fr; 
+        gap: 16px; 
+      }
+}
+
+@media screen and (min-width: 2000px){
+    .main-container {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr); 
+        gap: 16px; 
+      }
+}
   
 
 .dropdown-menu{
@@ -320,7 +370,7 @@
 #Projects {
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
-    width: 100%;
+    /* width: 100%; */
     
   }
   

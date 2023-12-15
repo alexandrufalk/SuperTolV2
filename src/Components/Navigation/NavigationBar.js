@@ -7,18 +7,50 @@ import database from "./🦆 icon _database monitor_.png";
 import settings from "./setting-2.png";
 import profile from "./🦆 icon _profile circled_ (1).png";
 import logout from "./🦆 icon _log out_.png";
-// import add from "./🦆 icon _add case_.png";
-// import pdf from "./🦆 icon _save action floppy_.png";
+import add from "./🦆 icon _add case_.png";
+import pdf from "./🦆 icon _save action floppy_.png";
 
 const NavigationBar = () => {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
+  const [isSideNav, setSideNav] = useState(false);
 
   const handleDropdownToggle = () => {
-    console.log("Dropdown");
     setDropdownOpen(!isDropdownOpen);
+  };
+  const handleNavToggle = () => {
+    setSideNav(!isSideNav);
   };
   return (
     <div className="containernav sticky">
+      <div className="nav-mobile">
+        <div className="summary">
+          <div className="dropbtn" onClick={handleNavToggle}>
+            ︾
+          </div>
+        </div>
+        {isSideNav && (
+          <div className="dropdown-content-m">
+            <div className="con-m">
+              <img src={home}></img>
+            </div>
+            <div className="con-m">
+              <img src={template}></img>
+            </div>
+            <div className="con-m">
+              <img src={database}></img>
+            </div>
+            <div className="con-m">
+              <img src={add}></img>
+            </div>
+            <div className="con-m">
+              <img src={pdf}></img>
+            </div>
+            <a href="http://localhost:3003/login-page" className="con-m">
+              <img src={logout}></img>
+            </a>
+          </div>
+        )}
+      </div>
       <div className="brand">
         <img src={logo}></img>
         <div className="logotxt">SuperTol</div>
