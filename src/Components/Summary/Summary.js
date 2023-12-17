@@ -10,6 +10,7 @@ import { ToastContainer, toast, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import DropDown from "../DropDown/DropDown";
 import PaginationTable from "../Table/PaginationTable";
+import ProjectsTable from "../Table/ProjectsTable";
 
 const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
   const [viewItems, setViewItems] = useState(false);
@@ -339,6 +340,12 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
             </div>
           )}
         </div>
+        <DropDown
+          name={"Template"}
+          database={databaseSummryUpdate}
+          isDatabaseProjects={isDatabaseProjects}
+          handleProjectClick={handleProjectClick}
+        />
       </div>
       {/* <div className="main-item">
         {" "}
@@ -378,14 +385,7 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
           </div>
         </div>
       </div>
-      <div className="main-item">
-        <DropDown
-          name={"Template"}
-          database={databaseSummryUpdate}
-          isDatabaseProjects={isDatabaseProjects}
-          handleProjectClick={handleProjectClick}
-        />
-      </div>
+
       <div className="main-item">
         <table id="Projects">
           <tr>
@@ -428,7 +428,15 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
         </table>
       </div>
       <div className="main-item">
-        <PaginationTable data={databaseSummryUpdate} />
+        {isDatabaseProjects && <PaginationTable data={databaseSummryUpdate} />}
+      </div>
+      <div className="main-item">
+        <ProjectsTable
+          projectSelected={projectSelected}
+          databaseSummryFiltered={databaseSummryFiltered}
+          SelectCase={SelectCase}
+          RemoveCase={RemoveCase}
+        />
       </div>
     </div>
   );

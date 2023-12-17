@@ -56,7 +56,7 @@ const Dropdown = ({
           <div className="item-content">
             <div className="item-list">
               <img src={rectangle}></img>
-              <div className="text-item">New Project</div>
+              <div className="text-item">{`New ${name}`}</div>
             </div>
           </div>
         </div>
