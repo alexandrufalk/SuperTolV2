@@ -9,11 +9,17 @@ const Dropdown = ({
   isDatabaseProjects,
   handleProjectClick,
   RemoveProject,
+  handleNew,
 }) => {
   const [viewItems, setViewItems] = useState(false);
 
   const toggleDown = () => {
     setViewItems(!viewItems);
+  };
+
+  const handleButtonClick = () => {
+    // Call the handeleNew prop when a button is clicked
+    handleNew();
   };
 
   console.log("Dropdown database", database, isDatabaseProjects);
@@ -56,7 +62,10 @@ const Dropdown = ({
           <div className="item-content">
             <div className="item-list">
               <img src={rectangle}></img>
-              <div className="text-item">{`New ${name}`}</div>
+              <div
+                className="text-item"
+                onClick={handleButtonClick}
+              >{`New ${name}`}</div>
             </div>
           </div>
         </div>

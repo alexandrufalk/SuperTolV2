@@ -49,6 +49,8 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
   // } = useSharable();
   const [projectSelected, setProjectSelected] = useState(false);
   const [newProject, setNewProject] = useState(false);
+  const [newTemplate, setNewTemplate] = useState(false);
+
   const [viewAddCase, setViewAddCase] = useState(false);
   const [caseCaseName, setCaseCaseName] = useState("");
 
@@ -292,6 +294,15 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
       behavior: "smooth", // Optional: Smooth scrolling animation
     });
   };
+
+  const handeleNewProject = () => {
+    setNewProject(!newProject);
+  };
+
+  const handeleNewTemplate = () => {
+    setNewTemplate(!newTemplate);
+  };
+
   // console.log("caseCaseName", caseCaseName);
 
   // useEffect(() => {
@@ -334,7 +345,9 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
               <div className="item-content">
                 <div className="item-list">
                   <img src={rectangle}></img>
-                  <div className="text-item">New Project</div>
+                  <div className="text-item" onClick={handeleNewProject}>
+                    New Project
+                  </div>
                 </div>
               </div>
             </div>
@@ -345,46 +358,78 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
           database={databaseSummryUpdate}
           isDatabaseProjects={isDatabaseProjects}
           handleProjectClick={handleProjectClick}
+          handleNew={handeleNewTemplate}
         />
       </div>
       {/* <div className="main-item">
         {" "}
         <img src={background} className="background"></img>
       </div> */}
-      <div className="main-item">
-        <div className="newproject-container">
-          <div className="newproject-heder">
-            <div className="text">Add new project</div>
-            <div className="line"></div>
-          </div>
-          <div className="project-input">
-            <form>
-              <label className="project-input-label">Project Name</label>
-              <input
-                type="text"
-                name="project"
-                placeholder="Enter project name"
-                className="project-input-container"
-              ></input>
-            </form>
-          </div>
-          <div className="project-input">
-            <DropDown
-              name={"Template"}
-              database={databaseSummryUpdate}
-              isDatabaseProjects={isDatabaseProjects}
-              handleProjectClick={handleProjectClick}
-            />
-          </div>
+      {newProject && (
+        <div className="main-item">
+          <div className="newproject-container">
+            <div className="newproject-heder">
+              <div className="text">Add new project</div>
+              <div className="line"></div>
+            </div>
+            <div className="project-input">
+              <form>
+                <label className="project-input-label">Project Name</label>
+                <input
+                  type="text"
+                  name="project"
+                  placeholder="Enter project name"
+                  className="project-input-container"
+                ></input>
+              </form>
+            </div>
+            <div className="project-input">
+              <DropDown
+                name={"Template"}
+                database={databaseSummryUpdate}
+                isDatabaseProjects={isDatabaseProjects}
+                handleProjectClick={handleProjectClick}
+                handleNew={handeleNewTemplate}
+              />
+            </div>
 
-          <div className="project-bottom project-input">
-            <div className="buttons-frame">
-              <button className="button">Cancel</button>
-              <button className="button">Add project</button>
+            <div className="project-bottom project-input">
+              <div className="buttons-frame">
+                <button className="button">Cancel</button>
+                <button className="button">Add project</button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
+      {newTemplate && (
+        <div className="main-item">
+          <div className="newproject-container">
+            <div className="newproject-heder">
+              <div className="text">Add new template</div>
+              <div className="line"></div>
+            </div>
+            <div className="project-input">
+              <form>
+                <label className="project-input-label">Template Name</label>
+                <input
+                  type="text"
+                  name="project"
+                  placeholder="Enter template name"
+                  className="project-input-container"
+                ></input>
+              </form>
+            </div>
+
+            <div className="project-bottom project-input">
+              <div className="buttons-frame">
+                <button className="button">Cancel</button>
+                <button className="button">Add template</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       <div className="main-item">
         <table id="Projects">
