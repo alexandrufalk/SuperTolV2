@@ -6,7 +6,7 @@ const ProjectsTable = ({
   SelectCase,
   RemoveCase,
 }) => {
-  const itemsPerPage = 1; // You can adjust the number of items per page
+  const itemsPerPage = 3; // You can adjust the number of items per page
 
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -17,7 +17,12 @@ const ProjectsTable = ({
     indexOfFirstItem,
     indexOfLastItem
   );
-
+  console.log(
+    "Pagination items",
+    indexOfFirstItem,
+    indexOfLastItem,
+    currentItems
+  );
   // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
@@ -66,7 +71,9 @@ const ProjectsTable = ({
       {/* Pagination */}
       <div className="pagination">
         {Array.from({
-          length: Math.ceil(databaseSummryFiltered.length / itemsPerPage),
+          length: Math.ceil(
+            databaseSummryFiltered[0].DataCase.length / itemsPerPage
+          ),
         }).map((_, index) => (
           <button key={index} onClick={() => paginate(index + 1)}>
             {index + 1}
