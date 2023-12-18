@@ -26,6 +26,22 @@ const ProjectsTable = ({
   // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
+  const formatDate = (dateString) => {
+    // Create a Date object from the original string
+    const originalDate = new Date(dateString);
+
+    // Extract day, month, and year components
+    const day = originalDate.getUTCDate();
+    const month = originalDate.getUTCMonth() + 1; // Months are zero-based
+    const year = originalDate.getUTCFullYear();
+
+    // Format the date as "DD-MM-YYYY"
+    const formattedDate = `${day < 10 ? "0" : ""}${day}-${
+      month < 10 ? "0" : ""
+    }${month}-${year}`;
+    return formattedDate;
+  };
+
   return (
     <>
       <table id="Projects">
@@ -51,7 +67,7 @@ const ProjectsTable = ({
               </td>
               <td key={n.ID + "nDescription"}> {n.Description}</td>
               <td key={n.ID + n.Author}> {n.Author}</td>
-              <td key={n.ID + n.Date}> {n.Date}</td>
+              <td key={n.ID + n.Date}> {formatDate(n.Date)}</td>
               <td key={n.ID + "Remove case summary"}>
                 <button
                   type="button"

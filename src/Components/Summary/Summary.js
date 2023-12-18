@@ -372,7 +372,7 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
     <div className="main-container">
       {/* Your grid content for Main */}
       <div className="main-item">
-        <div className="dropdown-menu">
+        {/* <div className="dropdown-menu">
           <div className="drop-container">
             <div className="label">Projects</div>
             <div className="dropdown-box">
@@ -412,7 +412,15 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
               </div>
             </div>
           )}
-        </div>
+        </div> */}
+        <DropDown
+          name={"Project"}
+          database={databaseSummryUpdate}
+          isDatabaseProjects={isDatabaseProjects}
+          handleProjectClick={handleProjectClick}
+          Remove={RemoveProject}
+          handleNew={handeleNewProject}
+        />
         <DropDown
           name={"Template"}
           database={databaseTemplateUpdate}
@@ -495,7 +503,7 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
         </div>
       )}
 
-      <div className="main-item">
+      {/* <div className="main-item">
         <table id="Projects">
           <tr>
             <th>ID</th>
@@ -535,10 +543,10 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
               </tr>
             ))}
         </table>
-      </div>
-      <div className="main-item">
+      </div> */}
+      {/* <div className="main-item">
         {isDatabaseProjects && <PaginationTable data={databaseSummryUpdate} />}
-      </div>
+      </div> */}
       <div className="main-item">
         {projectSelected && (
           <ProjectsTable

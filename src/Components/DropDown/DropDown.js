@@ -8,10 +8,11 @@ const Dropdown = ({
   database,
   isDatabaseProjects,
   handleProjectClick,
-  RemoveProject,
+  Remove,
   handleNew,
 }) => {
   const [viewItems, setViewItems] = useState(false);
+  const [headerName, setheaderName] = useState(`Select ${name} name`);
 
   const toggleDown = () => {
     setViewItems(!viewItems);
@@ -29,7 +30,7 @@ const Dropdown = ({
       <div className="drop-container">
         <div className="label">{`${name}s`}</div>
         <div className="dropdown-box">
-          <div className="drop-text">{`Select ${name} name`}</div>
+          <div className="drop-text">{headerName}</div>
           <img src={updown} onClick={toggleDown}></img>
         </div>
       </div>
@@ -42,18 +43,21 @@ const Dropdown = ({
                   <img src={rectangle}></img>
                   <div
                     className="text-item"
-                    onClick={() =>
+                    onClick={() => {
                       handleProjectClick(
                         name === "Project" ? n.ProjectName : n.TemplateName
-                      )
-                    }
+                      );
+                      setheaderName(
+                        name === "Project" ? n.ProjectName : n.TemplateName
+                      );
+                    }}
                   >
                     {name === "Project" ? n.ProjectName : n.TemplateName}
                   </div>
                   <img
                     src={del}
                     onClick={() => {
-                      RemoveProject(n.ID);
+                      Remove(n.ID);
                     }}
                   ></img>
                 </div>
