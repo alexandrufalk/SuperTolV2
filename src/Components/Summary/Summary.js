@@ -395,7 +395,9 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
 
             <div className="project-bottom project-input">
               <div className="buttons-frame">
-                <button className="button">Cancel</button>
+                <button className="button" onClick={handeleNewProject}>
+                  Cancel
+                </button>
                 <button className="button">Add project</button>
               </div>
             </div>
@@ -404,13 +406,13 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
       )}
       {newTemplate && (
         <div className="main-item">
-          <div className="newproject-container">
-            <div className="newproject-heder">
-              <div className="text">Add new template</div>
-              <div className="line"></div>
-            </div>
-            <div className="project-input">
-              <form>
+          <form>
+            <div className="newproject-container">
+              <div className="newproject-heder">
+                <div className="text">Add new template</div>
+                <div className="line"></div>
+              </div>
+              <div className="project-input">
                 <label className="project-input-label">Template Name</label>
                 <input
                   type="text"
@@ -418,16 +420,18 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
                   placeholder="Enter template name"
                   className="project-input-container"
                 ></input>
-              </form>
-            </div>
+              </div>
 
-            <div className="project-bottom project-input">
-              <div className="buttons-frame">
-                <button className="button">Cancel</button>
-                <button className="button">Add template</button>
+              <div className="project-bottom project-input">
+                <div className="buttons-frame">
+                  <button className="button" onClick={handeleNewTemplate}>
+                    Cancel
+                  </button>
+                  <button className="button">Add template</button>
+                </div>
               </div>
             </div>
-          </div>
+          </form>
         </div>
       )}
 
