@@ -71,7 +71,7 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
   const [selectTemplate, setSelectTemplate] = useState("Select template name");
   const [databaseTemplateUpdate, setDatabaseTemplateUpdate] =
     useState(templates);
-  console.log("databaseTemplateUpdate", databaseTemplateUpdate);
+  console.log("databaseTemplateFiltered", databaseTemplateFiltered);
 
   useEffect(() => {
     const dataT = JSON.parse(window.localStorage.getItem("databasesT"));
@@ -551,7 +551,7 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
       </div>
       <div className="main-item">
         {templateSelected && (
-          <ProjectsTable
+          <TemplateTable
             databaseTemplateFiltered={databaseTemplateFiltered}
             templateSelected={templateSelected}
           />

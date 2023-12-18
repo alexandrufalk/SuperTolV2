@@ -1,6 +1,10 @@
 import { useState, useEffect } from "react";
 
 const TemplateTable = ({ databaseTemplateFiltered, templateSelected }) => {
+  console.log(
+    "databaseTemplateFiltered from TemplateTable",
+    databaseTemplateFiltered
+  );
   const itemsPerPage = 3; // You can adjust the number of items per page
 
   const [currentPage, setCurrentPage] = useState(1);
