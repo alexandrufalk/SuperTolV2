@@ -22,7 +22,7 @@ const Dropdown = ({
     handleNew();
   };
 
-  console.log("Dropdown database", database, isDatabaseProjects);
+  console.log(`Dropdown database ${name}`, database, isDatabaseProjects);
 
   return (
     <div className="dropdown-menu">
@@ -48,7 +48,7 @@ const Dropdown = ({
                       )
                     }
                   >
-                    {n.ProjectName}
+                    {name === "Project" ? n.ProjectName : n.TemplateName}
                   </div>
                   <img
                     src={del}

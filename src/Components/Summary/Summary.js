@@ -11,6 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 import DropDown from "../DropDown/DropDown";
 import PaginationTable from "../Table/PaginationTable";
 import ProjectsTable from "../Table/ProjectsTable";
+import TemplateTable from "../Table/TemplateTable";
 
 const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
   const [viewItems, setViewItems] = useState(false);
@@ -60,6 +61,42 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
 
   // const [databaseProjectUpdate, setDatabaseProjectUpdate] =
   //   useState(DatabaseProject);
+
+  //Template useStates
+
+  const [databaseTemplateFiltered, setDatabaseTemplateFiltered] = useState([]);
+  const [templateSelected, setTemplateSelected] = useState(false);
+  const [viewAddTemplateName, setViewAddTemplateName] = useState(true);
+  const [viewSelectTemplate, setViewSelectTemplate] = useState(false);
+  const [selectTemplate, setSelectTemplate] = useState("Select template name");
+  const [databaseTemplateUpdate, setDatabaseTemplateUpdate] =
+    useState(templates);
+  console.log("databaseTemplateUpdate", databaseTemplateUpdate);
+
+  useEffect(() => {
+    const dataT = JSON.parse(window.localStorage.getItem("databasesT"));
+    console.log("dataT", dataT);
+    if (dataT) {
+      setDatabaseTemplateUpdate(dataT[0]);
+      // setDatabaseProjectUpdate(data[1]);
+    }
+  }, []);
+  console.log("useEffect DatabaseTemplateUpdate", databaseTemplateUpdate);
+
+  useEffect(() => {
+    const databasesT = [databaseTemplateUpdate];
+    window.localStorage.setItem("databasesT", JSON.stringify(databasesT));
+  }, [databaseTemplateUpdate]);
+
+  const databaseTemplateIsupdate = () => {
+    if (templates.length > 0) {
+      // setIsdatabaseProjects(true);
+      setDatabaseTemplateUpdate(templates);
+    }
+  };
+  useEffect(() => {
+    databaseTemplateIsupdate();
+  }, [templates]);
 
   useEffect(() => {
     const data = JSON.parse(window.localStorage.getItem("databases"));
@@ -272,6 +309,10 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
     handleSelectProjectname(projectName);
   };
 
+  const handleTemplateClick = (templateName) => {
+    TemplateFilter(templateName);
+  };
+
   const SetNewCase = (e) => {
     e.preventDefault();
     if (projectSelected) {
@@ -301,6 +342,25 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
 
   const handeleNewTemplate = () => {
     setNewTemplate(!newTemplate);
+  };
+
+  const TemplateFilter = (e) => {
+    console.log("templete filter event", e);
+    if (e !== "New Template" && e !== "Select template name") {
+      console.log("templete selected", e);
+      setDatabaseTemplateFiltered(
+        databaseTemplateUpdate.filter((data) => data.TemplateName === e)
+      );
+      setTemplateSelected(true);
+      setViewAddTemplateName(false);
+    } else {
+      console.log("New template selected");
+      setTemplateSelected(false);
+      setViewAddTemplateName(true);
+      setViewSelectTemplate(false);
+      setSelectTemplate("Select template name");
+      console.log("templateSelected", templateSelected);
+    }
   };
 
   // console.log("caseCaseName", caseCaseName);
@@ -355,9 +415,9 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
         </div>
         <DropDown
           name={"Template"}
-          database={databaseSummryUpdate}
+          database={databaseTemplateUpdate}
           isDatabaseProjects={isDatabaseProjects}
-          handleProjectClick={handleProjectClick}
+          handleProjectClick={handleTemplateClick}
           handleNew={handeleNewTemplate}
         />
       </div>
@@ -386,9 +446,9 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
             <div className="project-input">
               <DropDown
                 name={"Template"}
-                database={databaseSummryUpdate}
+                database={databaseTemplateUpdate}
                 isDatabaseProjects={isDatabaseProjects}
-                handleProjectClick={handleProjectClick}
+                handleProjectClick={handleTemplateClick}
                 handleNew={handeleNewTemplate}
               />
             </div>
@@ -486,6 +546,14 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
             databaseSummryFiltered={databaseSummryFiltered}
             SelectCase={SelectCase}
             RemoveCase={RemoveCase}
+          />
+        )}
+      </div>
+      <div className="main-item">
+        {templateSelected && (
+          <ProjectsTable
+            databaseTemplateFiltered={databaseTemplateFiltered}
+            templateSelected={templateSelected}
           />
         )}
       </div>

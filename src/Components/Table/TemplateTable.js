@@ -1,10 +1,6 @@
 import { useState, useEffect } from "react";
 
-const TemplateTable = ({
-  databaseTemplateFiltered,
-  templateSelected,
-  RemoveComponent,
-}) => {
+const TemplateTable = ({ databaseTemplateFiltered, templateSelected }) => {
   const itemsPerPage = 3; // You can adjust the number of items per page
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -43,15 +39,15 @@ const TemplateTable = ({
                 <button
                   type="button"
                   variant="outline-danger"
-                  onClick={() => {
-                    const confirmRemove = window.confirm(
-                      "Do you want to remove this component?"
-                    );
-                    if (confirmRemove) {
-                      RemoveComponent(n.Index);
-                      //   forceUpdate();
-                    }
-                  }}
+                  //   onClick={() => {
+                  //     const confirmRemove = window.confirm(
+                  //       "Do you want to remove this component?"
+                  //     );
+                  //     if (confirmRemove) {
+                  //       RemoveComponent(n.Index);
+
+                  //     }
+                  //   }}
                 >
                   X
                 </button>
