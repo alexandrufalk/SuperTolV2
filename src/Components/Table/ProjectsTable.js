@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import del from "../DropDown/Delete.png";
 import CustomPagination from "./CustomPagination";
+import drop from "./chevron-left.png";
 
 const ProjectsTable = ({
   projectSelected,
@@ -11,7 +12,7 @@ const ProjectsTable = ({
   //   const itemsPerPage = 1; // You can adjust the number of items per page
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(3);
   const [isDropPag, setDropPag] = useState(false);
 
   // Calculate the indexes of the items to be displayed on the current page
@@ -80,7 +81,13 @@ const ProjectsTable = ({
                 <img
                   src={del}
                   onClick={() => {
-                    RemoveCase(n.ID);
+                    const confirmRemove = window.confirm(
+                      "Do you want to remove this case?"
+                    );
+                    if (confirmRemove) {
+                      RemoveCase(n.ID);
+                    }
+
                     // forceUpdate();
                   }}
                 ></img>
@@ -108,21 +115,47 @@ const ProjectsTable = ({
           currentPage={currentPage}
           paginate={paginate}
         />
-        <div className="pagination-show">Show</div>
-        <div className="pagination-drop">
-          5
-          <div>
-            <div className="dropbtn" onClick={handlePaginationNr}>
-              ︾
+        <div className="pagination-show">
+          <p>Show</p>
+          <div className="pagination-drop">
+            {itemsPerPage} rows
+            <div>
+              <div className="dropbtn" onClick={handlePaginationNr}>
+                <img src={drop}></img>
+              </div>
             </div>
+            {isDropPag && (
+              <div className="dropdown-content-pagination">
+                <div
+                  className="con-m"
+                  onClick={() => {
+                    setItemsPerPage(1);
+                    setDropPag(!isDropPag);
+                  }}
+                >
+                  1
+                </div>
+                <div
+                  className="con-m"
+                  onClick={() => {
+                    setItemsPerPage(3);
+                    setDropPag(!isDropPag);
+                  }}
+                >
+                  3
+                </div>
+                <div
+                  className="con-m"
+                  onClick={() => {
+                    setItemsPerPage(5);
+                    setDropPag(!isDropPag);
+                  }}
+                >
+                  5
+                </div>
+              </div>
+            )}
           </div>
-          {isDropPag && (
-            <div className="dropdown-content-pagination">
-              <div className="con-m">1</div>
-              <div className="con-m">3</div>
-              <div className="con-m">5</div>
-            </div>
-          )}
         </div>
       </div>
     </>

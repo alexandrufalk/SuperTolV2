@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import del from "../DropDown/Delete.png";
 import add from "../Summary/add.png";
 import CustomPagination from "./CustomPagination";
+import drop from "./chevron-left.png";
 
 const TemplateTable = ({
   databaseTemplateFiltered,
@@ -15,7 +16,8 @@ const TemplateTable = ({
   //   const itemsPerPage = 1; // You can adjust the number of items per page
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(3);
+  const [isDropPag, setDropPag] = useState(false);
 
   // Calculate the indexes of the items to be displayed on the current page
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -32,6 +34,9 @@ const TemplateTable = ({
   );
   // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const handlePaginationNr = () => {
+    setDropPag(!isDropPag);
+  };
   return (
     <>
       <table id="Projects">
@@ -85,9 +90,48 @@ const TemplateTable = ({
           currentPage={currentPage}
           paginate={paginate}
         />
-        <button className="button-add">
-          <img src={add}></img>Add Component
-        </button>
+        <div className="pagination-show">
+          <p>Show</p>
+          <div className="pagination-drop">
+            {itemsPerPage} rows
+            <div>
+              <div className="dropbtn" onClick={handlePaginationNr}>
+                <img src={drop}></img>
+              </div>
+            </div>
+            {isDropPag && (
+              <div className="dropdown-content-pagination">
+                <div
+                  className="con-m"
+                  onClick={() => {
+                    setItemsPerPage(1);
+                    setDropPag(!isDropPag);
+                  }}
+                >
+                  1
+                </div>
+                <div
+                  className="con-m"
+                  onClick={() => {
+                    setItemsPerPage(3);
+                    setDropPag(!isDropPag);
+                  }}
+                >
+                  3
+                </div>
+                <div
+                  className="con-m"
+                  onClick={() => {
+                    setItemsPerPage(5);
+                    setDropPag(!isDropPag);
+                  }}
+                >
+                  5
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
       </div>
     </>
   );
