@@ -589,16 +589,11 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
       <div className="main-item">
         {templateSelected && (
           <>
-            <div className="main-item-template">
-              <TemplateTable
-                databaseTemplateFiltered={databaseTemplateFiltered}
-                templateSelected={templateSelected}
-                RemoveComponent={RemoveComponent}
-              />
-              <button className="button-add">
-                <img src={add}></img>Add Component
-              </button>
-            </div>
+            <TemplateTable
+              databaseTemplateFiltered={databaseTemplateFiltered}
+              templateSelected={templateSelected}
+              RemoveComponent={RemoveComponent}
+            />
           </>
         )}
       </div>

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import del from "../DropDown/Delete.png";
+import CustomPagination from "./CustomPagination";
 
 const ProjectsTable = ({
   projectSelected,
@@ -7,9 +8,11 @@ const ProjectsTable = ({
   SelectCase,
   RemoveCase,
 }) => {
-  const itemsPerPage = 3; // You can adjust the number of items per page
+  //   const itemsPerPage = 1; // You can adjust the number of items per page
 
   const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(1);
+  const [isDropPag, setDropPag] = useState(false);
 
   // Calculate the indexes of the items to be displayed on the current page
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -41,6 +44,10 @@ const ProjectsTable = ({
       month < 10 ? "0" : ""
     }${month}-${year}`;
     return formattedDate;
+  };
+
+  const handlePaginationNr = () => {
+    setDropPag(!isDropPag);
   };
 
   return (
@@ -83,7 +90,7 @@ const ProjectsTable = ({
       </table>
 
       {/* Pagination */}
-      <div className="pagination">
+      {/* <div className="pagination">
         {Array.from({
           length: Math.ceil(
             databaseSummryFiltered[0].DataCase.length / itemsPerPage
@@ -93,6 +100,30 @@ const ProjectsTable = ({
             {index + 1}
           </button>
         ))}
+      </div> */}
+      <div className="pagination-container">
+        <CustomPagination
+          data={databaseSummryFiltered[0].DataCase}
+          itemsPerPage={itemsPerPage}
+          currentPage={currentPage}
+          paginate={paginate}
+        />
+        <div className="pagination-show">Show</div>
+        <div className="pagination-drop">
+          5
+          <div>
+            <div className="dropbtn" onClick={handlePaginationNr}>
+              ︾
+            </div>
+          </div>
+          {isDropPag && (
+            <div className="dropdown-content-pagination">
+              <div className="con-m">1</div>
+              <div className="con-m">3</div>
+              <div className="con-m">5</div>
+            </div>
+          )}
+        </div>
       </div>
     </>
   );

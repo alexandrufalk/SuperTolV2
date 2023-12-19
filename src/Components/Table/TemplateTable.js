@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import del from "../DropDown/Delete.png";
+import add from "../Summary/add.png";
+import CustomPagination from "./CustomPagination";
 
 const TemplateTable = ({
   databaseTemplateFiltered,
@@ -10,9 +12,10 @@ const TemplateTable = ({
     "databaseTemplateFiltered from TemplateTable",
     databaseTemplateFiltered
   );
-  const itemsPerPage = 3; // You can adjust the number of items per page
+  //   const itemsPerPage = 1; // You can adjust the number of items per page
 
   const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(1);
 
   // Calculate the indexes of the items to be displayed on the current page
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -36,7 +39,7 @@ const TemplateTable = ({
           <th>Index</th>
           <th>Component name</th>
           <th>Color</th>
-          <th>Delete</th>
+          <th>Action</th>
         </tr>
         {templateSelected &&
           currentItems.map((n) => (
@@ -62,16 +65,29 @@ const TemplateTable = ({
       </table>
 
       {/* Pagination */}
-      <div className="pagination">
-        {Array.from({
-          length: Math.ceil(
-            databaseTemplateFiltered[0].Data.length / itemsPerPage
-          ),
-        }).map((_, index) => (
-          <button key={index} onClick={() => paginate(index + 1)}>
-            {index + 1}
-          </button>
-        ))}
+      <div className="pagination-container">
+        {/* <div className="pagination">
+          {Array.from({
+            length: Math.ceil(
+              databaseTemplateFiltered[0].Data.length / itemsPerPage
+            ),
+          }).map((_, index) => (
+            <button key={index} onClick={() => paginate(index + 1)}>
+              {index + 1}
+            </button>
+          ))}
+        </div> */}
+
+        {/* Custom Pagination */}
+        <CustomPagination
+          data={databaseTemplateFiltered[0].Data}
+          itemsPerPage={itemsPerPage}
+          currentPage={currentPage}
+          paginate={paginate}
+        />
+        <button className="button-add">
+          <img src={add}></img>Add Component
+        </button>
       </div>
     </>
   );
