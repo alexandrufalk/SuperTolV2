@@ -12,6 +12,7 @@ import DropDown from "../DropDown/DropDown";
 import PaginationTable from "../Table/PaginationTable";
 import ProjectsTable from "../Table/ProjectsTable";
 import TemplateTable from "../Table/TemplateTable";
+import add from "./add.png";
 
 const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
   const [viewItems, setViewItems] = useState(false);
@@ -25,7 +26,13 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
     addNewCase,
     removeCase,
   } = useDatabaseProjects();
-  const { templates } = useTemplate();
+  const {
+    templates,
+    addNewTemplate,
+    removeTemplate,
+    addDataToTemplate,
+    removeDataFromTemplate,
+  } = useTemplate();
   console.log("loaded databaseProjects:", databaseProjects);
 
   console.log("loaded templates:", templates);
@@ -363,6 +370,28 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
     }
   };
 
+  const RemoveComponent = (e) => {
+    let obj = databaseTemplateFiltered[0].Data.find((o) => o.Index === e);
+    let index = databaseTemplateFiltered[0].Data.indexOf(obj);
+    let update = databaseTemplateFiltered;
+    const templateID = databaseTemplateFiltered[0].ID;
+    const dataIndex = e;
+
+    console.log("templateID,dataIndex:", templateID, dataIndex);
+
+    if (index > -1) {
+      update[0].Data.splice(index, 1);
+    }
+
+    console.log("update", update);
+
+    console.log("index", index);
+    // alert(`Case ${e} removed`);
+    console.log("remove obj", obj);
+    setDatabaseTemplateFiltered(update);
+    removeDataFromTemplate(templateID, dataIndex);
+  };
+
   // console.log("caseCaseName", caseCaseName);
 
   // useEffect(() => {
@@ -559,10 +588,18 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
       </div>
       <div className="main-item">
         {templateSelected && (
-          <TemplateTable
-            databaseTemplateFiltered={databaseTemplateFiltered}
-            templateSelected={templateSelected}
-          />
+          <>
+            <div className="main-item-template">
+              <TemplateTable
+                databaseTemplateFiltered={databaseTemplateFiltered}
+                templateSelected={templateSelected}
+                RemoveComponent={RemoveComponent}
+              />
+              <button className="button-add">
+                <img src={add}></img>Add Component
+              </button>
+            </div>
+          </>
         )}
       </div>
     </div>

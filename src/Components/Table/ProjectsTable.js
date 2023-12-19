@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import del from "../DropDown/Delete.png";
 
 const ProjectsTable = ({
   projectSelected,
@@ -69,16 +70,13 @@ const ProjectsTable = ({
               <td key={n.ID + n.Author}> {n.Author}</td>
               <td key={n.ID + n.Date}> {formatDate(n.Date)}</td>
               <td key={n.ID + "Remove case summary"}>
-                <button
-                  type="button"
-                  variant="outline-danger"
+                <img
+                  src={del}
                   onClick={() => {
                     RemoveCase(n.ID);
                     // forceUpdate();
                   }}
-                >
-                  X
-                </button>
+                ></img>
               </td>
             </tr>
           ))}

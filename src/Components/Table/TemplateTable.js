@@ -1,6 +1,11 @@
 import { useState, useEffect } from "react";
+import del from "../DropDown/Delete.png";
 
-const TemplateTable = ({ databaseTemplateFiltered, templateSelected }) => {
+const TemplateTable = ({
+  databaseTemplateFiltered,
+  templateSelected,
+  RemoveComponent,
+}) => {
   console.log(
     "databaseTemplateFiltered from TemplateTable",
     databaseTemplateFiltered
@@ -40,21 +45,17 @@ const TemplateTable = ({ databaseTemplateFiltered, templateSelected }) => {
               <td key={n.ComponentName + n.Index}>{n.ComponentName}</td>
               <td key={n.Color + n.Index}> {n.Color}</td>
               <td key={n.Index + "Remove template"}>
-                <button
-                  type="button"
-                  variant="outline-danger"
-                  //   onClick={() => {
-                  //     const confirmRemove = window.confirm(
-                  //       "Do you want to remove this component?"
-                  //     );
-                  //     if (confirmRemove) {
-                  //       RemoveComponent(n.Index);
-
-                  //     }
-                  //   }}
-                >
-                  X
-                </button>
+                <img
+                  src={del}
+                  onClick={() => {
+                    const confirmRemove = window.confirm(
+                      "Do you want to remove this component?"
+                    );
+                    if (confirmRemove) {
+                      RemoveComponent(n.Index);
+                    }
+                  }}
+                ></img>
               </td>
             </tr>
           ))}
