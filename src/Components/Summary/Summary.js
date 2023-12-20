@@ -278,6 +278,7 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
     }
   };
   const handeleProjectName = (e) => {
+    console.log("HandeleProjectName test", e.target.value);
     setProjectName(e.target.value);
   };
 
@@ -318,6 +319,7 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
 
   const handleTemplateClick = (templateName) => {
     TemplateFilter(templateName);
+    setProjectTemplate(templateName);
   };
 
   const SetNewCase = (e) => {
@@ -475,8 +477,9 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
                 <input
                   type="text"
                   name="project"
-                  placeholder="Enter project name"
+                  placeholder={projectName}
                   className="project-input-container"
+                  onChange={handeleProjectName}
                 ></input>
               </form>
             </div>
@@ -495,7 +498,9 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
                 <button className="button" onClick={handeleNewProject}>
                   Cancel
                 </button>
-                <button className="button">Add project</button>
+                <button className="button" onClick={(e) => saveData(e)}>
+                  Add project
+                </button>
               </div>
             </div>
           </div>
@@ -589,11 +594,16 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
       <div className="main-item">
         {templateSelected && (
           <>
-            <TemplateTable
-              databaseTemplateFiltered={databaseTemplateFiltered}
-              templateSelected={templateSelected}
-              RemoveComponent={RemoveComponent}
-            />
+            <div className="template-container">
+              <div className="button-add">
+                <img src={add}></img>Add Component
+              </div>
+              <TemplateTable
+                databaseTemplateFiltered={databaseTemplateFiltered}
+                templateSelected={templateSelected}
+                RemoveComponent={RemoveComponent}
+              />
+            </div>
           </>
         )}
       </div>

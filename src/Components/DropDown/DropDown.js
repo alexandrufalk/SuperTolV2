@@ -57,6 +57,9 @@ const Dropdown = ({
                   <img
                     src={del}
                     onClick={() => {
+                      const confirmRemove = window.confirm(
+                        `Do you want to remove this ${name}?`
+                      );
                       Remove(n.ID);
                     }}
                   ></img>

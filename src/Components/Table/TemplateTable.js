@@ -106,6 +106,7 @@ const TemplateTable = ({
                   onClick={() => {
                     setItemsPerPage(1);
                     setDropPag(!isDropPag);
+                    setCurrentPage(1);
                   }}
                 >
                   1
@@ -115,6 +116,7 @@ const TemplateTable = ({
                   onClick={() => {
                     setItemsPerPage(3);
                     setDropPag(!isDropPag);
+                    setCurrentPage(1);
                   }}
                 >
                   3
@@ -124,6 +126,7 @@ const TemplateTable = ({
                   onClick={() => {
                     setItemsPerPage(5);
                     setDropPag(!isDropPag);
+                    setCurrentPage(1);
                   }}
                 >
                   5

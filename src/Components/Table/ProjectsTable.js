@@ -131,6 +131,7 @@ const ProjectsTable = ({
                   onClick={() => {
                     setItemsPerPage(1);
                     setDropPag(!isDropPag);
+                    setCurrentPage(1);
                   }}
                 >
                   1
@@ -140,6 +141,7 @@ const ProjectsTable = ({
                   onClick={() => {
                     setItemsPerPage(3);
                     setDropPag(!isDropPag);
+                    setCurrentPage(1);
                   }}
                 >
                   3
@@ -149,6 +151,7 @@ const ProjectsTable = ({
                   onClick={() => {
                     setItemsPerPage(5);
                     setDropPag(!isDropPag);
+                    setCurrentPage(1);
                   }}
                 >
                   5
