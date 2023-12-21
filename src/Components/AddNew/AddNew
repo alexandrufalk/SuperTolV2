@@ -1,0 +1,62 @@
+import DropDown from "../DropDown/DropDown";
+
+const AddNew = ({
+  projectName,
+  handeleProjectName,
+  name,
+  database,
+  isDatabaseProjects,
+  handleProjectClick,
+  handleNew,
+  handeleNewProject,
+  saveData,
+  viewDropDown,
+  viewColor,
+}) => {
+  return (
+    <div className="main-item">
+      <div className="newproject-container">
+        <div className="newproject-heder">
+          <div className="text">Add new project</div>
+          <div className="line"></div>
+        </div>
+        <div className="project-input">
+          <form>
+            <label className="project-input-label">Project Name</label>
+            <input
+              type="text"
+              name="project"
+              placeholder={projectName}
+              className="project-input-container"
+              onChange={handeleProjectName}
+            ></input>
+          </form>
+        </div>
+        {viewDropDown && (
+          <div className="project-input">
+            <DropDown
+              name={name}
+              database={database}
+              isDatabaseProjects={isDatabaseProjects}
+              handleProjectClick={handleProjectClick}
+              handleNew={handleNew}
+            />
+          </div>
+        )}
+
+        <div className="project-bottom project-input">
+          <div className="buttons-frame">
+            <button className="button" onClick={handeleNewProject}>
+              Cancel
+            </button>
+            <button className="button" onClick={(e) => saveData(e)}>
+              Add project
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default AddNew;

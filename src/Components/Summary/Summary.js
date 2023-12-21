@@ -73,6 +73,7 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
 
   const [databaseTemplateFiltered, setDatabaseTemplateFiltered] = useState([]);
   const [templateSelected, setTemplateSelected] = useState(false);
+  const [templateName, setTemplatename] = useState("");
   const [viewAddTemplateName, setViewAddTemplateName] = useState(true);
   const [viewSelectTemplate, setViewSelectTemplate] = useState(false);
   const [selectTemplate, setSelectTemplate] = useState("Select template name");
@@ -231,6 +232,7 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
   console.log("databaseSummryFiltered after Revmove", databaseSummryFiltered);
 
   const saveData = (e) => {
+    console.log("save data parameters", projectName, projectTemplate);
     e.preventDefault();
     if (
       projectName === "Enter project name" ||
@@ -394,6 +396,55 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
     removeDataFromTemplate(templateID, dataIndex);
   };
 
+  const AddTemplate = (e) => {
+    e.preventDefault();
+    if (templateName === "Enter Template Name" || templateName === "") {
+      toast("Template name is missing", {
+        position: toast.POSITION.TOP_CENTER,
+        theme: "dark",
+      });
+    } else {
+      const arrObjIds = databaseTemplateUpdate.map((elements) => {
+        return elements.ID;
+      });
+      const lastID = Math.max(...arrObjIds);
+      let newID = 0;
+      if (lastID === -Infinity) {
+        newID = 1;
+      } else {
+        newID = lastID + 1;
+      }
+      console.log("Template arrObjIds", arrObjIds);
+      e.preventDefault();
+      addNewTemplate({
+        ID: newID,
+        TemplateName: templateName,
+        Data: [],
+      });
+      // databaseTemplateUpdate.push({
+      //   TemplateName: templateName,
+      //   Data: [],
+      // });
+
+      setViewAddTemplateName(false);
+      //   setViewAddComponent(false);
+      setViewSelectTemplate(true);
+      // const DatabaseUpdate2 = databaseSummryUpdate;
+      // setDatabaseSummryUpdate(DatabaseUpdate2);
+      // console.log("DatabaseUpdate2", DatabaseUpdate2);
+      // setProjectName("Enter project name");
+      // setProjectTemplate("Select project template");
+      // setNewProject(false);
+    }
+  };
+  const handleTemplateName = (e) => {
+    e.preventDefault();
+    setTemplatename(e.target.value);
+  };
+  const RemoveTemplate = (e) => {
+    removeTemplate(e);
+  };
+
   // console.log("caseCaseName", caseCaseName);
 
   // useEffect(() => {
@@ -403,47 +454,7 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
     <div className="main-container">
       {/* Your grid content for Main */}
       <div className="main-item">
-        {/* <div className="dropdown-menu">
-          <div className="drop-container">
-            <div className="label">Projects</div>
-            <div className="dropdown-box">
-              <div className="drop-text">Select project name</div>
-              <img src={updown} onClick={toggleDown}></img>
-            </div>
-          </div>
-          {viewItems && (
-            <div className="item-container">
-              {isDatabaseProjects &&
-                databaseSummryUpdate.map((n) => (
-                  <div className="item-content">
-                    <div className="item-list">
-                      <img src={rectangle}></img>
-                      <div
-                        className="text-item"
-                        onClick={() => handleProjectClick(n.ProjectName)}
-                      >
-                        {n.ProjectName}
-                      </div>
-                      <img
-                        src={del}
-                        onClick={() => {
-                          RemoveProject(n.ID);
-                        }}
-                      ></img>
-                    </div>
-                  </div>
-                ))}
-              <div className="item-content">
-                <div className="item-list">
-                  <img src={rectangle}></img>
-                  <div className="text-item" onClick={handeleNewProject}>
-                    New Project
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
-        </div> */}
+        <ToastContainer transition={Bounce} autoClose={2000} />
         <DropDown
           name={"Project"}
           database={databaseSummryUpdate}
@@ -458,12 +469,9 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
           isDatabaseProjects={isDatabaseProjects}
           handleProjectClick={handleTemplateClick}
           handleNew={handeleNewTemplate}
+          Remove={RemoveTemplate}
         />
       </div>
-      {/* <div className="main-item">
-        {" "}
-        <img src={background} className="background"></img>
-      </div> */}
       {newProject && (
         <div className="main-item">
           <div className="newproject-container">
@@ -506,6 +514,7 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
           </div>
         </div>
       )}
+
       {newTemplate && (
         <div className="main-item">
           <form>
@@ -521,6 +530,7 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
                   name="project"
                   placeholder="Enter template name"
                   className="project-input-container"
+                  onChange={handleTemplateName}
                 ></input>
               </div>
 
@@ -529,70 +539,32 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
                   <button className="button" onClick={handeleNewTemplate}>
                     Cancel
                   </button>
-                  <button className="button">Add template</button>
+                  <button className="button" onClick={AddTemplate}>
+                    Add template
+                  </button>
                 </div>
               </div>
             </div>
           </form>
         </div>
       )}
-
-      {/* <div className="main-item">
-        <table id="Projects">
-          <tr>
-            <th>ID</th>
-            <th>Case Name</th>
-            <th>Case Description</th>
-            <th>Author</th>
-            <th>Date</th>
-            <th>Action</th>
-          </tr>
-          {projectSelected &&
-            databaseSummryFiltered[0].DataCase.map((n) => (
-              <tr key={n.ID + "Summary table"}>
-                <td key={n.ID + "Summary table td"}> {n.ID}</td>
-                <td
-                  key={n.ID + "CaseName"}
-                  onClick={() => {
-                    SelectCase(n.ID);
-                  }}
-                >
-                  {n.CaseName}
-                </td>
-                <td key={n.ID + "nDescription"}> {n.Description}</td>
-                <td key={n.ID + n.Author}> {n.Author}</td>
-                <td key={n.ID + n.Date}> {n.Date}</td>
-                <td key={n.ID + "Remove case summary"}>
-                  <button
-                    type="button"
-                    variant="outline-danger"
-                    onClick={() => {
-                      RemoveCase(n.ID);
-                      // forceUpdate();
-                    }}
-                  >
-                    X
-                  </button>
-                </td>
-              </tr>
-            ))}
-        </table>
-      </div> */}
-      {/* <div className="main-item">
-        {isDatabaseProjects && <PaginationTable data={databaseSummryUpdate} />}
-      </div> */}
-      <div className="main-item">
-        {projectSelected && (
-          <ProjectsTable
-            projectSelected={projectSelected}
-            databaseSummryFiltered={databaseSummryFiltered}
-            SelectCase={SelectCase}
-            RemoveCase={RemoveCase}
-          />
-        )}
-      </div>
-      <div className="main-item">
-        {templateSelected && (
+      {projectSelected && (
+        <div className="main-item">
+          <div className="template-container">
+            <div className="button-add">
+              <img src={add}></img>Add Case
+            </div>
+            <ProjectsTable
+              projectSelected={projectSelected}
+              databaseSummryFiltered={databaseSummryFiltered}
+              SelectCase={SelectCase}
+              RemoveCase={RemoveCase}
+            />
+          </div>
+        </div>
+      )}
+      {templateSelected && (
+        <div className="main-item">
           <>
             <div className="template-container">
               <div className="button-add">
@@ -605,8 +577,8 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
               />
             </div>
           </>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 };

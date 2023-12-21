@@ -60,7 +60,9 @@ const Dropdown = ({
                       const confirmRemove = window.confirm(
                         `Do you want to remove this ${name}?`
                       );
-                      Remove(n.ID);
+                      if (confirmRemove) {
+                        Remove(n.ID);
+                      }
                     }}
                   ></img>
                 </div>
