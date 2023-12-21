@@ -13,6 +13,7 @@ import PaginationTable from "../Table/PaginationTable";
 import ProjectsTable from "../Table/ProjectsTable";
 import TemplateTable from "../Table/TemplateTable";
 import add from "./add.png";
+import AddNew from "../AddNew/AddNew";
 
 const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
   const [viewItems, setViewItems] = useState(false);
@@ -77,6 +78,13 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
   const [viewAddTemplateName, setViewAddTemplateName] = useState(true);
   const [viewSelectTemplate, setViewSelectTemplate] = useState(false);
   const [selectTemplate, setSelectTemplate] = useState("Select template name");
+  const [color, setColor] = useState("#ffffff"); // Set initial color to white
+  const [componentDescription, setComponentDescription] = useState(
+    "Enter Component name"
+  );
+  const [viewAddTemplateComponent, setViewAddTemplateComponent] =
+    useState(false);
+
   const [databaseTemplateUpdate, setDatabaseTemplateUpdate] =
     useState(templates);
   console.log("databaseTemplateFiltered", databaseTemplateFiltered);
@@ -445,6 +453,67 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
     removeTemplate(e);
   };
 
+  const handeleNewTemplateComponent = () => {
+    setViewAddTemplateComponent(!viewAddTemplateComponent);
+  };
+
+  const handleCaseDescriptionChange = (e) => {
+    e.preventDefault();
+    setComponentDescription(e.target.value);
+  };
+
+  const AddComponent = (e) => {
+    e.preventDefault();
+    console.log("Inside AddComponent", componentDescription, color);
+    if (componentDescription !== "" && color !== "") {
+      const index = databaseTemplateUpdate.findIndex(
+        (x) => x.TemplateName === projectTemplate
+      );
+      console.log("index", index);
+      const lastID = Math.max(
+        ...databaseTemplateUpdate[index].Data.map((o) => o.Index)
+      );
+      const TemplateName = databaseTemplateUpdate[index].TemplateName;
+      let newID = 0;
+      if (lastID === -Infinity) {
+        newID = 1;
+      } else {
+        newID = lastID + 1;
+      }
+
+      console.log("lastID", lastID);
+
+      const id = index + 1;
+
+      addDataToTemplate(id, {
+        Index: newID,
+        ComponentName: componentDescription,
+        Color: color,
+      });
+
+      const nComponent = {
+        Index: newID,
+        ComponentName: componentDescription,
+        Color: color,
+      };
+
+      databaseTemplateUpdate[index].Data.push(nComponent);
+      // const DatabaseUpdateT = databaseTemplateUpdate;
+      setComponentDescription("");
+      setColor("");
+      TemplateFilter(TemplateName);
+
+      // setDatabaseTemplateUpdate(DatabaseUpdateT);
+      // console.log("test new component");
+      handeleNewTemplateComponent();
+    } else {
+      toast("Add description and color", {
+        position: toast.POSITION.TOP_CENTER,
+        theme: "dark",
+      });
+    }
+  };
+
   // console.log("caseCaseName", caseCaseName);
 
   // useEffect(() => {
@@ -567,7 +636,7 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
         <div className="main-item">
           <>
             <div className="template-container">
-              <div className="button-add">
+              <div className="button-add" onClick={handeleNewTemplateComponent}>
                 <img src={add}></img>Add Component
               </div>
               <TemplateTable
@@ -577,6 +646,21 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
               />
             </div>
           </>
+        </div>
+      )}
+      {viewAddTemplateComponent && (
+        <div className="main-item">
+          <AddNew
+            projectName={componentDescription}
+            name={"Component"}
+            handeleProjectName={handleCaseDescriptionChange}
+            handeleNewProject={handeleNewTemplateComponent}
+            saveData={AddComponent}
+            color={color}
+            setColor={setColor}
+            viewDropDown={false}
+            viewColor={true}
+          />
         </div>
       )}
     </div>
