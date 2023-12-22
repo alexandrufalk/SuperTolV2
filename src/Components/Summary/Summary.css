@@ -365,6 +365,14 @@
                 letter-spacing: 0.28px;
             }
             .button:hover{
+                display: flex;
+                padding: 12px 12px;
+                align-items: center;
+                gap: 6px;
+                align-self: stretch;
+                border-radius: 4px;
+                border: 0.38px solid #B86E9F;
+                /* background: rgba(90, 99, 118, 0.20); */
 
             }
             

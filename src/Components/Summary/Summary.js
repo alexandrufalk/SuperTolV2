@@ -61,7 +61,7 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
   const [newTemplate, setNewTemplate] = useState(false);
 
   const [viewAddCase, setViewAddCase] = useState(false);
-  const [caseCaseName, setCaseCaseName] = useState("");
+  const [caseCaseName, setCaseCaseName] = useState("Enter Case Name");
 
   const [databaseSummryUpdate, setDatabaseSummryUpdate] =
     useState(databaseProjects);
@@ -141,7 +141,7 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
 
   const AddCase = (e) => {
     e.preventDefault();
-    if (caseCaseName !== "") {
+    if (caseCaseName !== "" && caseCaseName !== "Enter Case Name") {
       const index = databaseSummryUpdate.findIndex(
         (x) => x.ProjectName === selectProject
       );
@@ -194,11 +194,15 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
       // console.log("caseCaseName", caseCaseName);
       console.log("databaseSummryUpdate Add Case", databaseSummryUpdate);
     } else {
-      toast("Add CaseName", {
+      toast("Add Case  Name", {
         position: toast.POSITION.TOP_CENTER,
         theme: "dark",
       });
     }
+  };
+
+  const handleViewAddCase = () => {
+    setViewAddCase(!viewAddCase);
   };
 
   const RemoveCase = (e) => {
@@ -620,7 +624,7 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
       {projectSelected && (
         <div className="main-item">
           <div className="template-container">
-            <div className="button-add">
+            <div className="button-add" onClick={handleViewAddCase}>
               <img src={add}></img>Add Case
             </div>
             <ProjectsTable
@@ -660,6 +664,19 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
             setColor={setColor}
             viewDropDown={false}
             viewColor={true}
+          />
+        </div>
+      )}
+      {viewAddCase && (
+        <div className="main-item">
+          <AddNew
+            projectName={caseCaseName}
+            name={"Case"}
+            handeleProjectName={handleCaseNameChange}
+            handeleNewProject={handleViewAddCase}
+            saveData={AddCase}
+            viewDropDown={false}
+            viewColor={false}
           />
         </div>
       )}
