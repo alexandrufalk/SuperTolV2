@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 // import "./main.css";
 import Summary from "../Summary/Summary";
+import Database from "../Databasse/Database";
 
 const Main = () => {
   const [projectId, setProjectId] = useState(null);
@@ -20,6 +21,7 @@ const Main = () => {
         setProjectId={setProjectId}
         setCaseId={setCaseId}
       />
+      <Database />
     </div>
   );
 };
