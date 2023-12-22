@@ -162,12 +162,10 @@ const Database = ({ CloseDatabase }) => {
 
   return (
     <div className="main-container-database">
-      <div className="main-item">
+      <div className="database-header">
         <p className="fs-3 ">Database</p>
 
-        <button variant="outline-danger" type="button" onClick={CloseDatabase}>
-          X
-        </button>
+        <button onClick={CloseDatabase}>X</button>
       </div>
       <div className="main-item-database ">
         <DropDown
@@ -437,26 +435,12 @@ const Database = ({ CloseDatabase }) => {
                   </td>
                 ))}
               </tr>
-              <tr>
+              {/* <tr>
                 <th>Drawing</th>
                 {databaseFiltered[0].DatabaseDim.map((n) => (
                   <td key={n.ID + "Drawing"}>
                     <td>
                       <div className="addImage">
-                        {/* <AddImage index={n.ID} /> */}
-                        {/* <Image
-                              width={150}
-                              src={
-                                "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/800px-Image_created_with_a_mobile_phone.png"
-                              }
-                            /> */}
-                        {/* <ImportImage
-                                  image={n.Image}
-                                  projectID={databaseFiltered[0].ID}
-                                  dimID={n.ID}
-                                  ProjectName={selectProjectData}
-                                  CallDatabasesFilter={CallDatabasesFilter}
-                                /> */}
                         <ImageCropper2
                           projectID={databaseFiltered[0].ID}
                           dimID={n.ID}
@@ -474,32 +458,12 @@ const Database = ({ CloseDatabase }) => {
                             handleClick(databaseFiltered[0].ID, n.ID, i.ID);
                           }}
                         />
-                        // <td>
-                        //   <Button
-                        //     variant="outline-danger "
-                        //     type="button"
-                        //     className="bg-transparent text-center "
-                        //     // onClick={CloseDatabase}
-                        //   >
-                        //     <img
-                        //       src={i.Link}
-                        //       alt={`Image for ${i.ID}`}
-                        //       style={{ width: "120px", height: "80px" }}
-                        //     />
-                        //     X
-                        //   </Button>
-                        // </td>
                       ))}
                     </td>
                   </td>
                 ))}
-              </tr>
-              {/* <tr>
-                        <th>Distribution Graph</th>
-                        {databaseFiltered[0].DatabaseDim.map((n) => (
-                          <td key={n.ID + "graph"}>graph{n.ID}</td>
-                        ))}
-                      </tr> */}
+              </tr> */}
+
               <tr>
                 <th className="last-th">Action</th>
                 {databaseFiltered[0].DatabaseDim.map((n, index) => (

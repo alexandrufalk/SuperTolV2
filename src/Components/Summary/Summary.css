@@ -4,8 +4,15 @@
 .main-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr); 
-    
+    padding-bottom: 8px;
+    margin-bottom: 8px;
+    margin-right: 8px;
     gap: 16px; 
+    border-radius: 25px;
+    background: linear-gradient(98deg, rgba(213, 219, 229, 0.03) 21.87%, rgba(233, 237, 245, 0.00) 66.43%);
+
+    /* Pop-Up L */
+    box-shadow: 0px 10px 30px 0px rgba(0, 0, 0, 0.20), 0px 30px 70px 0px rgba(26, 34, 64, 0.15), 0px 0px 0px 1px rgba(136, 143, 170, 0.10);
   }
   
   .main-item {
