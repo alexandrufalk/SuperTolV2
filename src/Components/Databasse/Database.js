@@ -167,7 +167,7 @@ const Database = ({ CloseDatabase }) => {
 
         <button onClick={CloseDatabase}>X</button>
       </div>
-      <div className="main-item-database ">
+      <div className="main-item-database">
         <DropDown
           name={"Project"}
           database={DatabaseUpdate}
@@ -176,6 +176,7 @@ const Database = ({ CloseDatabase }) => {
           //   Remove={RemoveProject}
           //   handleNew={handeleNewProject}
         />
+        <ToastContainer transition={Bounce} autoClose={2000} />
       </div>
 
       {/* <DropdownButton
@@ -201,10 +202,9 @@ const Database = ({ CloseDatabase }) => {
         </div>
         
       </DropdownButton> */}
-      <ToastContainer transition={Bounce} autoClose={2000} />
 
       {projectSelected && (
-        <div className="main-item-database ">
+        <div className="main-item-database">
           <table id="Database">
             <thead>
               <tr>
@@ -519,7 +519,7 @@ const Database = ({ CloseDatabase }) => {
       )} */}
 
       {viewAddComponent && (
-        <div className="container fluid  text-center ">
+        <div className="main-item-database">
           <button
             variant="secondary"
             type="submit"
