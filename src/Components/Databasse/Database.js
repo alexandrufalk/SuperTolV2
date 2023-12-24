@@ -6,6 +6,7 @@ import { ToastContainer, toast, Bounce } from "react-toastify";
 import DropDown from "../DropDown/DropDown";
 import ImageComponent from "../ImageComponent/ImageComponent";
 import ImageCropper2 from "../ImageComponent/ImageCropper2";
+import add from "../Summary/add.png";
 
 const Database = ({ CloseDatabase }) => {
   const { databaseProjects, removeDim, removeImg } = useDatabaseProjects();
@@ -205,237 +206,247 @@ const Database = ({ CloseDatabase }) => {
 
       {projectSelected && (
         <div className="main-item-database">
-          <table id="Database">
-            <thead>
-              <tr>
-                <th className="first-th">Index</th>
-                {databaseFiltered[0].DatabaseDim.map((n, index) => (
-                  <td
-                    key={n.ID + "Database"}
-                    style={{
-                      color: n.Color ? n.Color.toLowerCase() : "inherit",
-                      borderTopRightRadius:
-                        index === databaseFiltered[0].DatabaseDim.length - 1
-                          ? "20px"
-                          : "0",
-                    }}
-                  >
-                    {n.ID}
-                  </td>
-                ))}
-              </tr>
-              <tr>
-                <th>Name</th>
-                {databaseFiltered[0].DatabaseDim.map((n) => (
-                  <td
-                    key={n.ID + n.Name}
-                    style={{
-                      color: n.Color ? n.Color.toLowerCase() : "inherit",
-                    }}
-                  >
-                    {" "}
-                    {n.Name}
-                  </td>
-                ))}
-              </tr>
-              <tr>
-                <th>Description</th>
-                {databaseFiltered[0].DatabaseDim.map((n) => (
-                  <td
-                    key={n.ID + n.Description}
-                    style={{
-                      color: n.Color ? n.Color.toLowerCase() : "inherit",
-                    }}
-                  >
-                    {n.Description}
-                  </td>
-                ))}
-              </tr>
-              <tr>
-                <th>Unique Identifier</th>
-                {databaseFiltered[0].DatabaseDim.map((n) => (
-                  <td
-                    key={n.ID + n.UniqueIdentifier}
-                    style={{
-                      color: n.Color ? n.Color.toLowerCase() : "inherit",
-                    }}
-                  >
-                    {n.UniqueIdentifier}
-                  </td>
-                ))}
-              </tr>
-              <tr>
-                <th>Drw. nr.</th>
-                {databaseFiltered[0].DatabaseDim.map((n) => (
-                  <td
-                    key={n.ID + n.DrwNr}
-                    style={{
-                      color: n.Color ? n.Color.toLowerCase() : "inherit",
-                    }}
-                  >
-                    {n.DrwNr}
-                  </td>
-                ))}
-              </tr>
-              <tr>
-                <th>Nominal Value</th>
-                {databaseFiltered[0].DatabaseDim.map((n) => (
-                  <td
-                    key={n.ID + "NominalValue"}
-                    style={{
-                      color: n.Color ? n.Color.toLowerCase() : "inherit",
-                    }}
-                  >
-                    {n.NominalValue}
-                  </td>
-                ))}
-              </tr>
-              <tr>
-                <th>Upper Tolerance</th>
-                {databaseFiltered[0].DatabaseDim.map((n) => (
-                  <td
-                    key={n.ID + n.UpperTolerance}
-                    style={{
-                      color: n.Color ? n.Color.toLowerCase() : "inherit",
-                    }}
-                  >
-                    {n.UpperTolerance}
-                  </td>
-                ))}
-              </tr>
-              <tr>
-                <th>Lower Tolerance</th>
-                {databaseFiltered[0].DatabaseDim.map((n) => (
-                  <td
-                    key={n.ID + n.LowerTolerance}
-                    style={{
-                      color: n.Color ? n.Color.toLowerCase() : "inherit",
-                    }}
-                  >
-                    {n.LowerTolerance}
-                  </td>
-                ))}
-              </tr>
-              <tr>
-                <th>Upper Limit</th>
-                {databaseFiltered[0].DatabaseDim.map((n) => (
-                  <td
-                    key={n.ID + n.NominalValue + n.UpperTolerance}
-                    style={{
-                      color: n.Color ? n.Color.toLowerCase() : "inherit",
-                    }}
-                  >
-                    {(n.NominalValue + n.UpperTolerance).toFixed(3)}
-                  </td>
-                ))}
-              </tr>
-              <tr>
-                <th>Lower Limit</th>
-                {databaseFiltered[0].DatabaseDim.map((n) => (
-                  <td
-                    key={n.ID + n.NominalValue + n.LowerTolerance}
-                    style={{
-                      color: n.Color ? n.Color.toLowerCase() : "inherit",
-                    }}
-                  >
-                    {(n.NominalValue + n.LowerTolerance).toFixed(3)}
-                  </td>
-                ))}
-              </tr>
-              <tr>
-                <th>Tolerance Range</th>
-                {databaseFiltered[0].DatabaseDim.map((n) => (
-                  <td
-                    key={n.ID + n.UpperTolerance + "minu" + n.LowerTolerance}
-                    style={{
-                      color: n.Color ? n.Color.toLowerCase() : "inherit",
-                    }}
-                  >
-                    {n.UpperTolerance - n.LowerTolerance}
-                  </td>
-                ))}
-              </tr>
-              <tr>
-                <th>Sign</th>
-                {databaseFiltered[0].DatabaseDim.map((n) => (
-                  <td
-                    key={n.ID + "Sign"}
-                    style={{
-                      color: n.Color ? n.Color.toLowerCase() : "inherit",
-                    }}
-                  >
-                    {n.Sign}
-                  </td>
-                ))}
-              </tr>
-              <tr>
-                <th>Distribution Type</th>
-                {databaseFiltered[0].DatabaseDim.map((n) => (
-                  <td
-                    key={n.ID + n.DistributionType}
-                    style={{
-                      color: n.Color ? n.Color.toLowerCase() : "inherit",
-                    }}
-                  >
-                    {" "}
-                    {n.DistributionType}
-                  </td>
-                ))}
-              </tr>
-              <tr>
-                <th>Tolerance Type</th>
-                {databaseFiltered[0].DatabaseDim.map((n) => (
-                  <td
-                    key={n.ID + n.ToleranceType}
-                    style={{
-                      color: n.Color ? n.Color.toLowerCase() : "inherit",
-                    }}
-                  >
-                    {n.ToleranceType}
-                  </td>
-                ))}
-              </tr>
-              <tr>
-                <th>Standard Deviation</th>
-                {databaseFiltered[0].DatabaseDim.map((n) => (
-                  <td
-                    key={n.ID + "Std"}
-                    style={{
-                      color: n.Color ? n.Color.toLowerCase() : "inherit",
-                    }}
-                  >
-                    {Math.round(
-                      ((n.UpperTolerance - n.LowerTolerance) /
-                        (6 *
-                          parseFloat(
-                            n.DistributionType.replace(/[^\d.]*/g, "")
-                          )) +
-                        Number.EPSILON) *
-                        100
-                    ) / 100}
-                  </td>
-                ))}
-              </tr>
-              <tr>
-                <th>Mean</th>
-                {databaseFiltered[0].DatabaseDim.map((n) => (
-                  <td
-                    key={n.ID + "Mean"}
-                    style={{
-                      color: n.Color ? n.Color.toLowerCase() : "inherit",
-                    }}
-                  >
-                    {(
-                      (n.NominalValue +
-                        n.UpperTolerance +
-                        n.NominalValue +
-                        n.LowerTolerance) /
-                      2
-                    ).toFixed(3)}
-                  </td>
-                ))}
-              </tr>
-              {/* <tr>
+          <div className="template-container">
+            <div
+              className="button-add"
+              onClick={() => {
+                SetViewAdd();
+                TemplateComponentFiltered();
+              }}
+            >
+              <img src={add}></img>Add Case
+            </div>
+            <table id="Database">
+              <thead>
+                <tr>
+                  <th className="first-th">Index</th>
+                  {databaseFiltered[0].DatabaseDim.map((n, index) => (
+                    <td
+                      key={n.ID + "Database"}
+                      style={{
+                        color: n.Color ? n.Color.toLowerCase() : "inherit",
+                        borderTopRightRadius:
+                          index === databaseFiltered[0].DatabaseDim.length - 1
+                            ? "20px"
+                            : "0",
+                      }}
+                    >
+                      {n.ID}
+                    </td>
+                  ))}
+                </tr>
+                <tr>
+                  <th>Name</th>
+                  {databaseFiltered[0].DatabaseDim.map((n) => (
+                    <td
+                      key={n.ID + n.Name}
+                      style={{
+                        color: n.Color ? n.Color.toLowerCase() : "inherit",
+                      }}
+                    >
+                      {" "}
+                      {n.Name}
+                    </td>
+                  ))}
+                </tr>
+                <tr>
+                  <th>Description</th>
+                  {databaseFiltered[0].DatabaseDim.map((n) => (
+                    <td
+                      key={n.ID + n.Description}
+                      style={{
+                        color: n.Color ? n.Color.toLowerCase() : "inherit",
+                      }}
+                    >
+                      {n.Description}
+                    </td>
+                  ))}
+                </tr>
+                <tr>
+                  <th>Unique Identifier</th>
+                  {databaseFiltered[0].DatabaseDim.map((n) => (
+                    <td
+                      key={n.ID + n.UniqueIdentifier}
+                      style={{
+                        color: n.Color ? n.Color.toLowerCase() : "inherit",
+                      }}
+                    >
+                      {n.UniqueIdentifier}
+                    </td>
+                  ))}
+                </tr>
+                <tr>
+                  <th>Drw. nr.</th>
+                  {databaseFiltered[0].DatabaseDim.map((n) => (
+                    <td
+                      key={n.ID + n.DrwNr}
+                      style={{
+                        color: n.Color ? n.Color.toLowerCase() : "inherit",
+                      }}
+                    >
+                      {n.DrwNr}
+                    </td>
+                  ))}
+                </tr>
+                <tr>
+                  <th>Nominal Value</th>
+                  {databaseFiltered[0].DatabaseDim.map((n) => (
+                    <td
+                      key={n.ID + "NominalValue"}
+                      style={{
+                        color: n.Color ? n.Color.toLowerCase() : "inherit",
+                      }}
+                    >
+                      {n.NominalValue}
+                    </td>
+                  ))}
+                </tr>
+                <tr>
+                  <th>Upper Tolerance</th>
+                  {databaseFiltered[0].DatabaseDim.map((n) => (
+                    <td
+                      key={n.ID + n.UpperTolerance}
+                      style={{
+                        color: n.Color ? n.Color.toLowerCase() : "inherit",
+                      }}
+                    >
+                      {n.UpperTolerance}
+                    </td>
+                  ))}
+                </tr>
+                <tr>
+                  <th>Lower Tolerance</th>
+                  {databaseFiltered[0].DatabaseDim.map((n) => (
+                    <td
+                      key={n.ID + n.LowerTolerance}
+                      style={{
+                        color: n.Color ? n.Color.toLowerCase() : "inherit",
+                      }}
+                    >
+                      {n.LowerTolerance}
+                    </td>
+                  ))}
+                </tr>
+                <tr>
+                  <th>Upper Limit</th>
+                  {databaseFiltered[0].DatabaseDim.map((n) => (
+                    <td
+                      key={n.ID + n.NominalValue + n.UpperTolerance}
+                      style={{
+                        color: n.Color ? n.Color.toLowerCase() : "inherit",
+                      }}
+                    >
+                      {(n.NominalValue + n.UpperTolerance).toFixed(3)}
+                    </td>
+                  ))}
+                </tr>
+                <tr>
+                  <th>Lower Limit</th>
+                  {databaseFiltered[0].DatabaseDim.map((n) => (
+                    <td
+                      key={n.ID + n.NominalValue + n.LowerTolerance}
+                      style={{
+                        color: n.Color ? n.Color.toLowerCase() : "inherit",
+                      }}
+                    >
+                      {(n.NominalValue + n.LowerTolerance).toFixed(3)}
+                    </td>
+                  ))}
+                </tr>
+                <tr>
+                  <th>Tolerance Range</th>
+                  {databaseFiltered[0].DatabaseDim.map((n) => (
+                    <td
+                      key={n.ID + n.UpperTolerance + "minu" + n.LowerTolerance}
+                      style={{
+                        color: n.Color ? n.Color.toLowerCase() : "inherit",
+                      }}
+                    >
+                      {n.UpperTolerance - n.LowerTolerance}
+                    </td>
+                  ))}
+                </tr>
+                <tr>
+                  <th>Sign</th>
+                  {databaseFiltered[0].DatabaseDim.map((n) => (
+                    <td
+                      key={n.ID + "Sign"}
+                      style={{
+                        color: n.Color ? n.Color.toLowerCase() : "inherit",
+                      }}
+                    >
+                      {n.Sign}
+                    </td>
+                  ))}
+                </tr>
+                <tr>
+                  <th>Distribution Type</th>
+                  {databaseFiltered[0].DatabaseDim.map((n) => (
+                    <td
+                      key={n.ID + n.DistributionType}
+                      style={{
+                        color: n.Color ? n.Color.toLowerCase() : "inherit",
+                      }}
+                    >
+                      {" "}
+                      {n.DistributionType}
+                    </td>
+                  ))}
+                </tr>
+                <tr>
+                  <th>Tolerance Type</th>
+                  {databaseFiltered[0].DatabaseDim.map((n) => (
+                    <td
+                      key={n.ID + n.ToleranceType}
+                      style={{
+                        color: n.Color ? n.Color.toLowerCase() : "inherit",
+                      }}
+                    >
+                      {n.ToleranceType}
+                    </td>
+                  ))}
+                </tr>
+                <tr>
+                  <th>Standard Deviation</th>
+                  {databaseFiltered[0].DatabaseDim.map((n) => (
+                    <td
+                      key={n.ID + "Std"}
+                      style={{
+                        color: n.Color ? n.Color.toLowerCase() : "inherit",
+                      }}
+                    >
+                      {Math.round(
+                        ((n.UpperTolerance - n.LowerTolerance) /
+                          (6 *
+                            parseFloat(
+                              n.DistributionType.replace(/[^\d.]*/g, "")
+                            )) +
+                          Number.EPSILON) *
+                          100
+                      ) / 100}
+                    </td>
+                  ))}
+                </tr>
+                <tr>
+                  <th>Mean</th>
+                  {databaseFiltered[0].DatabaseDim.map((n) => (
+                    <td
+                      key={n.ID + "Mean"}
+                      style={{
+                        color: n.Color ? n.Color.toLowerCase() : "inherit",
+                      }}
+                    >
+                      {(
+                        (n.NominalValue +
+                          n.UpperTolerance +
+                          n.NominalValue +
+                          n.LowerTolerance) /
+                        2
+                      ).toFixed(3)}
+                    </td>
+                  ))}
+                </tr>
+                {/* <tr>
                 <th>Drawing</th>
                 {databaseFiltered[0].DatabaseDim.map((n) => (
                   <td key={n.ID + "Drawing"}>
@@ -464,34 +475,35 @@ const Database = ({ CloseDatabase }) => {
                 ))}
               </tr> */}
 
-              <tr>
-                <th className="last-th">Action</th>
-                {databaseFiltered[0].DatabaseDim.map((n, index) => (
-                  <td
-                    key={n.ID + "Remove case summary"}
-                    style={{
-                      borderBottomRightRadius:
-                        index === databaseFiltered[0].DatabaseDim.length - 1
-                          ? "20px"
-                          : "0",
-                    }}
-                  >
-                    <button
-                      type="button"
-                      variant="outline-danger"
-                      onClick={() => {
-                        RemoveDim(n.ID);
-                        // forceUpdate();
+                <tr>
+                  <th className="last-th">Action</th>
+                  {databaseFiltered[0].DatabaseDim.map((n, index) => (
+                    <td
+                      key={n.ID + "Remove case summary"}
+                      style={{
+                        borderBottomRightRadius:
+                          index === databaseFiltered[0].DatabaseDim.length - 1
+                            ? "20px"
+                            : "0",
                       }}
                     >
-                      X
-                    </button>
-                  </td>
-                ))}
-              </tr>
-            </thead>
-            <tbody></tbody>
-          </table>
+                      <button
+                        type="button"
+                        variant="outline-danger"
+                        onClick={() => {
+                          RemoveDim(n.ID);
+                          // forceUpdate();
+                        }}
+                      >
+                        X
+                      </button>
+                    </td>
+                  ))}
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
         </div>
       )}
       {/* {viewAddComponentData && (
@@ -518,7 +530,7 @@ const Database = ({ CloseDatabase }) => {
         </Row>
       )} */}
 
-      {viewAddComponent && (
+      {/* {viewAddComponent && (
         <div className="main-item-database">
           <button
             variant="secondary"
@@ -532,7 +544,7 @@ const Database = ({ CloseDatabase }) => {
             Add component
           </button>
         </div>
-      )}
+      )} */}
     </div>
   );
 };
