@@ -177,6 +177,83 @@ const Database = ({ CloseDatabase }) => {
           //   Remove={RemoveProject}
           //   handleNew={handeleNewProject}
         />
+
+        <div className="main-add-component ">
+          <div className="newproject-heder">
+            <div className="text">Add Component</div>
+            <div className="line"></div>
+          </div>
+          <div className="project-input">
+            <div className="project-input-container">
+              <label className="project-input-label">Description</label>
+              <input
+                type="text"
+                name="project"
+                placeholder="Enter description"
+                className="project-input-container"
+                //   onChange={handeleProjectName}
+              ></input>
+            </div>
+            <div className="project-input-container">
+              <label className="project-input-label">Drw.nr</label>
+              <input
+                type="text"
+                name="project"
+                placeholder="Enter drw.nr."
+                className="project-input-container"
+                //   onChange={handeleProjectName}
+              ></input>
+            </div>
+            <div className="project-input-container">
+              <label className="project-input-label">Nominal Value</label>
+              <input
+                type="text"
+                name="project"
+                placeholder="Enter nominal value"
+                className="project-input-container"
+                //   onChange={handeleProjectName}
+              ></input>
+            </div>
+            <div className="project-input-container">
+              <label className="project-input-label">Upper Limit</label>
+              <input
+                type="text"
+                name="project"
+                placeholder="Enter upper limit"
+                className="project-input-container"
+                //   onChange={handeleProjectName}
+              ></input>
+            </div>
+            <div className="project-input-container"></div>
+            <div className="project-input-container">
+              <label className="project-input-label">Lower Limit</label>
+              <input
+                type="text"
+                name="project"
+                placeholder="Enter lower limit"
+                className="project-input-container"
+                //   onChange={handeleProjectName}
+              ></input>
+            </div>
+          </div>
+          <div className="project-input">
+            <DropDown
+              // name={"Template"}
+              database={[1, 2, 3]}
+              // isDatabaseProjects={isDatabaseProjects}
+              // handleProjectClick={handleTemplateClick}
+              // handleNew={handeleNewTemplate}
+            />
+          </div>
+
+          <div className="project-bottom">
+            <div className="buttons-frame">
+              <button className="button">Cancel</button>
+              <button className="button">Add project</button>
+            </div>
+          </div>
+        </div>
+
         <ToastContainer transition={Bounce} autoClose={2000} />
       </div>
 
@@ -511,76 +588,7 @@ const Database = ({ CloseDatabase }) => {
           <div className="add-header">Add Component</div>
         </div>
       </div> */}
-      <div className="main-item-database">
-        <div className="main-item">
-          <div className="newproject-container">
-            <div className="newproject-heder">
-              <div className="text">Add Component</div>
-              <div className="line"></div>
-            </div>
-            <div className="project-input">
-              <form>
-                <label className="project-input-label">Description</label>
-                <input
-                  type="text"
-                  name="project"
-                  //   placeholder={projectName}
-                  className="project-input-container"
-                  //   onChange={handeleProjectName}
-                ></input>
-                <label className="project-input-label">Drw. Nr.</label>
-                <input
-                  type="text"
-                  name="project"
-                  //   placeholder={projectName}
-                  className="project-input-container"
-                  //   onChange={handeleProjectName}
-                ></input>
-                <label className="project-input-label">Nominal value</label>
-                <input
-                  type="text"
-                  name="project"
-                  //   placeholder={projectName}
-                  className="project-input-container"
-                  //   onChange={handeleProjectName}
-                ></input>
-                <label className="project-input-label">Upper Limit</label>
-                <input
-                  type="text"
-                  name="project"
-                  //   placeholder={projectName}
-                  className="project-input-container"
-                  //   onChange={handeleProjectName}
-                ></input>
-                <label className="project-input-label">Lower Limit</label>
-                <input
-                  type="text"
-                  name="project"
-                  //   placeholder={projectName}
-                  className="project-input-container"
-                  //   onChange={handeleProjectName}
-                ></input>
-              </form>
-            </div>
-            <div className="project-input">
-              <DropDown
-              // name={"Template"}
-              // database={databaseTemplateUpdate}
-              // isDatabaseProjects={isDatabaseProjects}
-              // handleProjectClick={handleTemplateClick}
-              // handleNew={handeleNewTemplate}
-              />
-            </div>
 
-            <div className="project-bottom project-input">
-              <div className="buttons-frame">
-                <button className="button">Cancel</button>
-                <button className="button">Add project</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
       {/* {viewAddComponentData && (
         <Row>
           <AddComponent
