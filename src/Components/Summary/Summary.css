@@ -99,7 +99,7 @@
     justify-content: center;
     align-items: center;
     gap: 6px;
-    color: var(--indigo-500, #5E5ADB);
+    color: var(--Gray-0, #F7F9FC);
 
     /* Subtitle/S2 */
     font-family: Inter;

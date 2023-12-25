@@ -44,15 +44,23 @@ const Dropdown = ({
                   <div
                     className="text-item"
                     onClick={() => {
-                      handleProjectClick(
-                        name === "Project" ? n.ProjectName : n.TemplateName
-                      );
-                      setheaderName(
-                        name === "Project" ? n.ProjectName : n.TemplateName
-                      );
+                      let clickedName;
+
+                      if (name === "Project") {
+                        clickedName = n.ProjectName;
+                      } else if (name === "Template") {
+                        clickedName = n.TemplateName;
+                      } else if (name === "Component") {
+                        clickedName = n.ComponentName;
+                      }
+
+                      handleProjectClick(clickedName);
+                      setheaderName(clickedName);
                     }}
                   >
-                    {name === "Project" ? n.ProjectName : n.TemplateName}
+                    {name === "Project" && <span>{n.ProjectName}</span>}
+                    {name === "Template" && <span>{n.TemplateName}</span>}
+                    {name === "Component" && <span>{n.ComponentName}</span>}
                   </div>
                   <img
                     src={del}

@@ -236,26 +236,38 @@
 }
 
 .main-add-component{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     
     border-radius: 20px;
-    background: linear-gradient(144deg, #171C26 0%, rgba(60, 71, 92, 0.67) 28.91%);
+    background: linear-gradient(144deg, #5A6376 24.29%, #BCC2CE 74.47%);
+
+    /* Pop-Up L */
+    box-shadow: 0px 10px 30px 0px rgba(0, 0, 0, 0.20), 0px 30px 70px 0px rgba(26, 34, 64, 0.15), 0px 0px 0px 1px rgba(136, 143, 170, 0.10);
     .newproject-heder{
+        display: flex;
+        flex-wrap: wrap;
+        padding-top: 4px;
+        padding-bottom: 4px;
         
-        padding: 8px;
         color: var(--Indigo-100, #D0CFFC);
+        background: var(--gray-500, #687182);
+        border-radius: 20px 20px 0px 0px;
         /* Header/H5 */
         font-family: Inter;
         font-size: 18px;
         font-style: normal;
         font-weight: 500;
         line-height: normal;
+        width: 100%;
         .text{
             padding: 8px;
         }
-        .line{
+        /* .line{
             border: 1px solid var(--Indigo-100, #D0CFFC);
             width: 100%;
-        }
+        } */
     
     }
     .project-input{
@@ -279,7 +291,7 @@
                 padding: 8px;
             }
             .project-input-container{
-                color: var(--Gray-100, #D5DBE5);
+                color: var(--Gray-600, #5A6376);;
                 margin: 4px;
                 /* Subtitle/S2 */
                 font-family: Inter;
@@ -295,7 +307,11 @@
             }
           }
           
-        
+    .project-input-drop{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }   
          
     
      
@@ -326,6 +342,7 @@
             flex-direction: row;
             gap: 80px;
             .button{
+                cursor: pointer;
                 display: flex;
                 padding: 6px 12px;
                 justify-content: center;
@@ -345,6 +362,12 @@
                 font-weight: 500;
                 line-height: 20px; /* 142.857% */
                 letter-spacing: 0.28px;
+                &:hover{
+            
+                    border-radius: 9.132px;
+                    border: 0.38px solid #B86E9F;
+                    
+                }
             }
         }
     }

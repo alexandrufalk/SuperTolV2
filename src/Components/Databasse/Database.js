@@ -4,6 +4,7 @@ import useDatabaseProjects from "../../Hooks/useDatabaseProject";
 import useTemplate from "../../Hooks/useTemplate";
 import { ToastContainer, toast, Bounce } from "react-toastify";
 import DropDown from "../DropDown/DropDown";
+import AddNewComponent from "../AddNew/AddNewComponent";
 import ImageComponent from "../ImageComponent/ImageComponent";
 import ImageCropper2 from "../ImageComponent/ImageCropper2";
 import add from "../Summary/add.png";
@@ -177,8 +178,18 @@ const Database = ({ CloseDatabase }) => {
           //   Remove={RemoveProject}
           //   handleNew={handeleNewProject}
         />
+        {viewAddComponentData && (
+          <AddNewComponent
+            databaseFiltered={databaseFiltered}
+            Database={DatabaseUpdate}
+            isTemplate={isTemplate}
+            // viewAddComponentData={viewAddComponentData}
+            setDatabaseUpdate={setDatabaseUpdate}
+            componentData={componentData}
+          />
+        )}
 
-        <div className="main-add-component ">
+        {/* <div className="main-add-component ">
           <div className="newproject-heder">
             <div className="text">Add Component</div>
             <div className="line"></div>
@@ -252,7 +263,7 @@ const Database = ({ CloseDatabase }) => {
               <button className="button">Add project</button>
             </div>
           </div>
-        </div>
+        </div> */}
 
         <ToastContainer transition={Bounce} autoClose={2000} />
       </div>
