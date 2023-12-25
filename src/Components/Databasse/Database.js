@@ -184,7 +184,7 @@ const Database = ({ CloseDatabase }) => {
             <div className="line"></div>
           </div>
           <div className="project-input">
-            <div className="project-input-container">
+            <div className="project-input-box">
               <label className="project-input-label">Description</label>
               <input
                 type="text"
@@ -194,7 +194,7 @@ const Database = ({ CloseDatabase }) => {
                 //   onChange={handeleProjectName}
               ></input>
             </div>
-            <div className="project-input-container">
+            <div className="project-input-box">
               <label className="project-input-label">Drw.nr</label>
               <input
                 type="text"
@@ -204,7 +204,7 @@ const Database = ({ CloseDatabase }) => {
                 //   onChange={handeleProjectName}
               ></input>
             </div>
-            <div className="project-input-container">
+            <div className="project-input-box">
               <label className="project-input-label">Nominal Value</label>
               <input
                 type="text"
@@ -214,7 +214,7 @@ const Database = ({ CloseDatabase }) => {
                 //   onChange={handeleProjectName}
               ></input>
             </div>
-            <div className="project-input-container">
+            <div className="project-input-box">
               <label className="project-input-label">Upper Limit</label>
               <input
                 type="text"
@@ -224,8 +224,8 @@ const Database = ({ CloseDatabase }) => {
                 //   onChange={handeleProjectName}
               ></input>
             </div>
-            <div className="project-input-container"></div>
-            <div className="project-input-container">
+            <div className="project-input-box"></div>
+            <div className="project-input-box">
               <label className="project-input-label">Lower Limit</label>
               <input
                 type="text"
@@ -282,7 +282,7 @@ const Database = ({ CloseDatabase }) => {
       </DropdownButton> */}
 
       {projectSelected && (
-        <div className="main-item-database">
+        <div className="main-item-database2">
           <div className="template-container">
             <div
               className="button-add"

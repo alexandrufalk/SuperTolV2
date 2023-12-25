@@ -18,6 +18,18 @@
     /* Additional styles for grid items within Main */
     /* border: 1px solid #ccc; */
     padding: 16px;
+    justify-self:center;
+
+    box-sizing: border-box;
+    margin-left: 24px;
+
+    /* text-align: center; */
+  }
+
+  .main-item-database2 {
+    /* Additional styles for grid items within Main */
+    /* border: 1px solid #ccc; */
+    padding: 16px;
     justify-self:flex-start;
 
     box-sizing: border-box;
@@ -251,7 +263,7 @@
        display: grid;
        grid-template-columns: repeat(2, 1fr);
         gap: 10px; 
-        .project-input-container{
+        .project-input-box{
             grid-column: span 1; 
             padding: 4px;
             .project-input-label{
@@ -293,10 +305,12 @@
         .project-input {
             display: grid;
             grid-template-columns: 1fr; 
-            gap: 8px; 
-            width: 80%;
-            .project-input-container{
-                width: 80%;
+            gap: 2px; 
+            
+            .project-input-box{
+                display: flex;
+                flex-direction: column;
+
             }
           }
           
