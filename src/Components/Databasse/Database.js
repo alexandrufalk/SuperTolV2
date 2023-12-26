@@ -73,7 +73,7 @@ const Database = ({ CloseDatabase }) => {
 
   const SetViewAdd = () => {
     if (selectProjectData !== "Select project name") {
-      setViewAddComponentData(true);
+      setViewAddComponentData(!viewAddComponentData);
       setViewCancel(true);
       setViewAddComponent(false);
     } else {
@@ -186,6 +186,7 @@ const Database = ({ CloseDatabase }) => {
             // viewAddComponentData={viewAddComponentData}
             setDatabaseUpdate={setDatabaseUpdate}
             componentData={componentData}
+            setViewAddComponentData={setViewAddComponentData}
           />
         )}
 

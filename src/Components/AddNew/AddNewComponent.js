@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import useDatabaseProjects from "../../Hooks/useDatabaseProject";
 import DropDown from "../DropDown/DropDown";
 import { ToastContainer, toast, Bounce } from "react-toastify";
+import "./AddNewComponent.css";
 
 const AddNewComponent = ({
   databaseFiltered,
@@ -9,6 +10,7 @@ const AddNewComponent = ({
   setDatabaseUpdate,
   isTemplate,
   componentData,
+  setViewAddComponentData,
 }) => {
   const [viewComponents, setViewComponents] = useState("Select Component Name");
 
@@ -243,11 +245,89 @@ const AddNewComponent = ({
             onChange={handleChange}
           ></input>
         </div>
+        <div className="bottom-drop-group">
+          <div class="bottom-drop">
+            <label for="toleranceType" className="label-drop">
+              Select tolerance type
+            </label>
+            <select
+              id="toleranceType"
+              class="select-drop"
+              name="ToleranceType"
+              value={form.ToleranceType}
+              onChange={(e) => handleChange(e)}
+            >
+              <option value="Select tolerance">Select tolerance</option>
+              <option value="General Tolerance">General Tolerance</option>
+              <option value="Imposed Tolerance">Imposed Tolerance</option>
+            </select>
+          </div>
+          <div class="bottom-drop">
+            <label for="distributionType" className="label-drop">
+              Select distribution type
+            </label>
+            <select
+              id="distributionType"
+              class="select-drop"
+              name="DistributionType"
+              value={form.DistributionType}
+              onChange={(e) => {
+                handleChange(e);
+                handleCustomCpK(e);
+              }}
+            >
+              <option value="Distribution type">Distribution type</option>
+              <option value="Normal Cpk 1">Normal Cpk 1</option>
+              <option value="Normal Cpk 1.33">Normal Cpk 1.33</option>
+              <option value="Normal Cpk 1.66">Normal Cpk 1.66</option>
+              <option value="Normal Cpk 2">Normal Cpk 2</option>
+              <option value="Uniform">Uniform</option>
+              <option value="Normal Cpk Custom">Normal Cpk Custom</option>
+            </select>
+          </div>
+          {viewCustomCpk && (
+            <div className="project-input-box">
+              <label className="project-input-label">Custom Cpk</label>
+              <input
+                type="text"
+                name="DistributionType"
+                placeholder="Enter Cpk"
+                className="project-input-container"
+                value={form.LowerTolerance}
+                onChange={handleChange}
+              ></input>
+            </div>
+          )}
+
+          <div class="bottom-drop">
+            <label for="sign" className="label-drop">
+              Select Sign
+            </label>
+            <select
+              id="sign"
+              class="select-drop"
+              name="Sign"
+              value={form.Sign}
+              onChange={(e) => handleChange(e)}
+            >
+              <option value="Select Sign">Select Sign</option>
+              <option value="+">+</option>
+              <option value="-">-</option>
+            </select>
+          </div>
+        </div>
       </div>
 
       <div className="project-bottom">
         <div className="buttons-frame">
-          <button className="button">Cancel</button>
+          <button
+            className="button"
+            onClick={() => {
+              setViewAddComponentData();
+            }}
+          >
+            Cancel
+          </button>
           <button className="button">Add project</button>
         </div>
       </div>
