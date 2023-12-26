@@ -1,9 +1,12 @@
 .bottom-drop-group{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
     gap: 8px;
     justify-content: center;
     align-items: center;
+    grid-column: span 2;
+    
     
     .bottom-drop{
         display: flex;
@@ -61,4 +64,11 @@
             }
         }
     }
+}
+
+@media screen and (max-width: 800px){
+    .bottom-drop-group {
+        grid-column: span 1;
+        flex-direction: column;
+      }
 }
