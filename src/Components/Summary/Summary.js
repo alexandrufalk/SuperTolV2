@@ -535,6 +535,7 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
           handleProjectClick={handleProjectClick}
           Remove={RemoveProject}
           handleNew={handeleNewProject}
+          viewNew={true}
         />
         <DropDown
           name={"Template"}
@@ -543,6 +544,7 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
           handleProjectClick={handleTemplateClick}
           handleNew={handeleNewTemplate}
           Remove={RemoveTemplate}
+          viewNew={true}
         />
       </div>
       {newProject && (
@@ -571,6 +573,7 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
                 isDatabaseProjects={isDatabaseProjects}
                 handleProjectClick={handleTemplateClick}
                 handleNew={handeleNewTemplate}
+                viewNew={true}
               />
             </div>
 

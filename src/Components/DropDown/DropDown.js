@@ -10,6 +10,7 @@ const Dropdown = ({
   handleProjectClick,
   Remove,
   handleNew,
+  viewNew,
 }) => {
   const [viewItems, setViewItems] = useState(false);
   const [headerName, setheaderName] = useState(`Select ${name} name`);
@@ -76,15 +77,17 @@ const Dropdown = ({
                 </div>
               </div>
             ))}
-          <div className="item-content">
-            <div className="item-list">
-              <img src={rectangle}></img>
-              <div
-                className="text-item"
-                onClick={handleButtonClick}
-              >{`New ${name}`}</div>
+          {viewNew && (
+            <div className="item-content">
+              <div className="item-list">
+                <img src={rectangle}></img>
+                <div
+                  className="text-item"
+                  onClick={handleButtonClick}
+                >{`New ${name}`}</div>
+              </div>
             </div>
-          </div>
+          )}
         </div>
       )}
     </div>
