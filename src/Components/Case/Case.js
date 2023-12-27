@@ -600,9 +600,9 @@ const Case = React.forwardRef(({ projectId, caseId, ViewDatabase }, ref) => {
   console.log("check dualaxis", dualAxisChart);
 
   return (
-    <div className="main-container" ref={ref}>
-      <p className="fs-3 border border-success-subtle p-2 rounded ">Case nr.</p>
-      <div className="bottom-drop-group">
+    <div className="main-container-case" ref={ref}>
+      <p className="case-header">Case nr.</p>
+      <div className="main-item">
         <div class="bottom-drop">
           <label for="toleranceType" className="label-drop">
             Select tolerance type
@@ -645,6 +645,15 @@ const Case = React.forwardRef(({ projectId, caseId, ViewDatabase }, ref) => {
             <option value="2">Normal Cpk 2</option>
           </select>
         </div>
+        <button
+          variant="secondary"
+          className="button"
+          onClick={() => {
+            generateStatistic();
+          }}
+        >
+          Generate Statistic
+        </button>
       </div>
       {/* <Form.Group controlId="formGridState" className="col col-sm-6">
         <Form.Label>Select gap Cpk</Form.Label>
@@ -681,32 +690,19 @@ const Case = React.forwardRef(({ projectId, caseId, ViewDatabase }, ref) => {
         </Form.Select>
         <ToastContainer transition={Bounce} autoClose={2000} />
       </Form.Group> */}
-      <div className="container fluid p-2">
-        <button
-          variant="secondary"
-          className="button"
-          onClick={() => {
-            generateStatistic();
-          }}
-        >
-          Generate Statistic
-        </button>
-      </div>
+
       {/* {isSpinner && <Spinner animation="border" variant="secondary" />} */}
-      <div className="statistical-container">
+      <div className="main-item">
         {/*Google Chart*/}
 
         {isStatistic && maxValue && (
           <div className="chart-container">
-            <div className="container horizontal-scrollable"></div>
+            {/* <div className="container horizontal-scrollable"></div> */}
 
             <div className="containergraph ">
-              <div
-                className="boxgraph "
-                style={{ display: "flex", justifyContent: "center" }}
-              >
+              <div className="boxgraph ">
                 <Chart
-                  width={"750px"}
+                  width={"450px"}
                   height={"450px"}
                   chartType="ColumnChart"
                   loader={<div>Loading Chart</div>}
@@ -740,12 +736,9 @@ const Case = React.forwardRef(({ projectId, caseId, ViewDatabase }, ref) => {
                 />
               </div>
 
-              <div
-                className="boxgraph overlaygraph "
-                style={{ display: "flex", justifyContent: "center" }}
-              >
+              <div className="boxgraph overlaygraph ">
                 <Chart
-                  width={"750px"}
+                  width={"450px"}
                   height={"450px"}
                   chartType="LineChart"
                   loader={<div>Loading Chart</div>}
@@ -848,8 +841,8 @@ const Case = React.forwardRef(({ projectId, caseId, ViewDatabase }, ref) => {
         </Col> */}
       </div>
 
-      <div className="case-tabel">
-        <table id="CaseDim">
+      <div className="main-item">
+        <table id="Projects">
           <thead>
             <tr className="text-info">
               <th>ID</th>
@@ -1049,12 +1042,12 @@ const Case = React.forwardRef(({ projectId, caseId, ViewDatabase }, ref) => {
         </Row>
       </div> */}
       {isDataCaseDimFiltred && (
-        <div className="scrollmenu">
+        <div className="main-item">
           <Canvas canvasDatabse={DatabaseCalculation} />
         </div>
       )}
 
-      <ImageCropper2 />
+      {/* <ImageCropper2 /> */}
     </div>
   );
 });
