@@ -619,6 +619,7 @@ const Case = React.forwardRef(({ projectId, caseId, ViewDatabase }, ref) => {
             <option value="Select Nr. of samples ">
               Select Nr. of samples{" "}
             </option>
+
             <option value="10000">10000</option>
             <option value="25000">25000</option>
             <option value="50000">50000</option>
@@ -647,13 +648,78 @@ const Case = React.forwardRef(({ projectId, caseId, ViewDatabase }, ref) => {
         </div>
         <button
           variant="secondary"
-          className="button"
+          className="button-add"
           onClick={() => {
             generateStatistic();
           }}
         >
           Generate Statistic
         </button>
+      </div>
+      <div className="main-item-case">
+        <table id="Database">
+          <tbody>
+            <tr>
+              <th className="first-th">Worst Case</th>
+
+              <td
+                key={"Nominal:"}
+                style={{
+                  borderTopRightRadius: "20px",
+                }}
+              >
+                {`${WorstCaseNominal.toFixed(3)}`}
+              </td>
+            </tr>
+            <tr>
+              <th>Upper Tolerance</th>
+
+              <td key={"UpperTolerance"}>
+                {` ${WorstCaseTolerance.toFixed(3)}`}
+              </td>
+            </tr>
+            <tr>
+              <th>Lower Tolerance</th>
+
+              <td key={"LowerTolerance"}>
+                {`${-WorstCaseTolerance.toFixed(3)}`}
+              </td>
+            </tr>
+            <tr>
+              <th>Upper Limit</th>
+
+              <td key={"UpperLimit"}>
+                {`${(WorstCaseNominal + WorstCaseTolerance).toFixed(3)}`}
+              </td>
+            </tr>
+            <tr>
+              <th>Lower Limit</th>
+
+              <td key={"LowerLimit"}>
+                {`${(WorstCaseNominal - WorstCaseTolerance).toFixed(3)}`}
+              </td>
+            </tr>
+            <tr>
+              <th>Range</th>
+
+              <td key={"Range"}>{`${(2 * WorstCaseTolerance).toFixed(3)}`}</td>
+            </tr>
+            <tr>
+              <th className="last-th">Symmetric</th>
+
+              <td
+                key={"Symmetric"}
+                style={{
+                  borderBottomRightRadius: "20px",
+                }}
+              >
+                {`${WorstCaseNominal.toFixed(3)} ±${WorstCaseTolerance.toFixed(
+                  3
+                )}`}
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
       {/* <Form.Group controlId="formGridState" className="col col-sm-6">
         <Form.Label>Select gap Cpk</Form.Label>
