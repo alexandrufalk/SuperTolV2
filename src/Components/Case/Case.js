@@ -602,7 +602,7 @@ const Case = React.forwardRef(({ projectId, caseId, ViewDatabase }, ref) => {
   return (
     <div className="main-container-case" ref={ref}>
       <p className="case-header">Case nr.</p>
-      <div className="main-item">
+      <div className="main-item-case">
         <div class="bottom-drop">
           <label for="toleranceType" className="label-drop">
             Select tolerance type
@@ -692,76 +692,72 @@ const Case = React.forwardRef(({ projectId, caseId, ViewDatabase }, ref) => {
       </Form.Group> */}
 
       {/* {isSpinner && <Spinner animation="border" variant="secondary" />} */}
-      <div className="main-item">
+      <div className="main-item-case">
         {/*Google Chart*/}
 
         {isStatistic && maxValue && (
           <div className="chart-container">
             {/* <div className="container horizontal-scrollable"></div> */}
 
-            <div className="containergraph ">
-              <div className="boxgraph ">
-                <Chart
-                  width={"450px"}
-                  height={"450px"}
-                  chartType="ColumnChart"
-                  loader={<div>Loading Chart</div>}
-                  data={histogramDataGoogle}
-                  options={{
-                    title: "Histogram Example",
-                    legend: { position: "none" },
-                    series: { 0: { color: "#7CD163" } },
-                    backgroundColor: { fill: "#38403f" },
-                    animation: {
-                      startup: true,
-                      easing: "linear",
-                      duration: 1500,
-                    },
-                    hAxis: {
-                      textStyle: {
-                        color: "#cef2ed", // Set the text color for x-axis labels
-                      },
-                    },
-                    vAxis: {
-                      textStyle: { color: "#cef2ed" },
-                      ticks: [
-                        0,
-                        (0.25 * maxValue).toFixed(0),
-                        (0.5 * maxValue).toFixed(0),
-                        (0.75 * maxValue).toFixed(0),
-                        maxValue,
-                      ], // Set custom tick values to enforce the maximum value
-                    },
-                  }}
-                />
-              </div>
+            <Chart
+              width={"100%"} // Set the initial width to 100%
+              height={"300px"} // Set the initial height
+              chartType="ColumnChart"
+              loader={<div>Loading Chart</div>}
+              data={histogramDataGoogle}
+              options={{
+                title: "Histogram ",
+                legend: { position: "none" },
+                series: { 0: { color: "#5A6376" } },
+                // backgroundColor: { fill: "#38403f" },
+                animation: {
+                  startup: true,
+                  easing: "linear",
+                  duration: 1500,
+                },
+                hAxis: {
+                  textStyle: {
+                    color: "#171C26", // Set the text color for x-axis labels
+                  },
+                },
+                vAxis: {
+                  textStyle: { color: "#171C26" },
+                  ticks: [
+                    0,
+                    (0.25 * maxValue).toFixed(0),
+                    (0.5 * maxValue).toFixed(0),
+                    (0.75 * maxValue).toFixed(0),
+                    maxValue,
+                  ], // Set custom tick values to enforce the maximum value
+                },
+              }}
+            />
 
-              <div className="boxgraph overlaygraph ">
-                <Chart
-                  width={"450px"}
-                  height={"450px"}
-                  chartType="LineChart"
-                  loader={<div>Loading Chart</div>}
-                  data={pdfDataGoogle}
-                  options={{
-                    legend: { position: "none" },
-                    series: { 0: { color: "#7CD163" } },
-                    backgroundColor: { fill: "transparent" },
-                    animation: {
-                      startup: true,
-                      easing: "linear",
-                      duration: 1500,
-                    },
-                    hAxis: {
-                      textPosition: "none", // Hide x-axis labels and ticks
-                    },
-                    vAxis: {
-                      textPosition: "none", // Hide y-axis labels and ticks
-                    },
-                  }}
-                />
-              </div>
-            </div>
+            <Chart
+              width={"100%"}
+              height={"300px"}
+              chartType="LineChart"
+              loader={<div>Loading Chart</div>}
+              data={pdfDataGoogle}
+              options={{
+                legend: { position: "none" },
+                series: { 0: { color: "#171C26" } },
+                backgroundColor: { fill: "transparent" },
+                animation: {
+                  startup: true,
+                  easing: "linear",
+                  duration: 1500,
+                },
+                hAxis: {
+                  textPosition: "none", // Hide x-axis labels and ticks
+                },
+                vAxis: {
+                  textPosition: "none", // Hide y-axis labels and ticks
+                },
+              }}
+            />
+
+            {/* <div className=""></div> */}
           </div>
         )}
 
@@ -841,7 +837,7 @@ const Case = React.forwardRef(({ projectId, caseId, ViewDatabase }, ref) => {
         </Col> */}
       </div>
 
-      <div className="main-item">
+      <div className="main-item-case2">
         <table id="Projects">
           <thead>
             <tr className="text-info">
@@ -1042,7 +1038,7 @@ const Case = React.forwardRef(({ projectId, caseId, ViewDatabase }, ref) => {
         </Row>
       </div> */}
       {isDataCaseDimFiltred && (
-        <div className="main-item">
+        <div className="main-item-case2">
           <Canvas canvasDatabse={DatabaseCalculation} />
         </div>
       )}
