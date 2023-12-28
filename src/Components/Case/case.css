@@ -1,18 +1,60 @@
 .main-container-case{
     display: grid;
     grid-template-columns: repeat(4,1fr);
-    grid-template-rows: min-content min-content min-content;
+    grid-template-rows: min-content min-content min-content min-content;
 
-    .main-item-case{
+    .main-item-case-chart{
+        grid-column: span 1;
         grid-row: 2/3; 
         padding: 16px;
         justify-self: center;
         align-items: center;
         box-sizing: border-box;
+        width: 400px;
+        height: 300px;
         position: relative; /* Make the container relative for absolute positioning */
+        boxgraph {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0.7;
+          }
+          .overlaygraph {
+            z-index: 10;
+          }
+        
+    }
+    .main-item-case{
+        grid-column: span 1;
+        grid-row: 2/3; 
+        padding: 16px;
+        justify-self: center;
+        align-items: center;
+        box-sizing: border-box;
+        
     }
     .main-item-case2{
-        grid-row: 3/4; 
+        grid-row:3/4;
+        grid-column: span 3;
+        padding: 16px;
+        justify-self: center;
+        align-items: center;
+        box-sizing: border-box;
+    }
+    .main-item-case2{
+        grid-row:3/4;
+        grid-column: span 3;
+        padding: 16px;
+        justify-self: center;
+        align-items: center;
+        box-sizing: border-box;
+    }
+
+    .main-item-canvas{
+        grid-row:4/5;
+        grid-column: span 3;
         padding: 16px;
         justify-self: center;
         align-items: center;
@@ -110,13 +152,24 @@
 
 .chart-container {
     position: absolute;
-    width: 100%; /* Set the width of the chart container */
-    height: 100%; /* Set the height of the chart container */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+
+  /* Set the width and height of the chart explicitly */
+.react-google-charts-chart {
+    width: 100%;
+    height: 100%;
   }
   
-  /* Add media query for responsiveness */
-  /* @media (max-width: 768px) {
-    .chart-container {
-      max-width: 70%; Set a different maximum width for smaller screens
-    }
-  } */
+  /* Adjust the style for the Google Charts tooltip */
+  .google-visualization-tooltip {
+    max-width: 200px;
+  }

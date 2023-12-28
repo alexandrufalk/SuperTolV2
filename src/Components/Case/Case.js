@@ -692,70 +692,73 @@ const Case = React.forwardRef(({ projectId, caseId, ViewDatabase }, ref) => {
       </Form.Group> */}
 
       {/* {isSpinner && <Spinner animation="border" variant="secondary" />} */}
-      <div className="main-item-case">
+      <div className="main-item-case-chart">
         {/*Google Chart*/}
 
         {isStatistic && maxValue && (
           <div className="chart-container">
             {/* <div className="container horizontal-scrollable"></div> */}
-
-            <Chart
-              width={"100%"} // Set the initial width to 100%
-              height={"300px"} // Set the initial height
-              chartType="ColumnChart"
-              loader={<div>Loading Chart</div>}
-              data={histogramDataGoogle}
-              options={{
-                title: "Histogram ",
-                legend: { position: "none" },
-                series: { 0: { color: "#5A6376" } },
-                // backgroundColor: { fill: "#38403f" },
-                animation: {
-                  startup: true,
-                  easing: "linear",
-                  duration: 1500,
-                },
-                hAxis: {
-                  textStyle: {
-                    color: "#171C26", // Set the text color for x-axis labels
+            <div className="boxgraph">
+              <Chart
+                width={"100%"} // Set the initial width to 100%
+                height={"300px"} // Set the initial height
+                chartType="ColumnChart"
+                loader={<div>Loading Chart</div>}
+                data={histogramDataGoogle}
+                options={{
+                  title: "Histogram ",
+                  legend: { position: "none" },
+                  series: { 0: { color: "#5A6376" } },
+                  // backgroundColor: { fill: "#38403f" },
+                  animation: {
+                    startup: true,
+                    easing: "linear",
+                    duration: 1500,
                   },
-                },
-                vAxis: {
-                  textStyle: { color: "#171C26" },
-                  ticks: [
-                    0,
-                    (0.25 * maxValue).toFixed(0),
-                    (0.5 * maxValue).toFixed(0),
-                    (0.75 * maxValue).toFixed(0),
-                    maxValue,
-                  ], // Set custom tick values to enforce the maximum value
-                },
-              }}
-            />
+                  hAxis: {
+                    textStyle: {
+                      color: "#171C26", // Set the text color for x-axis labels
+                    },
+                  },
+                  vAxis: {
+                    textStyle: { color: "#171C26" },
+                    ticks: [
+                      0,
+                      (0.25 * maxValue).toFixed(0),
+                      (0.5 * maxValue).toFixed(0),
+                      (0.75 * maxValue).toFixed(0),
+                      maxValue,
+                    ], // Set custom tick values to enforce the maximum value
+                  },
+                }}
+              />
+            </div>
 
-            <Chart
-              width={"100%"}
-              height={"300px"}
-              chartType="LineChart"
-              loader={<div>Loading Chart</div>}
-              data={pdfDataGoogle}
-              options={{
-                legend: { position: "none" },
-                series: { 0: { color: "#171C26" } },
-                backgroundColor: { fill: "transparent" },
-                animation: {
-                  startup: true,
-                  easing: "linear",
-                  duration: 1500,
-                },
-                hAxis: {
-                  textPosition: "none", // Hide x-axis labels and ticks
-                },
-                vAxis: {
-                  textPosition: "none", // Hide y-axis labels and ticks
-                },
-              }}
-            />
+            <div className="boxgraph">
+              <Chart
+                width={"100%"}
+                height={"300px"}
+                chartType="LineChart"
+                loader={<div>Loading Chart</div>}
+                data={pdfDataGoogle}
+                options={{
+                  legend: { position: "none" },
+                  series: { 0: { color: "#171C26" } },
+                  backgroundColor: { fill: "transparent" },
+                  animation: {
+                    startup: true,
+                    easing: "linear",
+                    duration: 1500,
+                  },
+                  hAxis: {
+                    textPosition: "none", // Hide x-axis labels and ticks
+                  },
+                  vAxis: {
+                    textPosition: "none", // Hide y-axis labels and ticks
+                  },
+                }}
+              />
+            </div>
 
             {/* <div className=""></div> */}
           </div>
@@ -838,111 +841,188 @@ const Case = React.forwardRef(({ projectId, caseId, ViewDatabase }, ref) => {
       </div>
 
       <div className="main-item-case2">
-        <table id="Projects">
-          <thead>
-            <tr className="text-info">
-              <th>ID</th>
-              <th>Name</th>
-              <th>Description</th>
-              <th>Unique Identifier</th>
-              <th>Nominal Value</th>
-              <th>Upper Tolerance</th>
-              <th>Lower Tolerance</th>
-              <th>Sign</th>
-              <th>Distribution Type</th>
-              <th>Tolerance Type</th>
-              <th>Influence %</th>
-              <th>Formula</th>
-              <th>Remove</th>
-            </tr>
-          </thead>
+        <table id="Database">
           <tbody>
-            {dataCaseDimFiltred.map((n) => (
-              <tr key={n.ID + "trtest"}>
+            <tr>
+              <th className="first-th">ID</th>
+              {dataCaseDimFiltred.map((n, index) => (
                 <td
+                  key={n.ID + "Projects"}
                   style={{
                     color: n.Color ? n.Color.toLowerCase() : "inherit",
+                    borderTopRightRadius:
+                      index === dataCaseDimFiltred.length - 1 ? "20px" : "0",
                   }}
                 >
                   {n.ID}
                 </td>
+              ))}
+            </tr>
+            <tr>
+              <th>Name</th>
+              {dataCaseDimFiltred.map((n) => (
                 <td
+                  key={n.ID + n.Name}
                   style={{
                     color: n.Color ? n.Color.toLowerCase() : "inherit",
                   }}
                 >
                   {n.Name}
                 </td>
+              ))}
+            </tr>
+            <tr>
+              <th>Description</th>
+              {dataCaseDimFiltred.map((n) => (
                 <td
+                  key={n.ID + n.Description}
                   style={{
                     color: n.Color ? n.Color.toLowerCase() : "inherit",
                   }}
                 >
                   {n.Description}
                 </td>
+              ))}
+            </tr>
+            <tr>
+              <th>Unique Identifier</th>
+              {dataCaseDimFiltred.map((n) => (
                 <td
+                  key={n.ID + n.UniqueIdentifier}
                   style={{
                     color: n.Color ? n.Color.toLowerCase() : "inherit",
                   }}
                 >
                   {n.UniqueIdentifier}
                 </td>
+              ))}
+            </tr>
+            <tr>
+              <th>Nominal Value</th>
+              {dataCaseDimFiltred.map((n) => (
                 <td
+                  key={n.ID + "NominalValue"}
                   style={{
                     color: n.Color ? n.Color.toLowerCase() : "inherit",
                   }}
                 >
                   {n.NominalValue}
                 </td>
+              ))}
+            </tr>
+
+            <tr>
+              <th>Upper Tolerance</th>
+              {dataCaseDimFiltred.map((n) => (
                 <td
+                  key={n.ID + "UpperTolerance"}
                   style={{
                     color: n.Color ? n.Color.toLowerCase() : "inherit",
                   }}
                 >
                   {n.UpperTolerance}
                 </td>
+              ))}
+            </tr>
+
+            <tr>
+              <th>Lower Tolerance</th>
+              {dataCaseDimFiltred.map((n) => (
                 <td
+                  key={n.ID + "LowerTolerance"}
                   style={{
                     color: n.Color ? n.Color.toLowerCase() : "inherit",
                   }}
                 >
                   {n.LowerTolerance}
                 </td>
+              ))}
+            </tr>
+
+            <tr>
+              <th>Sign</th>
+              {dataCaseDimFiltred.map((n) => (
                 <td
+                  key={n.ID + "Sign"}
                   style={{
                     color: n.Color ? n.Color.toLowerCase() : "inherit",
                   }}
                 >
                   {n.Sign}
                 </td>
+              ))}
+            </tr>
+
+            <tr>
+              <th>Distribution Type</th>
+              {dataCaseDimFiltred.map((n) => (
                 <td
+                  key={n.ID + "DistributionType"}
                   style={{
                     color: n.Color ? n.Color.toLowerCase() : "inherit",
                   }}
                 >
                   {n.DistributionType}
                 </td>
+              ))}
+            </tr>
+
+            <tr>
+              <th>Tolerance Type</th>
+              {dataCaseDimFiltred.map((n) => (
                 <td
+                  key={n.ID + "ToleranceType"}
                   style={{
                     color: n.Color ? n.Color.toLowerCase() : "inherit",
                   }}
                 >
                   {n.ToleranceType}
                 </td>
+              ))}
+            </tr>
+
+            <tr>
+              <th>Influence %</th>
+              {dataCaseDimFiltred.map((n) => (
                 <td
+                  key={n.ID + "Influence"}
                   style={{
                     color: n.Color ? n.Color.toLowerCase() : "inherit",
                   }}
                 >
                   {Math.round(
-                    ((((n.UpperTolerance - n.LowerTolerance) / 2) * 100) /
+                    (((n.UpperTolerance - n.LowerTolerance) / 2) * 100) /
                       WorstCaseTolerance +
-                      Number.EPSILON) *
-                      100
+                      Number.EPSILON
                   ) / 100}
                 </td>
-                <td>{n.Formula}</td>
-                <td>
+              ))}
+            </tr>
+
+            <tr>
+              <th>Formula</th>
+              {dataCaseDimFiltred.map((n) => (
+                <td
+                  key={n.ID + "Formula"}
+                  style={{
+                    color: n.Color ? n.Color.toLowerCase() : "inherit",
+                  }}
+                >
+                  {n.Formula}
+                </td>
+              ))}
+            </tr>
+
+            <tr>
+              <th className="last-th">Action</th>
+              {dataCaseDimFiltred.map((n, index) => (
+                <td
+                  key={n.ID + "RemoveButton"}
+                  style={{
+                    borderBottomRightRadius:
+                      index === dataCaseDimFiltred.length - 1 ? "20px" : "0",
+                  }}
+                >
                   <button
                     type="button"
                     variant="outline-danger"
@@ -953,8 +1033,8 @@ const Case = React.forwardRef(({ projectId, caseId, ViewDatabase }, ref) => {
                     X
                   </button>
                 </td>
-              </tr>
-            ))}
+              ))}
+            </tr>
           </tbody>
         </table>
       </div>
@@ -1038,7 +1118,7 @@ const Case = React.forwardRef(({ projectId, caseId, ViewDatabase }, ref) => {
         </Row>
       </div> */}
       {isDataCaseDimFiltred && (
-        <div className="main-item-case2">
+        <div className="main-item-canvas">
           <Canvas canvasDatabse={DatabaseCalculation} />
         </div>
       )}

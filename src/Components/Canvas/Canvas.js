@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import "./canvas.css";
 
 const Canvas = ({ canvasDatabse }) => {
   const [canvaswidth, setCanvaswidth] = useState(window.innerWidth);
@@ -223,7 +224,7 @@ const Canvas = ({ canvasDatabse }) => {
     ctx.fillText(`${t}`, tx, ty);
   };
   return (
-    <div className="container-fluid text-center">
+    <div className="canvas-container">
       <h3>Tolerance stack-up</h3>
       <canvas ref={canvas}></canvas>
     </div>
