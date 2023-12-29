@@ -721,6 +721,87 @@ const Case = React.forwardRef(({ projectId, caseId, ViewDatabase }, ref) => {
           </tbody>
         </table>
       </div>
+      {isStatistic && (
+        <div className="main-item-case">
+          <table id="Database">
+            <tbody>
+              <tr>
+                <th className="first-th">Mean</th>
+
+                <td
+                  key={"Mean:"}
+                  style={{
+                    borderTopRightRadius: "20px",
+                  }}
+                >
+                  {`${meanStatistic.toFixed(4)}`}
+                </td>
+              </tr>
+              <tr>
+                <th>Upper Tolerance</th>
+
+                <td key={"UpperToleranceS"}>
+                  {`${statisticalForm.UTS.toFixed(4)} `}
+                </td>
+              </tr>
+              <tr>
+                <th>Lower Tolerance</th>
+
+                <td key={"LowerToleranceS"}>
+                  {`${statisticalForm.LTS.toFixed(4)} `}
+                </td>
+              </tr>
+              <tr>
+                <th>Samples</th>
+
+                <td key={"samples"}>100000</td>
+              </tr>
+              <tr>
+                <th>Range</th>
+
+                <td key={"Range"}>
+                  {`${(statisticalForm.UTS - statisticalForm.LTS).toFixed(4)}`}
+                </td>
+              </tr>
+              <tr>
+                <th>Pp</th>
+
+                <td key={"Pp"}>{statisticalForm.Pp.toFixed(4)}</td>
+              </tr>
+              <tr>
+                <th>Ppk</th>
+
+                <td key={"Ppk"}>{statisticalForm.PpK.toFixed(4)}</td>
+              </tr>
+              <tr>
+                <th>St.Dev[σ]</th>
+
+                <td key={"St.Dev[σ]"}>{statisticalForm.SigmaInt.toFixed(4)}</td>
+              </tr>
+              <tr>
+                <th>Sigma intv.</th>
+
+                <td key={"Sigma intv."}>{statisticalForm.StDev.toFixed(4)}</td>
+              </tr>
+              <tr>
+                <th>Parts less LSL</th>
+
+                <td key={"Parts less LSL"}></td>
+              </tr>
+              <tr>
+                <th className="last-th">Parts more USL</th>
+
+                <td
+                  key={"SParts more USL"}
+                  style={{
+                    borderBottomRightRadius: "20px",
+                  }}
+                ></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      )}
       {/* <Form.Group controlId="formGridState" className="col col-sm-6">
         <Form.Label>Select gap Cpk</Form.Label>
         <Form.Select
