@@ -2,7 +2,7 @@
 
 .main-container-database {
     display: grid;
-    grid-template-columns: min-content 1fr; 
+    grid-template-columns: minmax(350px, min-content) 1fr; 
     grid-template-rows: min-content min-content;
     gap: 16px; 
     margin-bottom: 8px;
@@ -19,7 +19,7 @@
     /* border: 1px solid #ccc; */
     padding: 16px;
     justify-self:center;
-
+    align-items: center;
     box-sizing: border-box;
     margin-left: 24px;
 
