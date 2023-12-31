@@ -84,7 +84,7 @@
 .arrow{
     position: absolute;
     left: 146px;
-    top: 100px;
+    top: 30px;
     width: 18.264px;
     height: 18.264px;
     transform: rotate(360deg);
@@ -99,7 +99,7 @@
     .arrow{
         position: absolute;
         left: 66px;
-        top: 100px;
+        top: 30px;
         transform: rotate(180deg);
     }
 }
@@ -107,7 +107,7 @@
 .arrow2{
     position: absolute;
     left: 66px;
-    top: 100px;
+    top: 30px;
     width: 18.264px;
     height: 18.264px;
     transform: rotate(180deg);

@@ -601,7 +601,11 @@ const Case = React.forwardRef(({ projectId, caseId, ViewDatabase }, ref) => {
 
   return (
     <div className="main-container-case" ref={ref}>
-      <p className="case-header">Case nr.</p>
+      <div className="database-header">
+        <p className="fs-3 ">Case</p>
+
+        <button onClick={() => alert("Case Close")}>X</button>
+      </div>
       <div className="main-item-case">
         <div class="bottom-drop">
           <label for="toleranceType" className="label-drop">
