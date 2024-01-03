@@ -203,6 +203,9 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
 
   const handleViewAddCase = () => {
     setViewAddCase(!viewAddCase);
+    setNewProject(false);
+    setNewTemplate(false);
+    setViewAddTemplateComponent(false);
   };
 
   const RemoveCase = (e) => {
@@ -361,10 +364,16 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
 
   const handeleNewProject = () => {
     setNewProject(!newProject);
+    setViewAddCase(false);
+    setViewAddTemplateComponent(false);
+    setNewTemplate(false);
   };
 
   const handeleNewTemplate = () => {
     setNewTemplate(!newTemplate);
+    setNewProject(false);
+    setViewAddCase(false);
+    setViewAddTemplateComponent(false);
   };
 
   const TemplateFilter = (e) => {
@@ -459,6 +468,9 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
 
   const handeleNewTemplateComponent = () => {
     setViewAddTemplateComponent(!viewAddTemplateComponent);
+    setNewProject(false);
+    setViewAddCase(false);
+    setNewTemplate(false);
   };
 
   const handleCaseDescriptionChange = (e) => {
@@ -547,6 +559,39 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
           viewNew={true}
         />
       </div>
+
+      {projectSelected && (
+        <div className="main-item">
+          <div className="template-container">
+            <div className="button-add" onClick={handleViewAddCase}>
+              <img src={add}></img>Add Case
+            </div>
+            <ProjectsTable
+              projectSelected={projectSelected}
+              databaseSummryFiltered={databaseSummryFiltered}
+              SelectCase={SelectCase}
+              RemoveCase={RemoveCase}
+            />
+          </div>
+        </div>
+      )}
+      {templateSelected && (
+        <div className="main-item">
+          <>
+            <div className="template-container">
+              <div className="button-add" onClick={handeleNewTemplateComponent}>
+                <img src={add}></img>Add Component
+              </div>
+              <TemplateTable
+                databaseTemplateFiltered={databaseTemplateFiltered}
+                templateSelected={templateSelected}
+                RemoveComponent={RemoveComponent}
+              />
+            </div>
+          </>
+        </div>
+      )}
+
       {newProject && (
         <div className="main-item">
           <div className="newproject-container">
@@ -622,37 +667,6 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
               </div>
             </div>
           </form>
-        </div>
-      )}
-      {projectSelected && (
-        <div className="main-item">
-          <div className="template-container">
-            <div className="button-add" onClick={handleViewAddCase}>
-              <img src={add}></img>Add Case
-            </div>
-            <ProjectsTable
-              projectSelected={projectSelected}
-              databaseSummryFiltered={databaseSummryFiltered}
-              SelectCase={SelectCase}
-              RemoveCase={RemoveCase}
-            />
-          </div>
-        </div>
-      )}
-      {templateSelected && (
-        <div className="main-item">
-          <>
-            <div className="template-container">
-              <div className="button-add" onClick={handeleNewTemplateComponent}>
-                <img src={add}></img>Add Component
-              </div>
-              <TemplateTable
-                databaseTemplateFiltered={databaseTemplateFiltered}
-                templateSelected={templateSelected}
-                RemoveComponent={RemoveComponent}
-              />
-            </div>
-          </>
         </div>
       )}
       {viewAddTemplateComponent && (
