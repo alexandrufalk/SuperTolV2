@@ -321,6 +321,12 @@ const Database = ({ CloseDatabase }) => {
       {projectSelected && (
         <div className="main-item-database2">
           <div className="template-container">
+            <CustomPagination
+              data={databaseFiltered[0].DatabaseDim}
+              itemsPerPage={itemsPerPage}
+              currentPage={currentPage}
+              paginate={paginate}
+            />
             <div
               className="button-add"
               onClick={() => {
@@ -334,15 +340,13 @@ const Database = ({ CloseDatabase }) => {
               <thead>
                 <tr>
                   <th className="first-th">Index</th>
-                  {databaseFiltered[0].DatabaseDim.map((n, index) => (
+                  {currentItems.map((n, index) => (
                     <td
                       key={n.ID + "Database"}
                       style={{
                         color: n.Color ? n.Color.toLowerCase() : "inherit",
                         borderTopRightRadius:
-                          index === databaseFiltered[0].DatabaseDim.length - 1
-                            ? "20px"
-                            : "0",
+                          index === currentItems.length - 1 ? "20px" : "0",
                       }}
                     >
                       {n.ID}
@@ -351,7 +355,7 @@ const Database = ({ CloseDatabase }) => {
                 </tr>
                 <tr>
                   <th>Name</th>
-                  {databaseFiltered[0].DatabaseDim.map((n) => (
+                  {currentItems.map((n) => (
                     <td
                       key={n.ID + n.Name}
                       style={{
@@ -365,7 +369,7 @@ const Database = ({ CloseDatabase }) => {
                 </tr>
                 <tr>
                   <th>Description</th>
-                  {databaseFiltered[0].DatabaseDim.map((n) => (
+                  {currentItems.map((n) => (
                     <td
                       key={n.ID + n.Description}
                       style={{
@@ -378,7 +382,7 @@ const Database = ({ CloseDatabase }) => {
                 </tr>
                 <tr>
                   <th>Unique Identifier</th>
-                  {databaseFiltered[0].DatabaseDim.map((n) => (
+                  {currentItems.map((n) => (
                     <td
                       key={n.ID + n.UniqueIdentifier}
                       style={{
@@ -391,7 +395,7 @@ const Database = ({ CloseDatabase }) => {
                 </tr>
                 <tr>
                   <th>Drw. nr.</th>
-                  {databaseFiltered[0].DatabaseDim.map((n) => (
+                  {currentItems.map((n) => (
                     <td
                       key={n.ID + n.DrwNr}
                       style={{
@@ -404,7 +408,7 @@ const Database = ({ CloseDatabase }) => {
                 </tr>
                 <tr>
                   <th>Nominal Value</th>
-                  {databaseFiltered[0].DatabaseDim.map((n) => (
+                  {currentItems.map((n) => (
                     <td
                       key={n.ID + "NominalValue"}
                       style={{
@@ -417,7 +421,7 @@ const Database = ({ CloseDatabase }) => {
                 </tr>
                 <tr>
                   <th>Upper Tolerance</th>
-                  {databaseFiltered[0].DatabaseDim.map((n) => (
+                  {currentItems.map((n) => (
                     <td
                       key={n.ID + n.UpperTolerance}
                       style={{
@@ -430,7 +434,7 @@ const Database = ({ CloseDatabase }) => {
                 </tr>
                 <tr>
                   <th>Lower Tolerance</th>
-                  {databaseFiltered[0].DatabaseDim.map((n) => (
+                  {currentItems.map((n) => (
                     <td
                       key={n.ID + n.LowerTolerance}
                       style={{
@@ -443,7 +447,7 @@ const Database = ({ CloseDatabase }) => {
                 </tr>
                 <tr>
                   <th>Upper Limit</th>
-                  {databaseFiltered[0].DatabaseDim.map((n) => (
+                  {currentItems.map((n) => (
                     <td
                       key={n.ID + n.NominalValue + n.UpperTolerance}
                       style={{
@@ -456,7 +460,7 @@ const Database = ({ CloseDatabase }) => {
                 </tr>
                 <tr>
                   <th>Lower Limit</th>
-                  {databaseFiltered[0].DatabaseDim.map((n) => (
+                  {currentItems.map((n) => (
                     <td
                       key={n.ID + n.NominalValue + n.LowerTolerance}
                       style={{
@@ -469,7 +473,7 @@ const Database = ({ CloseDatabase }) => {
                 </tr>
                 <tr>
                   <th>Tolerance Range</th>
-                  {databaseFiltered[0].DatabaseDim.map((n) => (
+                  {currentItems.map((n) => (
                     <td
                       key={n.ID + n.UpperTolerance + "minu" + n.LowerTolerance}
                       style={{
@@ -482,7 +486,7 @@ const Database = ({ CloseDatabase }) => {
                 </tr>
                 <tr>
                   <th>Sign</th>
-                  {databaseFiltered[0].DatabaseDim.map((n) => (
+                  {currentItems.map((n) => (
                     <td
                       key={n.ID + "Sign"}
                       style={{
@@ -495,7 +499,7 @@ const Database = ({ CloseDatabase }) => {
                 </tr>
                 <tr>
                   <th>Distribution Type</th>
-                  {databaseFiltered[0].DatabaseDim.map((n) => (
+                  {currentItems.map((n) => (
                     <td
                       key={n.ID + n.DistributionType}
                       style={{
@@ -509,7 +513,7 @@ const Database = ({ CloseDatabase }) => {
                 </tr>
                 <tr>
                   <th>Tolerance Type</th>
-                  {databaseFiltered[0].DatabaseDim.map((n) => (
+                  {currentItems.map((n) => (
                     <td
                       key={n.ID + n.ToleranceType}
                       style={{
@@ -522,7 +526,7 @@ const Database = ({ CloseDatabase }) => {
                 </tr>
                 <tr>
                   <th>Standard Deviation</th>
-                  {databaseFiltered[0].DatabaseDim.map((n) => (
+                  {currentItems.map((n) => (
                     <td
                       key={n.ID + "Std"}
                       style={{
@@ -543,7 +547,7 @@ const Database = ({ CloseDatabase }) => {
                 </tr>
                 <tr>
                   <th>Mean</th>
-                  {databaseFiltered[0].DatabaseDim.map((n) => (
+                  {currentItems.map((n) => (
                     <td
                       key={n.ID + "Mean"}
                       style={{
@@ -591,14 +595,12 @@ const Database = ({ CloseDatabase }) => {
 
                 <tr>
                   <th className="last-th">Action</th>
-                  {databaseFiltered[0].DatabaseDim.map((n, index) => (
+                  {currentItems.map((n, index) => (
                     <td
                       key={n.ID + "Remove case summary"}
                       style={{
                         borderBottomRightRadius:
-                          index === databaseFiltered[0].DatabaseDim.length - 1
-                            ? "20px"
-                            : "0",
+                          index === currentItems.length - 1 ? "20px" : "0",
                       }}
                     >
                       <button
