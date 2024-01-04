@@ -5,6 +5,7 @@ import useTemplate from "../../Hooks/useTemplate";
 import { ToastContainer, toast, Bounce } from "react-toastify";
 import DropDown from "../DropDown/DropDown";
 import AddNewComponent from "../AddNew/AddNewComponent";
+import CustomPagination from "../Table/CustomPagination";
 import ImageComponent from "../ImageComponent/ImageComponent";
 import ImageCropper2 from "../ImageComponent/ImageCropper2";
 import add from "../Summary/add.png";
@@ -160,6 +161,30 @@ const Database = ({ CloseDatabase }) => {
     DatabasesFilter(e);
 
     handleSelectProjectnameData(e);
+  };
+
+  //Paginatio
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(3);
+  const [isDropPag, setDropPag] = useState(false);
+
+  // Calculate the indexes of the items to be displayed on the current page
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = projectSelected
+    ? databaseFiltered[0].DatabaseDim.slice(indexOfFirstItem, indexOfLastItem)
+    : false;
+  console.log(
+    "Pagination items",
+    indexOfFirstItem,
+    indexOfLastItem,
+    currentItems
+  );
+  // Change page
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const handlePaginationNr = () => {
+    setDropPag(!isDropPag);
   };
 
   return (
