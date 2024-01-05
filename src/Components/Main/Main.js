@@ -17,7 +17,7 @@ const Main = () => {
   };
 
   const CloseDatabase = () => {
-    setViewDatabase(false);
+    setViewDatabase(!viewDatabase);
   };
 
   return (
@@ -27,7 +27,7 @@ const Main = () => {
         setProjectId={setProjectId}
         setCaseId={setCaseId}
       />
-      {viewDatabase && <Database CloseDatabase={CloseDatabase} />}
+      <Database CloseDatabase={CloseDatabase} viewDatabase={viewDatabase} />
       <Case
         projectId={projectId}
         caseId={caseId}

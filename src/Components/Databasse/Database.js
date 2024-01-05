@@ -10,7 +10,7 @@ import ImageComponent from "../ImageComponent/ImageComponent";
 import ImageCropper2 from "../ImageComponent/ImageCropper2";
 import add from "../Summary/add.png";
 
-const Database = ({ CloseDatabase }) => {
+const Database = ({ CloseDatabase, viewDatabase }) => {
   const { databaseProjects, removeDim, removeImg } = useDatabaseProjects();
   const [viewAddComponentData, setViewAddComponentData] = useState(false);
 
@@ -192,30 +192,33 @@ const Database = ({ CloseDatabase }) => {
       <div className="database-header">
         <p className="fs-3 ">Database</p>
 
-        <button onClick={CloseDatabase}>X</button>
+        {viewDatabase && <button onClick={CloseDatabase}>X</button>}
+        {!viewDatabase && <button onClick={CloseDatabase}>⥥</button>}
       </div>
-      <div className="main-item-database">
-        <DropDown
-          name={"Project"}
-          database={DatabaseUpdate}
-          isDatabaseProjects={true}
-          handleProjectClick={handleProjectClick}
-          //   Remove={RemoveProject}
-          //   handleNew={handeleNewProject}
-        />
-        {viewAddComponentData && (
-          <AddNewComponent
-            databaseFiltered={databaseFiltered}
-            Database={DatabaseUpdate}
-            isTemplate={isTemplate}
-            // viewAddComponentData={viewAddComponentData}
-            setDatabaseUpdate={setDatabaseUpdate}
-            componentData={componentData}
-            setViewAddComponentData={setViewAddComponentData}
-          />
-        )}
+      {viewDatabase && (
+        <>
+          <div className="main-item-database">
+            <DropDown
+              name={"Project"}
+              database={DatabaseUpdate}
+              isDatabaseProjects={true}
+              handleProjectClick={handleProjectClick}
+              //   Remove={RemoveProject}
+              //   handleNew={handeleNewProject}
+            />
+            {viewAddComponentData && (
+              <AddNewComponent
+                databaseFiltered={databaseFiltered}
+                Database={DatabaseUpdate}
+                isTemplate={isTemplate}
+                // viewAddComponentData={viewAddComponentData}
+                setDatabaseUpdate={setDatabaseUpdate}
+                componentData={componentData}
+                setViewAddComponentData={setViewAddComponentData}
+              />
+            )}
 
-        {/* <div className="main-add-component ">
+            {/* <div className="main-add-component ">
           <div className="newproject-heder">
             <div className="text">Add Component</div>
             <div className="line"></div>
@@ -291,282 +294,259 @@ const Database = ({ CloseDatabase }) => {
           </div>
         </div> */}
 
-        <ToastContainer transition={Bounce} autoClose={2000} />
-      </div>
-
-      {/* <DropdownButton
-        title={selectProjectData}
-        onSelect={(e) => {
-          DatabasesFilter(e);
-
-          handleSelectProjectnameData(e);
-        }}
-        variant="secondary"
-      >
-        
-        <div className="p-2 bg-dark bg-gradient text-white rounded shadow-lg">
-          {DatabaseUpdate.map((n) => (
-            <Dropdown.Item
-              eventKey={n.ProjectName}
-              key={n.ProjectName}
-              className="text-info dropdown-project"
-            >
-              {n.ProjectName}
-            </Dropdown.Item>
-          ))}
-        </div>
-        
-      </DropdownButton> */}
-
-      {projectSelected && (
-        <div className="main-item-database2">
-          <div className="template-container">
-            <div className="table-top">
-              <CustomPagination
-                data={databaseFiltered[0].DatabaseDim}
-                itemsPerPage={itemsPerPage}
-                currentPage={currentPage}
-                paginate={paginate}
-              />
-              <div
-                className="button-add"
-                onClick={() => {
-                  SetViewAdd();
-                  TemplateComponentFiltered();
-                }}
-              >
-                <img src={add}></img>Add Component
-              </div>
-            </div>
-            <table id="Database">
-              <thead>
-                <tr>
-                  <th className="first-th">Index</th>
-                  {currentItems.map((n, index) => (
-                    <td
-                      key={n.ID + "Database"}
-                      style={{
-                        color: n.Color ? n.Color.toLowerCase() : "inherit",
-                        borderTopRightRadius:
-                          index === currentItems.length - 1 ? "20px" : "0",
-                      }}
-                    >
-                      {n.ID}
-                    </td>
-                  ))}
-                </tr>
-                <tr>
-                  <th>Name</th>
-                  {currentItems.map((n) => (
-                    <td
-                      key={n.ID + n.Name}
-                      style={{
-                        color: n.Color ? n.Color.toLowerCase() : "inherit",
-                      }}
-                    >
-                      {" "}
-                      {n.Name}
-                    </td>
-                  ))}
-                </tr>
-                <tr>
-                  <th>Description</th>
-                  {currentItems.map((n) => (
-                    <td
-                      key={n.ID + n.Description}
-                      style={{
-                        color: n.Color ? n.Color.toLowerCase() : "inherit",
-                      }}
-                    >
-                      {n.Description}
-                    </td>
-                  ))}
-                </tr>
-                <tr>
-                  <th>Unique Identifier</th>
-                  {currentItems.map((n) => (
-                    <td
-                      key={n.ID + n.UniqueIdentifier}
-                      style={{
-                        color: n.Color ? n.Color.toLowerCase() : "inherit",
-                      }}
-                    >
-                      {n.UniqueIdentifier}
-                    </td>
-                  ))}
-                </tr>
-                <tr>
-                  <th>Drw. nr.</th>
-                  {currentItems.map((n) => (
-                    <td
-                      key={n.ID + n.DrwNr}
-                      style={{
-                        color: n.Color ? n.Color.toLowerCase() : "inherit",
-                      }}
-                    >
-                      {n.DrwNr}
-                    </td>
-                  ))}
-                </tr>
-                <tr>
-                  <th>Nominal Value</th>
-                  {currentItems.map((n) => (
-                    <td
-                      key={n.ID + "NominalValue"}
-                      style={{
-                        color: n.Color ? n.Color.toLowerCase() : "inherit",
-                      }}
-                    >
-                      {n.NominalValue}
-                    </td>
-                  ))}
-                </tr>
-                <tr>
-                  <th>Upper Tolerance</th>
-                  {currentItems.map((n) => (
-                    <td
-                      key={n.ID + n.UpperTolerance}
-                      style={{
-                        color: n.Color ? n.Color.toLowerCase() : "inherit",
-                      }}
-                    >
-                      {n.UpperTolerance}
-                    </td>
-                  ))}
-                </tr>
-                <tr>
-                  <th>Lower Tolerance</th>
-                  {currentItems.map((n) => (
-                    <td
-                      key={n.ID + n.LowerTolerance}
-                      style={{
-                        color: n.Color ? n.Color.toLowerCase() : "inherit",
-                      }}
-                    >
-                      {n.LowerTolerance}
-                    </td>
-                  ))}
-                </tr>
-                <tr>
-                  <th>Upper Limit</th>
-                  {currentItems.map((n) => (
-                    <td
-                      key={n.ID + n.NominalValue + n.UpperTolerance}
-                      style={{
-                        color: n.Color ? n.Color.toLowerCase() : "inherit",
-                      }}
-                    >
-                      {(n.NominalValue + n.UpperTolerance).toFixed(3)}
-                    </td>
-                  ))}
-                </tr>
-                <tr>
-                  <th>Lower Limit</th>
-                  {currentItems.map((n) => (
-                    <td
-                      key={n.ID + n.NominalValue + n.LowerTolerance}
-                      style={{
-                        color: n.Color ? n.Color.toLowerCase() : "inherit",
-                      }}
-                    >
-                      {(n.NominalValue + n.LowerTolerance).toFixed(3)}
-                    </td>
-                  ))}
-                </tr>
-                <tr>
-                  <th>Tolerance Range</th>
-                  {currentItems.map((n) => (
-                    <td
-                      key={n.ID + n.UpperTolerance + "minu" + n.LowerTolerance}
-                      style={{
-                        color: n.Color ? n.Color.toLowerCase() : "inherit",
-                      }}
-                    >
-                      {n.UpperTolerance - n.LowerTolerance}
-                    </td>
-                  ))}
-                </tr>
-                <tr>
-                  <th>Sign</th>
-                  {currentItems.map((n) => (
-                    <td
-                      key={n.ID + "Sign"}
-                      style={{
-                        color: n.Color ? n.Color.toLowerCase() : "inherit",
-                      }}
-                    >
-                      {n.Sign}
-                    </td>
-                  ))}
-                </tr>
-                <tr>
-                  <th>Distribution Type</th>
-                  {currentItems.map((n) => (
-                    <td
-                      key={n.ID + n.DistributionType}
-                      style={{
-                        color: n.Color ? n.Color.toLowerCase() : "inherit",
-                      }}
-                    >
-                      {" "}
-                      {n.DistributionType}
-                    </td>
-                  ))}
-                </tr>
-                <tr>
-                  <th>Tolerance Type</th>
-                  {currentItems.map((n) => (
-                    <td
-                      key={n.ID + n.ToleranceType}
-                      style={{
-                        color: n.Color ? n.Color.toLowerCase() : "inherit",
-                      }}
-                    >
-                      {n.ToleranceType}
-                    </td>
-                  ))}
-                </tr>
-                <tr>
-                  <th>Standard Deviation</th>
-                  {currentItems.map((n) => (
-                    <td
-                      key={n.ID + "Std"}
-                      style={{
-                        color: n.Color ? n.Color.toLowerCase() : "inherit",
-                      }}
-                    >
-                      {Math.round(
-                        ((n.UpperTolerance - n.LowerTolerance) /
-                          (6 *
-                            parseFloat(
-                              n.DistributionType.replace(/[^\d.]*/g, "")
-                            )) +
-                          Number.EPSILON) *
-                          100
-                      ) / 100}
-                    </td>
-                  ))}
-                </tr>
-                <tr>
-                  <th>Mean</th>
-                  {currentItems.map((n) => (
-                    <td
-                      key={n.ID + "Mean"}
-                      style={{
-                        color: n.Color ? n.Color.toLowerCase() : "inherit",
-                      }}
-                    >
-                      {(
-                        (n.NominalValue +
-                          n.UpperTolerance +
-                          n.NominalValue +
-                          n.LowerTolerance) /
-                        2
-                      ).toFixed(3)}
-                    </td>
-                  ))}
-                </tr>
-                {/* <tr>
+            <ToastContainer transition={Bounce} autoClose={2000} />
+          </div>
+          {projectSelected && (
+            <div className="main-item-database2">
+              <div className="template-container">
+                <div className="table-top">
+                  <CustomPagination
+                    data={databaseFiltered[0].DatabaseDim}
+                    itemsPerPage={itemsPerPage}
+                    currentPage={currentPage}
+                    paginate={paginate}
+                  />
+                  <div
+                    className="button-add"
+                    onClick={() => {
+                      SetViewAdd();
+                      TemplateComponentFiltered();
+                    }}
+                  >
+                    <img src={add}></img>Add Component
+                  </div>
+                </div>
+                <table id="Database">
+                  <thead>
+                    <tr>
+                      <th className="first-th">Index</th>
+                      {currentItems.map((n, index) => (
+                        <td
+                          key={n.ID + "Database"}
+                          style={{
+                            color: n.Color ? n.Color.toLowerCase() : "inherit",
+                            borderTopRightRadius:
+                              index === currentItems.length - 1 ? "20px" : "0",
+                          }}
+                        >
+                          {n.ID}
+                        </td>
+                      ))}
+                    </tr>
+                    <tr>
+                      <th>Name</th>
+                      {currentItems.map((n) => (
+                        <td
+                          key={n.ID + n.Name}
+                          style={{
+                            color: n.Color ? n.Color.toLowerCase() : "inherit",
+                          }}
+                        >
+                          {" "}
+                          {n.Name}
+                        </td>
+                      ))}
+                    </tr>
+                    <tr>
+                      <th>Description</th>
+                      {currentItems.map((n) => (
+                        <td
+                          key={n.ID + n.Description}
+                          style={{
+                            color: n.Color ? n.Color.toLowerCase() : "inherit",
+                          }}
+                        >
+                          {n.Description}
+                        </td>
+                      ))}
+                    </tr>
+                    <tr>
+                      <th>Unique Identifier</th>
+                      {currentItems.map((n) => (
+                        <td
+                          key={n.ID + n.UniqueIdentifier}
+                          style={{
+                            color: n.Color ? n.Color.toLowerCase() : "inherit",
+                          }}
+                        >
+                          {n.UniqueIdentifier}
+                        </td>
+                      ))}
+                    </tr>
+                    <tr>
+                      <th>Drw. nr.</th>
+                      {currentItems.map((n) => (
+                        <td
+                          key={n.ID + n.DrwNr}
+                          style={{
+                            color: n.Color ? n.Color.toLowerCase() : "inherit",
+                          }}
+                        >
+                          {n.DrwNr}
+                        </td>
+                      ))}
+                    </tr>
+                    <tr>
+                      <th>Nominal Value</th>
+                      {currentItems.map((n) => (
+                        <td
+                          key={n.ID + "NominalValue"}
+                          style={{
+                            color: n.Color ? n.Color.toLowerCase() : "inherit",
+                          }}
+                        >
+                          {n.NominalValue}
+                        </td>
+                      ))}
+                    </tr>
+                    <tr>
+                      <th>Upper Tolerance</th>
+                      {currentItems.map((n) => (
+                        <td
+                          key={n.ID + n.UpperTolerance}
+                          style={{
+                            color: n.Color ? n.Color.toLowerCase() : "inherit",
+                          }}
+                        >
+                          {n.UpperTolerance}
+                        </td>
+                      ))}
+                    </tr>
+                    <tr>
+                      <th>Lower Tolerance</th>
+                      {currentItems.map((n) => (
+                        <td
+                          key={n.ID + n.LowerTolerance}
+                          style={{
+                            color: n.Color ? n.Color.toLowerCase() : "inherit",
+                          }}
+                        >
+                          {n.LowerTolerance}
+                        </td>
+                      ))}
+                    </tr>
+                    <tr>
+                      <th>Upper Limit</th>
+                      {currentItems.map((n) => (
+                        <td
+                          key={n.ID + n.NominalValue + n.UpperTolerance}
+                          style={{
+                            color: n.Color ? n.Color.toLowerCase() : "inherit",
+                          }}
+                        >
+                          {(n.NominalValue + n.UpperTolerance).toFixed(3)}
+                        </td>
+                      ))}
+                    </tr>
+                    <tr>
+                      <th>Lower Limit</th>
+                      {currentItems.map((n) => (
+                        <td
+                          key={n.ID + n.NominalValue + n.LowerTolerance}
+                          style={{
+                            color: n.Color ? n.Color.toLowerCase() : "inherit",
+                          }}
+                        >
+                          {(n.NominalValue + n.LowerTolerance).toFixed(3)}
+                        </td>
+                      ))}
+                    </tr>
+                    <tr>
+                      <th>Tolerance Range</th>
+                      {currentItems.map((n) => (
+                        <td
+                          key={
+                            n.ID + n.UpperTolerance + "minu" + n.LowerTolerance
+                          }
+                          style={{
+                            color: n.Color ? n.Color.toLowerCase() : "inherit",
+                          }}
+                        >
+                          {n.UpperTolerance - n.LowerTolerance}
+                        </td>
+                      ))}
+                    </tr>
+                    <tr>
+                      <th>Sign</th>
+                      {currentItems.map((n) => (
+                        <td
+                          key={n.ID + "Sign"}
+                          style={{
+                            color: n.Color ? n.Color.toLowerCase() : "inherit",
+                          }}
+                        >
+                          {n.Sign}
+                        </td>
+                      ))}
+                    </tr>
+                    <tr>
+                      <th>Distribution Type</th>
+                      {currentItems.map((n) => (
+                        <td
+                          key={n.ID + n.DistributionType}
+                          style={{
+                            color: n.Color ? n.Color.toLowerCase() : "inherit",
+                          }}
+                        >
+                          {" "}
+                          {n.DistributionType}
+                        </td>
+                      ))}
+                    </tr>
+                    <tr>
+                      <th>Tolerance Type</th>
+                      {currentItems.map((n) => (
+                        <td
+                          key={n.ID + n.ToleranceType}
+                          style={{
+                            color: n.Color ? n.Color.toLowerCase() : "inherit",
+                          }}
+                        >
+                          {n.ToleranceType}
+                        </td>
+                      ))}
+                    </tr>
+                    <tr>
+                      <th>Standard Deviation</th>
+                      {currentItems.map((n) => (
+                        <td
+                          key={n.ID + "Std"}
+                          style={{
+                            color: n.Color ? n.Color.toLowerCase() : "inherit",
+                          }}
+                        >
+                          {Math.round(
+                            ((n.UpperTolerance - n.LowerTolerance) /
+                              (6 *
+                                parseFloat(
+                                  n.DistributionType.replace(/[^\d.]*/g, "")
+                                )) +
+                              Number.EPSILON) *
+                              100
+                          ) / 100}
+                        </td>
+                      ))}
+                    </tr>
+                    <tr>
+                      <th>Mean</th>
+                      {currentItems.map((n) => (
+                        <td
+                          key={n.ID + "Mean"}
+                          style={{
+                            color: n.Color ? n.Color.toLowerCase() : "inherit",
+                          }}
+                        >
+                          {(
+                            (n.NominalValue +
+                              n.UpperTolerance +
+                              n.NominalValue +
+                              n.LowerTolerance) /
+                            2
+                          ).toFixed(3)}
+                        </td>
+                      ))}
+                    </tr>
+                    {/* <tr>
                 <th>Drawing</th>
                 {databaseFiltered[0].DatabaseDim.map((n) => (
                   <td key={n.ID + "Drawing"}>
@@ -595,35 +575,62 @@ const Database = ({ CloseDatabase }) => {
                 ))}
               </tr> */}
 
-                <tr>
-                  <th className="last-th">Action</th>
-                  {currentItems.map((n, index) => (
-                    <td
-                      key={n.ID + "Remove case summary"}
-                      style={{
-                        borderBottomRightRadius:
-                          index === currentItems.length - 1 ? "20px" : "0",
-                      }}
-                    >
-                      <button
-                        type="button"
-                        variant="outline-danger"
-                        onClick={() => {
-                          RemoveDim(n.ID);
-                          // forceUpdate();
-                        }}
-                      >
-                        X
-                      </button>
-                    </td>
-                  ))}
-                </tr>
-              </thead>
-              <tbody></tbody>
-            </table>
-          </div>
-        </div>
+                    <tr>
+                      <th className="last-th">Action</th>
+                      {currentItems.map((n, index) => (
+                        <td
+                          key={n.ID + "Remove case summary"}
+                          style={{
+                            borderBottomRightRadius:
+                              index === currentItems.length - 1 ? "20px" : "0",
+                          }}
+                        >
+                          <button
+                            type="button"
+                            variant="outline-danger"
+                            onClick={() => {
+                              RemoveDim(n.ID);
+                              // forceUpdate();
+                            }}
+                          >
+                            X
+                          </button>
+                        </td>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+            </div>
+          )}
+        </>
       )}
+
+      {/* <DropdownButton
+        title={selectProjectData}
+        onSelect={(e) => {
+          DatabasesFilter(e);
+
+          handleSelectProjectnameData(e);
+        }}
+        variant="secondary"
+      >
+        
+        <div className="p-2 bg-dark bg-gradient text-white rounded shadow-lg">
+          {DatabaseUpdate.map((n) => (
+            <Dropdown.Item
+              eventKey={n.ProjectName}
+              key={n.ProjectName}
+              className="text-info dropdown-project"
+            >
+              {n.ProjectName}
+            </Dropdown.Item>
+          ))}
+        </div>
+        
+      </DropdownButton> */}
+
       {/* <div className="main-item-database">
         <div className="add-component-database">
           <div className="add-header">Add Component</div>
