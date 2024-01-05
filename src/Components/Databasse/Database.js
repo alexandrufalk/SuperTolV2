@@ -321,20 +321,22 @@ const Database = ({ CloseDatabase }) => {
       {projectSelected && (
         <div className="main-item-database2">
           <div className="template-container">
-            <CustomPagination
-              data={databaseFiltered[0].DatabaseDim}
-              itemsPerPage={itemsPerPage}
-              currentPage={currentPage}
-              paginate={paginate}
-            />
-            <div
-              className="button-add"
-              onClick={() => {
-                SetViewAdd();
-                TemplateComponentFiltered();
-              }}
-            >
-              <img src={add}></img>Add Component
+            <div className="table-top">
+              <CustomPagination
+                data={databaseFiltered[0].DatabaseDim}
+                itemsPerPage={itemsPerPage}
+                currentPage={currentPage}
+                paginate={paginate}
+              />
+              <div
+                className="button-add"
+                onClick={() => {
+                  SetViewAdd();
+                  TemplateComponentFiltered();
+                }}
+              >
+                <img src={add}></img>Add Component
+              </div>
             </div>
             <table id="Database">
               <thead>
