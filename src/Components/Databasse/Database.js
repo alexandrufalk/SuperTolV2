@@ -193,7 +193,7 @@ const Database = ({ CloseDatabase, viewDatabase }) => {
         <p className="fs-3 ">Database</p>
 
         {viewDatabase && <button onClick={CloseDatabase}>X</button>}
-        {!viewDatabase && <button onClick={CloseDatabase}>⥥</button>}
+        {!viewDatabase && <button onClick={CloseDatabase}>ᐁ</button>}
       </div>
       {viewDatabase && (
         <>
