@@ -9,6 +9,7 @@ const Main = () => {
   const [caseId, setCaseId] = useState(null);
   const [viewAddTemplate, setViewAddTemplate] = useState(false);
   const [viewDatabase, setViewDatabase] = useState(true);
+  const [viewCase, setViewCase] = useState(true);
 
   const NewTemplate = (e) => {
     if (e === "New Template") {
@@ -18,6 +19,9 @@ const Main = () => {
 
   const CloseDatabase = () => {
     setViewDatabase(!viewDatabase);
+  };
+  const CloseCase = () => {
+    setViewCase(!viewCase);
   };
 
   return (
@@ -31,7 +35,8 @@ const Main = () => {
       <Case
         projectId={projectId}
         caseId={caseId}
-        ViewDatabase={viewDatabase}
+        viewCae={viewCase}
+        CloseCase={CloseCase}
         // ref={componentRef}
       />
     </div>
