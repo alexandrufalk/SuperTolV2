@@ -20,6 +20,13 @@ const SideNav = () => {
   const navigateToLogin = () => {
     navigate("/login-page");
   };
+
+  const scrollToSummary = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth", // Optional: Smooth scrolling animation
+    });
+  };
   return (
     <div className="containerside">
       {viewNav && (
@@ -44,11 +51,13 @@ const SideNav = () => {
             <div className="List">
               <div className="con">
                 <img src={home}></img>
-                <div className="txt">Summary</div>
+                <div className="txt" onClick={scrollToSummary}>
+                  Summary
+                </div>
               </div>
               <div className="con">
                 <img src={template}></img>
-                <div className="txt">Template</div>
+                <div className="txt">New Template</div>
               </div>
               <div className="con">
                 <img src={database}></img>
