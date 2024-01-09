@@ -66,13 +66,13 @@
       }
 }
 
-@media screen and (min-width: 2000px){
+/* @media screen and (min-width: 2000px){
     .main-container {
         display: grid;
         grid-template-columns: repeat(6, 1fr); 
         gap: 16px; 
       }
-}
+} */
   
 
 .dropdown-menu{

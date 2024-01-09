@@ -11,6 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 // import Canvas2 from "../Canvas/Canvas2";
 import "./case.css";
 import useDatabaseProjects from "../../Hooks/useDatabaseProject";
+import del from "../DropDown/Delete.png";
 
 import ImageCropper2 from "../ImageComponent/ImageCropper2";
 
@@ -1194,7 +1195,7 @@ const Case = React.forwardRef(
                               : "0",
                         }}
                       >
-                        <button
+                        {/* <button
                           type="button"
                           variant="outline-danger"
                           onClick={() => {
@@ -1202,7 +1203,18 @@ const Case = React.forwardRef(
                           }}
                         >
                           X
-                        </button>
+                        </button> */}
+                        <img
+                          src={del}
+                          onClick={() => {
+                            const confirmRemove = window.confirm(
+                              "Do you want to remove this dimension?"
+                            );
+                            if (confirmRemove) {
+                              RemoveCaseDim(n.ID);
+                            }
+                          }}
+                        ></img>
                       </td>
                     ))}
                   </tr>

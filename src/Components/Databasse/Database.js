@@ -9,6 +9,7 @@ import CustomPagination from "../Table/CustomPagination";
 import ImageComponent from "../ImageComponent/ImageComponent";
 import ImageCropper2 from "../ImageComponent/ImageCropper2";
 import add from "../Summary/add.png";
+import del from "../DropDown/Delete.png";
 
 const Database = ({ CloseDatabase, viewDatabase }) => {
   const { databaseProjects, removeDim, removeImg } = useDatabaseProjects();
@@ -585,16 +586,27 @@ const Database = ({ CloseDatabase, viewDatabase }) => {
                               index === currentItems.length - 1 ? "20px" : "0",
                           }}
                         >
-                          <button
+                          {/* <button
                             type="button"
                             variant="outline-danger"
                             onClick={() => {
                               RemoveDim(n.ID);
-                              // forceUpdate();
+                              
                             }}
                           >
                             X
-                          </button>
+                          </button> */}
+                          <img
+                            src={del}
+                            onClick={() => {
+                              const confirmRemove = window.confirm(
+                                "Do you want to remove this component?"
+                              );
+                              if (confirmRemove) {
+                                RemoveDim(n.ID);
+                              }
+                            }}
+                          ></img>
                         </td>
                       ))}
                     </tr>
