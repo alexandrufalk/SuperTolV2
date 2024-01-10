@@ -94,7 +94,7 @@ const SideNav = () => {
           </div>
           <div className="main">
             <div className="List">
-              <div className="con">
+              <div className="con" onClick={scrollToSummary}>
                 <img src={home}></img>
               </div>
               <div className="con">
