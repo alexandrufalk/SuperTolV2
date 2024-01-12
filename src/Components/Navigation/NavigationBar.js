@@ -20,6 +20,13 @@ const NavigationBar = () => {
   const handleNavToggle = () => {
     setSideNav(!isSideNav);
   };
+
+  const scrollToSummary = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth", // Optional: Smooth scrolling animation
+    });
+  };
   return (
     <div className="containernav sticky">
       <div className="nav-mobile">
@@ -30,7 +37,7 @@ const NavigationBar = () => {
         </div>
         {isSideNav && (
           <div className="dropdown-content-m">
-            <div className="con-m">
+            <div className="con-m" onClick={scrollToSummary}>
               <img src={home}></img>
             </div>
             <div className="con-m">
@@ -56,7 +63,7 @@ const NavigationBar = () => {
         <div className="logotxt">SuperTol</div>
       </div>
       <div className="center">
-        <div className="center1">
+        <div className="center1" onClick={scrollToSummary}>
           <img src={home}></img>
           <div className="summary">Summary</div>
         </div>
