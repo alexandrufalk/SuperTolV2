@@ -43,20 +43,13 @@
     }
     .main-item-case2{
         grid-row:3/4;
-        grid-column: span 3;
+        grid-column: 1/-1;
         padding: 16px;
         justify-self: center;
         align-items: center;
         box-sizing: border-box;
     }
-    .main-item-case2{
-        grid-row:3/4;
-        grid-column: span 3;
-        padding: 16px;
-        justify-self: center;
-        align-items: center;
-        box-sizing: border-box;
-    }
+    
 
     .main-item-canvas{
         grid-row:4/5;
@@ -103,7 +96,7 @@
   .case-header{
     border-radius: 25px;
     background: linear-gradient(156deg, rgba(23, 28, 38, 0.68) 13.71%, #5A6376 61.66%);
-    grid-column: span 4;
+    grid-column: 1/-1;
     grid-row: 1/2;
     
     display: flex;

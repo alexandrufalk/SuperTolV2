@@ -41,7 +41,7 @@
   .database-header{
     border-radius: 25px;
     background: linear-gradient(156deg, rgba(23, 28, 38, 0.68) 13.71%, #5A6376 61.66%);
-    grid-column: span 4;
+    grid-column: 1/-1;
     grid-row: 1/2;
     
     display: flex;
