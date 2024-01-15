@@ -12,6 +12,9 @@ import logout from "./🦆 icon _log out_.png";
 
 const SideNav = () => {
   const [viewNav, setViewNav] = useState(false);
+  const open = "containerside";
+  const closed = "containerside sbclosed";
+
   const toggleArrow = () => {
     setViewNav(!viewNav);
   };
@@ -28,7 +31,7 @@ const SideNav = () => {
     });
   };
   return (
-    <div className="containerside">
+    <div className={viewNav ? open : closed}>
       {viewNav && (
         <>
           <div className="header">
