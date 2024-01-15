@@ -13,7 +13,7 @@ import logout from "./🦆 icon _log out_.png";
 const SideNav = () => {
   const [viewNav, setViewNav] = useState(false);
   const open = "containerside";
-  const closed = "containerside sbclosed";
+  const closed = "containerside1";
 
   const toggleArrow = () => {
     setViewNav(!viewNav);
