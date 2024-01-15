@@ -34,7 +34,7 @@
     }
     .main-item-case{
         grid-column: span 1;
-        grid-row: 2/3; 
+       
         padding: 16px;
         justify-self: center;
         align-items: center;
@@ -42,7 +42,7 @@
         
     }
     .main-item-case2{
-        grid-row:3/4;
+        
         grid-column: 1/-1;
         padding: 16px;
         justify-self: center;
@@ -52,8 +52,8 @@
     
 
     .main-item-canvas{
-        grid-row:4/5;
-        grid-column: span 3;
+        
+        grid-column: 1/-1;
         padding: 16px;
         justify-self: center;
         align-items: center;
@@ -122,9 +122,13 @@
         grid-template-columns: repeat(2, 1fr); 
         gap: 16px; 
       }
+      
+      
       .case-header{
         grid-column: span 2;
+        
     }
+
 }
 
 @media screen and (max-width: 800px){
@@ -133,6 +137,7 @@
         grid-template-columns: 1fr; 
         gap: 16px; 
       }
+      
       .case-header{
         grid-column: span 1;
     }
