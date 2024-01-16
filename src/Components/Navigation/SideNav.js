@@ -30,6 +30,13 @@ const SideNav = () => {
       behavior: "smooth", // Optional: Smooth scrolling animation
     });
   };
+
+  const scrollToDatabase = () => {
+    window.scrollTo({
+      top: 210,
+      behavior: "smooth", // Optional: Smooth scrolling animation
+    });
+  };
   return (
     <div className={viewNav ? open : closed}>
       {viewNav && (
@@ -64,7 +71,9 @@ const SideNav = () => {
               </div>
               <div className="con">
                 <img src={database}></img>
-                <div className="txt">Database</div>
+                <div className="txt" onClick={scrollToDatabase}>
+                  Database
+                </div>
               </div>
               <div className="con">
                 <img src={add}></img>
@@ -104,7 +113,7 @@ const SideNav = () => {
                 <img src={template}></img>
               </div>
               <div className="con">
-                <img src={database}></img>
+                <img src={database} onClick={scrollToDatabase}></img>
               </div>
               <div className="con">
                 <img src={add}></img>
