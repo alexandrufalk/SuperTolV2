@@ -512,8 +512,9 @@ const Case = React.forwardRef(
     };
 
     const handleSelectDimData = (e) => {
-      console.log("handleSelectDimData:", dataCaseFiltered[e - 1]);
-      const selectedDim = dataCaseFiltered[e - 1];
+      console.log("handleSelectDimData", e.target.value);
+      console.log("handleSelectDimData:", dataCaseFiltered[e.target.value - 1]);
+      const selectedDim = dataCaseFiltered[e.target.value - 1];
       const selectedCaseDim =
         databaseProjects[projectId - 1].DataCase[caseId - 1].CaseData;
       console.log("handleSelectedDimData selectedCaseDim:", selectedCaseDim);
@@ -1243,9 +1244,7 @@ const Case = React.forwardRef(
                     {dataCaseFiltered.map((n) => (
                       <option
                         key={n.ID} // Make sure to use a unique key for each option
-                        value={`${n.Description} - ${n.Name} : ${
-                          n.NominalValue
-                        }±${(n.UpperTolerance - n.LowerTolerance) / 2}`}
+                        value={n.ID}
                       >
                         {`${n.Description} - ${n.Name} : ${n.NominalValue}±${
                           (n.UpperTolerance - n.LowerTolerance) / 2
@@ -1315,18 +1314,16 @@ const Case = React.forwardRef(
             
           )} */}
 
-              <div className="container fluid   ">
-                <button
-                  variant="secondary"
-                  type="submit"
-                  className="m-2"
-                  onClick={(e) => {
-                    AddDim(e);
-                  }}
-                >
-                  Add Dimension
-                </button>
-              </div>
+              <button
+                variant="secondary"
+                type="submit"
+                className="m-2"
+                onClick={(e) => {
+                  AddDim(e);
+                }}
+              >
+                Add Dimension
+              </button>
             </div>
 
             {/* <div className="add-dim-case">
