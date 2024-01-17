@@ -1221,6 +1221,113 @@ const Case = React.forwardRef(
                 </tbody>
               </table>
             </div>
+            <div className="main-item-case">
+              <h2>
+                Add dimension to Case {caseId} (Project {projectId})
+              </h2>
+              {isDatabaseProjects ? (
+                <div class="bottom-drop">
+                  <label htmlFor="toleranceType" className="label-drop">
+                    Select Dimension
+                  </label>
+                  <select
+                    id="selectDimension"
+                    className="select-drop" // Use className instead of class
+                    name="Select Dimension"
+                    value={nrSamples}
+                    onChange={(e) => {
+                      handleSelectDimData(e);
+                    }}
+                  >
+                    <option value="Select Dimension">Select Dimension</option>
+                    {dataCaseFiltered.map((n) => (
+                      <option
+                        key={n.ID} // Make sure to use a unique key for each option
+                        value={`${n.Description} - ${n.Name} : ${
+                          n.NominalValue
+                        }±${(n.UpperTolerance - n.LowerTolerance) / 2}`}
+                      >
+                        {`${n.Description} - ${n.Name} : ${n.NominalValue}±${
+                          (n.UpperTolerance - n.LowerTolerance) / 2
+                        }`}
+                      </option>
+                    ))}
+                  </select>
+
+                  {/* <Dropdown
+                title={addComponent}
+                onSelect={(e) => {
+                 
+
+                  handleSelectDimData(e);
+                }}
+                variant="secondary"
+              >
+                
+                <div className="p-2 bg-dark bg-gradient text-white rounded shadow-lg">
+                  {dataCaseFiltered.map((n) => (
+                    <Dropdown.Item
+                      eventKey={n.ID}
+                      key={n.ID + "Data"}
+                      className="text-info dropdown-project"
+                    >
+                      {n.Description} - {n.Name} :{n.NominalValue}±
+                      {(n.UpperTolerance - n.LowerTolerance) / 2}
+                    </Dropdown.Item>
+                    
+                  ))}
+                </div>
+                
+              </Dropdown> */}
+                </div>
+              ) : (
+                <>
+                  <p>No dimensions on the database</p>
+                  <button
+                    variant="primary"
+                    onClick={() => {
+                      scrollToDatabase();
+                      // ViewDatabase();
+                    }}
+                  >
+                    Go to Database
+                  </button>
+                </>
+              )}
+              {/* {viewsign && (
+            
+              <Form.Group controlId="formGridState" className="col col-sm-6">
+                <Form.Label style={{ marginBottom: "18px" }}>
+                  Select Sign
+                </Form.Label>
+                <Form.Select
+                  
+                  className="form-control text-info dropdown-project bg-dark bg-gradient"
+                  name="Sign"
+                  value={formAddDim.Sign}
+                  onChange={(e) => handleChange(e)}
+                >
+                  <option value="Select Sign">Select Sign</option>
+                  <option value="+">+</option>
+                  <option value="-">-</option>
+                </Form.Select>
+              </Form.Group>
+            
+          )} */}
+
+              <div className="container fluid   ">
+                <button
+                  variant="secondary"
+                  type="submit"
+                  className="m-2"
+                  onClick={(e) => {
+                    AddDim(e);
+                  }}
+                >
+                  Add Dimension
+                </button>
+              </div>
+            </div>
 
             {/* <div className="add-dim-case">
         <h2>
