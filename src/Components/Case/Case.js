@@ -12,6 +12,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "./case.css";
 import useDatabaseProjects from "../../Hooks/useDatabaseProject";
 import del from "../DropDown/Delete.png";
+import add from "../Summary/add.png";
 
 import ImageCropper2 from "../ImageComponent/ImageCropper2";
 
@@ -41,6 +42,7 @@ const Case = React.forwardRef(
     const [dataCaseDimFiltred, setDataCaseDimFilttred] = useState([]);
     const [isDataCaseDimFiltred, setIsDataCaseDimFilttred] = useState(false);
     const [viewsign, setViewSign] = useState(false);
+    const [viewAddDimension, setViewAddDimension] = useState(false);
 
     console.log("Case-databaseProjects", databaseProjects);
 
@@ -1009,193 +1011,283 @@ const Case = React.forwardRef(
             </div>
 
             <div className="main-item-case2">
-              <table id="Database">
-                <tbody>
-                  <tr>
-                    <th className="first-th">ID</th>
-                    {dataCaseDimFiltred.map((n, index) => (
-                      <td
-                        key={n.ID + "Projects"}
-                        style={{
-                          color: n.Color ? n.Color.toLowerCase() : "inherit",
-                          borderTopRightRadius:
-                            index === dataCaseDimFiltred.length - 1
-                              ? "20px"
-                              : "0",
+              {viewAddDimension && (
+                <div className="main-item-case">
+                  <h2>
+                    Add dimension to Case {caseId} (Project {projectId})
+                  </h2>
+                  {isDatabaseProjects ? (
+                    <div class="bottom-drop">
+                      <label htmlFor="toleranceType" className="label-drop">
+                        Select Dimension
+                      </label>
+                      <select
+                        id="selectDimension"
+                        className="select-drop" // Use className instead of class
+                        name="Select Dimension"
+                        value={nrSamples}
+                        onChange={(e) => {
+                          handleSelectDimData(e);
                         }}
                       >
-                        {n.ID}
-                      </td>
-                    ))}
-                  </tr>
-                  <tr>
-                    <th>Name</th>
-                    {dataCaseDimFiltred.map((n) => (
-                      <td
-                        key={n.ID + n.Name}
-                        style={{
-                          color: n.Color ? n.Color.toLowerCase() : "inherit",
+                        <option value="Select Dimension">
+                          Select Dimension
+                        </option>
+                        {dataCaseFiltered.map((n) => (
+                          <option
+                            key={n.ID} // Make sure to use a unique key for each option
+                            value={n.ID}
+                          >
+                            {`${n.Description} - ${n.Name} : ${
+                              n.NominalValue
+                            }±${(n.UpperTolerance - n.LowerTolerance) / 2}`}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  ) : (
+                    <>
+                      <p>No dimensions on the database</p>
+                      <button
+                        variant="primary"
+                        onClick={() => {
+                          scrollToDatabase();
+                          // ViewDatabase();
                         }}
                       >
-                        {n.Name}
-                      </td>
-                    ))}
-                  </tr>
-                  <tr>
-                    <th>Description</th>
-                    {dataCaseDimFiltred.map((n) => (
-                      <td
-                        key={n.ID + n.Description}
-                        style={{
-                          color: n.Color ? n.Color.toLowerCase() : "inherit",
-                        }}
+                        Go to Database
+                      </button>
+                    </>
+                  )}
+                  {viewsign && (
+                    <div class="bottom-drop">
+                      <label htmlFor="toleranceType" className="label-drop">
+                        Select Sign
+                      </label>
+                      <select
+                        id="selectDimension"
+                        className="select-drop" // Use className instead of class
+                        name="Sign"
+                        value={formAddDim.Sign}
+                        onChange={(e) => handleChange(e)}
                       >
-                        {n.Description}
-                      </td>
-                    ))}
-                  </tr>
-                  <tr>
-                    <th>Unique Identifier</th>
-                    {dataCaseDimFiltred.map((n) => (
-                      <td
-                        key={n.ID + n.UniqueIdentifier}
-                        style={{
-                          color: n.Color ? n.Color.toLowerCase() : "inherit",
-                        }}
-                      >
-                        {n.UniqueIdentifier}
-                      </td>
-                    ))}
-                  </tr>
-                  <tr>
-                    <th>Nominal Value</th>
-                    {dataCaseDimFiltred.map((n) => (
-                      <td
-                        key={n.ID + "NominalValue"}
-                        style={{
-                          color: n.Color ? n.Color.toLowerCase() : "inherit",
-                        }}
-                      >
-                        {n.NominalValue}
-                      </td>
-                    ))}
-                  </tr>
+                        <option value="Select Dimension">Select Sign</option>
+                        <option value="+">+</option>
+                        <option value="-">-</option>
+                      </select>
+                    </div>
+                  )}
 
-                  <tr>
-                    <th>Upper Tolerance</th>
-                    {dataCaseDimFiltred.map((n) => (
-                      <td
-                        key={n.ID + "UpperTolerance"}
-                        style={{
-                          color: n.Color ? n.Color.toLowerCase() : "inherit",
-                        }}
-                      >
-                        {n.UpperTolerance}
-                      </td>
-                    ))}
-                  </tr>
+                  <button
+                    className="button-add"
+                    type="submit"
+                    onClick={(e) => {
+                      AddDim(e);
+                    }}
+                  >
+                    Add Dimension
+                  </button>
+                </div>
+              )}
+              <div className="template-container">
+                <div className="table-top">
+                  <div
+                    className="button-add"
+                    onClick={() => {
+                      setViewAddDimension(!viewAddDimension);
+                    }}
+                  >
+                    <img src={add}></img>Add Dimension
+                  </div>
+                </div>
+                <table id="Database">
+                  <tbody>
+                    <tr>
+                      <th className="first-th">ID</th>
+                      {dataCaseDimFiltred.map((n, index) => (
+                        <td
+                          key={n.ID + "Projects"}
+                          style={{
+                            color: n.Color ? n.Color.toLowerCase() : "inherit",
+                            borderTopRightRadius:
+                              index === dataCaseDimFiltred.length - 1
+                                ? "20px"
+                                : "0",
+                          }}
+                        >
+                          {n.ID}
+                        </td>
+                      ))}
+                    </tr>
+                    <tr>
+                      <th>Name</th>
+                      {dataCaseDimFiltred.map((n) => (
+                        <td
+                          key={n.ID + n.Name}
+                          style={{
+                            color: n.Color ? n.Color.toLowerCase() : "inherit",
+                          }}
+                        >
+                          {n.Name}
+                        </td>
+                      ))}
+                    </tr>
+                    <tr>
+                      <th>Description</th>
+                      {dataCaseDimFiltred.map((n) => (
+                        <td
+                          key={n.ID + n.Description}
+                          style={{
+                            color: n.Color ? n.Color.toLowerCase() : "inherit",
+                          }}
+                        >
+                          {n.Description}
+                        </td>
+                      ))}
+                    </tr>
+                    <tr>
+                      <th>Unique Identifier</th>
+                      {dataCaseDimFiltred.map((n) => (
+                        <td
+                          key={n.ID + n.UniqueIdentifier}
+                          style={{
+                            color: n.Color ? n.Color.toLowerCase() : "inherit",
+                          }}
+                        >
+                          {n.UniqueIdentifier}
+                        </td>
+                      ))}
+                    </tr>
+                    <tr>
+                      <th>Nominal Value</th>
+                      {dataCaseDimFiltred.map((n) => (
+                        <td
+                          key={n.ID + "NominalValue"}
+                          style={{
+                            color: n.Color ? n.Color.toLowerCase() : "inherit",
+                          }}
+                        >
+                          {n.NominalValue}
+                        </td>
+                      ))}
+                    </tr>
 
-                  <tr>
-                    <th>Lower Tolerance</th>
-                    {dataCaseDimFiltred.map((n) => (
-                      <td
-                        key={n.ID + "LowerTolerance"}
-                        style={{
-                          color: n.Color ? n.Color.toLowerCase() : "inherit",
-                        }}
-                      >
-                        {n.LowerTolerance}
-                      </td>
-                    ))}
-                  </tr>
+                    <tr>
+                      <th>Upper Tolerance</th>
+                      {dataCaseDimFiltred.map((n) => (
+                        <td
+                          key={n.ID + "UpperTolerance"}
+                          style={{
+                            color: n.Color ? n.Color.toLowerCase() : "inherit",
+                          }}
+                        >
+                          {n.UpperTolerance}
+                        </td>
+                      ))}
+                    </tr>
 
-                  <tr>
-                    <th>Sign</th>
-                    {dataCaseDimFiltred.map((n) => (
-                      <td
-                        key={n.ID + "Sign"}
-                        style={{
-                          color: n.Color ? n.Color.toLowerCase() : "inherit",
-                        }}
-                      >
-                        {n.Sign}
-                      </td>
-                    ))}
-                  </tr>
+                    <tr>
+                      <th>Lower Tolerance</th>
+                      {dataCaseDimFiltred.map((n) => (
+                        <td
+                          key={n.ID + "LowerTolerance"}
+                          style={{
+                            color: n.Color ? n.Color.toLowerCase() : "inherit",
+                          }}
+                        >
+                          {n.LowerTolerance}
+                        </td>
+                      ))}
+                    </tr>
 
-                  <tr>
-                    <th>Distribution Type</th>
-                    {dataCaseDimFiltred.map((n) => (
-                      <td
-                        key={n.ID + "DistributionType"}
-                        style={{
-                          color: n.Color ? n.Color.toLowerCase() : "inherit",
-                        }}
-                      >
-                        {n.DistributionType}
-                      </td>
-                    ))}
-                  </tr>
+                    <tr>
+                      <th>Sign</th>
+                      {dataCaseDimFiltred.map((n) => (
+                        <td
+                          key={n.ID + "Sign"}
+                          style={{
+                            color: n.Color ? n.Color.toLowerCase() : "inherit",
+                          }}
+                        >
+                          {n.Sign}
+                        </td>
+                      ))}
+                    </tr>
 
-                  <tr>
-                    <th>Tolerance Type</th>
-                    {dataCaseDimFiltred.map((n) => (
-                      <td
-                        key={n.ID + "ToleranceType"}
-                        style={{
-                          color: n.Color ? n.Color.toLowerCase() : "inherit",
-                        }}
-                      >
-                        {n.ToleranceType}
-                      </td>
-                    ))}
-                  </tr>
+                    <tr>
+                      <th>Distribution Type</th>
+                      {dataCaseDimFiltred.map((n) => (
+                        <td
+                          key={n.ID + "DistributionType"}
+                          style={{
+                            color: n.Color ? n.Color.toLowerCase() : "inherit",
+                          }}
+                        >
+                          {n.DistributionType}
+                        </td>
+                      ))}
+                    </tr>
 
-                  <tr>
-                    <th>Influence %</th>
-                    {dataCaseDimFiltred.map((n) => (
-                      <td
-                        key={n.ID + "Influence"}
-                        style={{
-                          color: n.Color ? n.Color.toLowerCase() : "inherit",
-                        }}
-                      >
-                        {Math.round(
-                          (((n.UpperTolerance - n.LowerTolerance) / 2) * 100) /
-                            WorstCaseTolerance +
-                            Number.EPSILON
-                        ) / 100}
-                      </td>
-                    ))}
-                  </tr>
+                    <tr>
+                      <th>Tolerance Type</th>
+                      {dataCaseDimFiltred.map((n) => (
+                        <td
+                          key={n.ID + "ToleranceType"}
+                          style={{
+                            color: n.Color ? n.Color.toLowerCase() : "inherit",
+                          }}
+                        >
+                          {n.ToleranceType}
+                        </td>
+                      ))}
+                    </tr>
 
-                  <tr>
-                    <th>Formula</th>
-                    {dataCaseDimFiltred.map((n) => (
-                      <td
-                        key={n.ID + "Formula"}
-                        style={{
-                          color: n.Color ? n.Color.toLowerCase() : "inherit",
-                        }}
-                      >
-                        {n.Formula}
-                      </td>
-                    ))}
-                  </tr>
+                    <tr>
+                      <th>Influence %</th>
+                      {dataCaseDimFiltred.map((n) => (
+                        <td
+                          key={n.ID + "Influence"}
+                          style={{
+                            color: n.Color ? n.Color.toLowerCase() : "inherit",
+                          }}
+                        >
+                          {Math.round(
+                            (((n.UpperTolerance - n.LowerTolerance) / 2) *
+                              100) /
+                              WorstCaseTolerance +
+                              Number.EPSILON
+                          ) / 100}
+                        </td>
+                      ))}
+                    </tr>
 
-                  <tr>
-                    <th className="last-th">Action</th>
-                    {dataCaseDimFiltred.map((n, index) => (
-                      <td
-                        key={n.ID + "RemoveButton"}
-                        style={{
-                          borderBottomRightRadius:
-                            index === dataCaseDimFiltred.length - 1
-                              ? "20px"
-                              : "0",
-                        }}
-                      >
-                        {/* <button
+                    <tr>
+                      <th>Formula</th>
+                      {dataCaseDimFiltred.map((n) => (
+                        <td
+                          key={n.ID + "Formula"}
+                          style={{
+                            color: n.Color ? n.Color.toLowerCase() : "inherit",
+                          }}
+                        >
+                          {n.Formula}
+                        </td>
+                      ))}
+                    </tr>
+
+                    <tr>
+                      <th className="last-th">Action</th>
+                      {dataCaseDimFiltred.map((n, index) => (
+                        <td
+                          key={n.ID + "RemoveButton"}
+                          style={{
+                            borderBottomRightRadius:
+                              index === dataCaseDimFiltred.length - 1
+                                ? "20px"
+                                : "0",
+                          }}
+                        >
+                          {/* <button
                           type="button"
                           variant="outline-danger"
                           onClick={() => {
@@ -1204,111 +1296,23 @@ const Case = React.forwardRef(
                         >
                           X
                         </button> */}
-                        <img
-                          src={del}
-                          onClick={() => {
-                            const confirmRemove = window.confirm(
-                              "Do you want to remove this dimension?"
-                            );
-                            if (confirmRemove) {
-                              RemoveCaseDim(n.ID);
-                            }
-                          }}
-                        ></img>
-                      </td>
-                    ))}
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div className="main-item-case">
-              <h2>
-                Add dimension to Case {caseId} (Project {projectId})
-              </h2>
-              {isDatabaseProjects ? (
-                <div class="bottom-drop">
-                  <label htmlFor="toleranceType" className="label-drop">
-                    Select Dimension
-                  </label>
-                  <select
-                    id="selectDimension"
-                    className="select-drop" // Use className instead of class
-                    name="Select Dimension"
-                    value={nrSamples}
-                    onChange={(e) => {
-                      handleSelectDimData(e);
-                    }}
-                  >
-                    <option value="Select Dimension">Select Dimension</option>
-                    {dataCaseFiltered.map((n) => (
-                      <option
-                        key={n.ID} // Make sure to use a unique key for each option
-                        value={n.ID}
-                      >
-                        {`${n.Description} - ${n.Name} : ${n.NominalValue}±${
-                          (n.UpperTolerance - n.LowerTolerance) / 2
-                        }`}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              ) : (
-                <>
-                  <p>No dimensions on the database</p>
-                  <button
-                    variant="primary"
-                    onClick={() => {
-                      scrollToDatabase();
-                      // ViewDatabase();
-                    }}
-                  >
-                    Go to Database
-                  </button>
-                </>
-              )}
-              {viewsign && (
-                <div class="bottom-drop">
-                  <label htmlFor="toleranceType" className="label-drop">
-                    Select Sign
-                  </label>
-                  <select
-                    id="selectDimension"
-                    className="select-drop" // Use className instead of class
-                    name="Sign"
-                    value={formAddDim.Sign}
-                    onChange={(e) => handleChange(e)}
-                  >
-                    <option value="Select Dimension">Select Sign</option>
-                    <option value="+">+</option>
-                    <option value="-">-</option>
-                  </select>
-                </div>
-                // <Form.Group controlId="formGridState" className="col col-sm-6">
-                //   <Form.Label style={{ marginBottom: "18px" }}>
-                //     Select Sign
-                //   </Form.Label>
-                //   <Form.Select
-                //     className="form-control text-info dropdown-project bg-dark bg-gradient"
-                //     name="Sign"
-                //     value={formAddDim.Sign}
-                //     onChange={(e) => handleChange(e)}
-                //   >
-                //     <option value="Select Sign">Select Sign</option>
-                //     <option value="+">+</option>
-                //     <option value="-">-</option>
-                //   </Form.Select>
-                // </Form.Group>
-              )}
-
-              <button
-                className="button-add"
-                type="submit"
-                onClick={(e) => {
-                  AddDim(e);
-                }}
-              >
-                Add Dimension
-              </button>
+                          <img
+                            src={del}
+                            onClick={() => {
+                              const confirmRemove = window.confirm(
+                                "Do you want to remove this dimension?"
+                              );
+                              if (confirmRemove) {
+                                RemoveCaseDim(n.ID);
+                              }
+                            }}
+                          ></img>
+                        </td>
+                      ))}
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
 
             {/* <div className="add-dim-case">
