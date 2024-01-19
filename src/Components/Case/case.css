@@ -34,7 +34,8 @@
     }
     .main-item-case{
         grid-column: span 1;
-       
+        gap: 8px;
+       margin: 16px;
         padding: 16px;
         justify-self: center;
         align-items: center;
@@ -239,9 +240,30 @@
     }
 }
 
-.button-add{
-    font-size: 12px;
-}
 
+
+
+.button-add{
+  cursor: pointer;
+  display: flex;
+  padding: 6px 12px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 6px;
+  background: var(--Gray-100, #D5DBE5);
+
+  /* pr-button/default */
+  box-shadow: 0px 0px 0px 1px #5E5ADB, 0px 1px 1px 0px rgba(0, 0, 0, 0.10);
+  color: var(--Indigo-700, #3734A3);
+
+  /* Button/Default */
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px; /* 142.857% */
+  letter-spacing: 0.28px;
+}
 
 

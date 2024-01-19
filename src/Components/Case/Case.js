@@ -800,13 +800,18 @@ const Case = React.forwardRef(
                       </td>
                     </tr>
                     <tr>
-                      <th>Sigma intv.</th>
+                      <th className="last-th">Sigma intv.</th>
 
-                      <td key={"Sigma intv."}>
+                      <td
+                        key={"Sigma intv."}
+                        style={{
+                          borderBottomRightRadius: "20px",
+                        }}
+                      >
                         {statisticalForm.StDev.toFixed(4)}
                       </td>
                     </tr>
-                    <tr>
+                    {/* <tr>
                       <th>Parts less LSL</th>
 
                       <td key={"Parts less LSL"}></td>
@@ -820,7 +825,7 @@ const Case = React.forwardRef(
                           borderBottomRightRadius: "20px",
                         }}
                       ></td>
-                    </tr>
+                    </tr> */}
                   </tbody>
                 </table>
               </div>
@@ -1012,7 +1017,7 @@ const Case = React.forwardRef(
 
             <div className="main-item-case2">
               {viewAddDimension && (
-                <div className="main-item-case">
+                <div className="main-item-case main-add-component">
                   <h2>
                     Add dimension to Case {caseId} (Project {projectId})
                   </h2>
