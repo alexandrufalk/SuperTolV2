@@ -243,7 +243,7 @@
 
 
 
-.button-add{
+.button-add-dim{
   cursor: pointer;
   display: flex;
   padding: 6px 12px;
@@ -266,4 +266,15 @@
   letter-spacing: 0.28px;
 }
 
+.text-add{
+  display: flex;
+  justify-content: center;
+  color: var(--indigo-100, #D0CFFC);
+  padding: 8px;
+  /* Header/H5 */
+  font-family: Inter;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;}
 

@@ -601,7 +601,7 @@ const Case = React.forwardRef(
 
     const scrollToDatabase = () => {
       window.scrollTo({
-        top: 400,
+        top: 200,
         behavior: "smooth", // Optional: Smooth scrolling animation
       });
     };
@@ -1018,9 +1018,9 @@ const Case = React.forwardRef(
             <div className="main-item-case2">
               {viewAddDimension && (
                 <div className="main-item-case main-add-component">
-                  <h2>
+                  <div className="text-add">
                     Add dimension to Case {caseId} (Project {projectId})
-                  </h2>
+                  </div>
                   {isDatabaseProjects ? (
                     <div class="bottom-drop">
                       <label htmlFor="toleranceType" className="label-drop">
@@ -1054,7 +1054,7 @@ const Case = React.forwardRef(
                     <>
                       <p>No dimensions on the database</p>
                       <button
-                        variant="primary"
+                        className="button-add-dim"
                         onClick={() => {
                           scrollToDatabase();
                           // ViewDatabase();
@@ -1084,7 +1084,7 @@ const Case = React.forwardRef(
                   )}
 
                   <button
-                    className="button-add"
+                    className="button-add-dim"
                     type="submit"
                     onClick={(e) => {
                       AddDim(e);
