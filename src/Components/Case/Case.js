@@ -1030,7 +1030,7 @@ const Case = React.forwardRef(
                         id="selectDimension"
                         className="select-drop" // Use className instead of class
                         name="Select Dimension"
-                        value={nrSamples}
+                        value={formAddDim.Description}
                         onChange={(e) => {
                           handleSelectDimData(e);
                         }}
