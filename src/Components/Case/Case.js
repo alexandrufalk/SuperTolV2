@@ -830,41 +830,6 @@ const Case = React.forwardRef(
                 </table>
               </div>
             )}
-            {/* <Form.Group controlId="formGridState" className="col col-sm-6">
-        <Form.Label>Select gap Cpk</Form.Label>
-        <Form.Select
-          // defaultValue="Gap Cpk"
-          className="form-control p-2 bg-dark bg-gradient text-info rounded shadow-lg"
-          style={{ "--bs-bg-opacity": "0.9" }}
-          name="Gap Cpk"
-          value={gapCpk}
-          onChange={(e) => {
-            handleCpkChange(e);
-          }}
-        >
-          <option value="Gap Cpk">Gap Cpk</option>
-          <option value="1">Normal Cpk 1</option>
-          <option value="1.33">Normal Cpk 1.33</option>
-          <option value="1.67">Normal Cpk 1.67</option>
-          <option value="2">Normal Cpk 2</option>
-        </Form.Select>
-        <Form.Select
-          // defaultValue="Select Nr. of samples "
-          className="form-control p-2 bg-dark bg-gradient text-info rounded shadow-lg"
-          name="Select Nr. of samples "
-          value={nrSamples}
-          onChange={(e) => {
-            handleNrSamples(e);
-          }}
-        >
-          <option value="Select Nr. of samples ">Select Nr. of samples </option>
-          <option value="10000">10000</option>
-          <option value="25000">25000</option>
-          <option value="50000">50000</option>
-          <option value="100000">100000</option>
-        </Form.Select>
-        <ToastContainer transition={Bounce} autoClose={2000} />
-      </Form.Group> */}
 
             {/* {isSpinner && <Spinner animation="border" variant="secondary" />} */}
             <div className="main-item-case-chart">
@@ -934,85 +899,8 @@ const Case = React.forwardRef(
                       }}
                     />
                   </div>
-
-                  {/* <div className=""></div> */}
                 </div>
               )}
-
-              {/* <Col className="p-5">
-          <Row>
-            <Col>
-              <div className="container-fluid tabelCase text-light ">
-                <h3>Worst Case</h3>
-                <ListGroup className="shadow p-3 mb-5 bg-body-tertiary rounded opacity-75 rounded-4">
-                  <ListGroup.Item className="fs-5 tabelCase text-light">
-                    {`Nominal:${WorstCaseNominal.toFixed(3)}`}
-                  </ListGroup.Item>
-                  <ListGroup.Item className="tabelCase text-light">{`Upper Tolerance: ${WorstCaseTolerance.toFixed(
-                    3
-                  )}`}</ListGroup.Item>
-                  <ListGroup.Item className="tabelCase text-light">{`Lower Tolerance: ${-WorstCaseTolerance.toFixed(
-                    3
-                  )}`}</ListGroup.Item>
-                  <ListGroup.Item className="tabelCase text-light">{`Upper Limit: ${(
-                    WorstCaseNominal + WorstCaseTolerance
-                  ).toFixed(3)}`}</ListGroup.Item>
-                  <ListGroup.Item className="tabelCase text-light">{`Lower Limit: ${(
-                    WorstCaseNominal - WorstCaseTolerance
-                  ).toFixed(3)}`}</ListGroup.Item>
-                  <ListGroup.Item className="tabelCase text-light">{`Range: ${(
-                    2 * WorstCaseTolerance
-                  ).toFixed(3)}`}</ListGroup.Item>
-                  <ListGroup.Item className="tabelCase text-light">{`Symmetric:${WorstCaseNominal.toFixed(
-                    3
-                  )} ±${WorstCaseTolerance.toFixed(3)}`}</ListGroup.Item>
-                </ListGroup>
-              </div>
-            </Col>
-            {isStatistic && (
-              <Col>
-                <div className="container-fluid tabelCase text-light">
-                  <h3>Statistic</h3>
-                  <ListGroup className="shadow p-3 mb-5 bg-body-tertiary rounded opacity-75 ">
-                    <ListGroup.Item className="fs-5 tabelCase text-light rounded-4">
-                      {`Mean: ${meanStatistic.toFixed(4)}`}
-                    </ListGroup.Item>
-                    <ListGroup.Item className="tabelCase text-light">{`Upper Tolerance:${statisticalForm.UTS.toFixed(
-                      4
-                    )} `}</ListGroup.Item>
-                    <ListGroup.Item className="tabelCase text-light">{`Lower Tolerance:${statisticalForm.LTS.toFixed(
-                      4
-                    )} `}</ListGroup.Item>
-                    <ListGroup.Item className="tabelCase text-light">
-                      Samples: 100000
-                    </ListGroup.Item>
-                    <ListGroup.Item className="tabelCase text-light">{`Range: ${(
-                      statisticalForm.UTS - statisticalForm.LTS
-                    ).toFixed(4)}`}</ListGroup.Item>
-                    <ListGroup.Item className="tabelCase text-light">
-                      Pp:{statisticalForm.Pp.toFixed(4)}
-                    </ListGroup.Item>
-                    <ListGroup.Item className="tabelCase text-light">
-                      Ppk:{statisticalForm.PpK.toFixed(4)}
-                    </ListGroup.Item>
-                    <ListGroup.Item className="tabelCase text-light">
-                      St.Dev[σ]:{statisticalForm.StDev.toFixed(4)}
-                    </ListGroup.Item>
-                    <ListGroup.Item className="tabelCase text-light">
-                      Sigma intv.: {statisticalForm.SigmaInt.toFixed(4)}
-                    </ListGroup.Item>
-                    <ListGroup.Item className="tabelCase text-light">
-                      Parts less LSL{" "}
-                    </ListGroup.Item>
-                    <ListGroup.Item className="tabelCase text-light rounded-4">
-                      Parts more USL
-                    </ListGroup.Item>
-                  </ListGroup>
-                </div>
-              </Col>
-            )}
-          </Row>
-        </Col> */}
             </div>
 
             <div className="main-item-case2">
@@ -1320,84 +1208,6 @@ const Case = React.forwardRef(
               </div>
             </div>
 
-            {/* <div className="add-dim-case">
-        <h2>
-          Add dimension to Case {caseId} (Project {projectId})
-        </h2>
-        {isDatabaseProjects ? (
-          <div className="select-dim-container">
-            <p>Select Dimension</p>
-            <DropdownButton
-              title={addComponent}
-              onSelect={(e) => {
-                // DatabasesFilter(e);
-
-                handleSelectDimData(e);
-              }}
-              variant="secondary"
-            >
-              <div className="p-2 bg-dark bg-gradient text-white rounded shadow-lg">
-                {dataCaseFiltered.map((n) => (
-                  <Dropdown.Item
-                    eventKey={n.ID}
-                    key={n.ID + "Data"}
-                    className="text-info dropdown-project"
-                  >
-                    {n.Description} - {n.Name} :{n.NominalValue}±
-                    {(n.UpperTolerance - n.LowerTolerance) / 2}
-                  </Dropdown.Item>
-                ))}
-              </div>
-            </DropdownButton>
-          </div>
-        ) : (
-          <Col>
-            <p>No dimensions on the database</p>
-            <Button
-              variant="primary"
-              onClick={() => {
-                scrollToDatabase();
-                ViewDatabase();
-              }}
-            >
-              Go to Database
-            </Button>
-          </Col>
-        )}
-        {viewsign && (
-          <Col>
-            <Form.Group controlId="formGridState" className="col col-sm-6">
-              <Form.Label style={{ marginBottom: "18px" }}>
-                Select Sign
-              </Form.Label>
-              <Form.Select
-                className="form-control text-info dropdown-project bg-dark bg-gradient"
-                name="Sign"
-                value={formAddDim.Sign}
-                onChange={(e) => handleChange(e)}
-              >
-                <option value="Select Sign">Select Sign</option>
-                <option value="+">+</option>
-                <option value="-">-</option>
-              </Form.Select>
-            </Form.Group>
-          </Col>
-        )}
-        <Row>
-          <div className="container fluid   ">
-            <Button
-              variant="secondary"
-              type="submit"
-              className="m-2"
-              onClick={(e) => {
-                AddDim(e);
-              }}
-            >
-              Add Dimension
-            </Button>
-          </div>
-        </Row>
-      </div> */}
             {isDataCaseDimFiltred && (
               <div className="main-item-canvas">
                 <Canvas canvasDatabse={DatabaseCalculation} />
