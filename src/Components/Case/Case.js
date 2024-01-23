@@ -543,7 +543,6 @@ const Case = React.forwardRef(
         Sign: "",
       });
       setViewSign(true);
-      setAddComponent(selectedDim.Description);
     };
 
     const AddDim = (e) => {
@@ -918,9 +917,10 @@ const Case = React.forwardRef(
                         id="selectDimension"
                         className="select-drop" // Use className instead of class
                         name="Select Dimension"
-                        value={formAddDim.Description}
+                        value={addComponent}
                         onChange={(e) => {
                           handleSelectDimData(e);
+                          setAddComponent(e.target.value);
                         }}
                       >
                         <option value="Select Dimension">
