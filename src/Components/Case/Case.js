@@ -903,85 +903,6 @@ const Case = React.forwardRef(
             </div>
 
             <div className="main-item-case2">
-              {viewAddDimension && (
-                <div className="main-item-case main-add-component">
-                  <div className="text-add">
-                    Add dimension to Case {caseId} (Project {projectId})
-                  </div>
-                  {isDatabaseProjects ? (
-                    <div class="bottom-drop">
-                      <label htmlFor="toleranceType" className="label-drop">
-                        Select Dimension
-                      </label>
-                      <select
-                        id="selectDimension"
-                        className="select-drop" // Use className instead of class
-                        name="Select Dimension"
-                        value={addComponent}
-                        onChange={(e) => {
-                          handleSelectDimData(e);
-                          setAddComponent(e.target.value);
-                        }}
-                      >
-                        <option value="Select Dimension">
-                          Select Dimension
-                        </option>
-                        {dataCaseFiltered.map((n) => (
-                          <option
-                            key={n.ID} // Make sure to use a unique key for each option
-                            value={n.ID}
-                          >
-                            {`${n.Description} - ${n.Name} : ${
-                              n.NominalValue
-                            }±${(n.UpperTolerance - n.LowerTolerance) / 2}`}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-                  ) : (
-                    <>
-                      <p>No dimensions on the database</p>
-                      <button
-                        className="button-add-dim"
-                        onClick={() => {
-                          scrollToDatabase();
-                          // ViewDatabase();
-                        }}
-                      >
-                        Go to Database
-                      </button>
-                    </>
-                  )}
-                  {viewsign && (
-                    <div class="bottom-drop">
-                      <label htmlFor="toleranceType" className="label-drop">
-                        Select Sign
-                      </label>
-                      <select
-                        id="selectDimension"
-                        className="select-drop" // Use className instead of class
-                        name="Sign"
-                        value={formAddDim.Sign}
-                        onChange={(e) => handleChange(e)}
-                      >
-                        <option value="Select Dimension">Select Sign</option>
-                        <option value="+">+</option>
-                        <option value="-">-</option>
-                      </select>
-                    </div>
-                  )}
-
-                  <button
-                    className="button-add-dim"
-                    type="submit"
-                    onClick={(e) => {
-                      AddDim(e);
-                    }}
-                  >
-                    Add Dimension
-                  </button>
-                </div>
-              )}
               <div className="template-container">
                 <div className="table-top">
                   <div
@@ -1206,6 +1127,85 @@ const Case = React.forwardRef(
                   </tbody>
                 </table>
               </div>
+              {viewAddDimension && (
+                <div className="main-item-case main-add-component">
+                  <div className="text-add">
+                    Add dimension to Case {caseId} (Project {projectId})
+                  </div>
+                  {isDatabaseProjects ? (
+                    <div class="bottom-drop">
+                      <label htmlFor="toleranceType" className="label-drop">
+                        Select Dimension
+                      </label>
+                      <select
+                        id="selectDimension"
+                        className="select-drop" // Use className instead of class
+                        name="Select Dimension"
+                        value={addComponent}
+                        onChange={(e) => {
+                          handleSelectDimData(e);
+                          setAddComponent(e.target.value);
+                        }}
+                      >
+                        <option value="Select Dimension">
+                          Select Dimension
+                        </option>
+                        {dataCaseFiltered.map((n) => (
+                          <option
+                            key={n.ID} // Make sure to use a unique key for each option
+                            value={n.ID}
+                          >
+                            {`${n.Description} - ${n.Name} : ${
+                              n.NominalValue
+                            }±${(n.UpperTolerance - n.LowerTolerance) / 2}`}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  ) : (
+                    <>
+                      <p>No dimensions on the database</p>
+                      <button
+                        className="button-add-dim"
+                        onClick={() => {
+                          scrollToDatabase();
+                          // ViewDatabase();
+                        }}
+                      >
+                        Go to Database
+                      </button>
+                    </>
+                  )}
+                  {viewsign && (
+                    <div class="bottom-drop">
+                      <label htmlFor="toleranceType" className="label-drop">
+                        Select Sign
+                      </label>
+                      <select
+                        id="selectDimension"
+                        className="select-drop" // Use className instead of class
+                        name="Sign"
+                        value={formAddDim.Sign}
+                        onChange={(e) => handleChange(e)}
+                      >
+                        <option value="Select Dimension">Select Sign</option>
+                        <option value="+">+</option>
+                        <option value="-">-</option>
+                      </select>
+                    </div>
+                  )}
+
+                  <button
+                    className="button-add-dim"
+                    type="submit"
+                    onClick={(e) => {
+                      AddDim(e);
+                    }}
+                  >
+                    Add Dimension
+                  </button>
+                </div>
+              )}
             </div>
 
             {isDataCaseDimFiltred && (
