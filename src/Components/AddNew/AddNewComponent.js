@@ -328,7 +328,7 @@ const AddNewComponent = ({
           >
             Cancel
           </button>
-          <button className="button">Add project</button>
+          <button className="button">Add Component</button>
         </div>
       </div>
     </div>

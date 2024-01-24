@@ -27,6 +27,13 @@ const NavigationBar = () => {
       behavior: "smooth", // Optional: Smooth scrolling animation
     });
   };
+
+  const scrollToDatabase = () => {
+    window.scrollTo({
+      top: 210,
+      behavior: "smooth", // Optional: Smooth scrolling animation
+    });
+  };
   return (
     <div className="containernav sticky">
       <div className="nav-mobile">
@@ -71,7 +78,7 @@ const NavigationBar = () => {
           <img src={template}></img>
           <div className="summary">Template</div>
         </div>
-        <div className="center1">
+        <div className="center1" onClick={scrollToDatabase}>
           <img src={database}></img>
           <div className="summary">Database</div>
         </div>
