@@ -14,20 +14,8 @@ const LogIn = () => {
   };
   return (
     <div className="bodyLI">
-      <div
-        className="container2"
-        //   style={{ backgroundImage: `url(${backgroundImageUrl})` }}
-      >
-        {/* Your component content goes here */}
-        {/* <h1>Hello, World!</h1> */}
-
-        <div className="a">
-          {/* <img src={logoLI}></img> */}
-          {/* <div
-            className="logoLI"
-            style={{ backgroundImage: `url(${logoLI})` }}
-          ></div> */}
-        </div>
+      <div className="container2">
+        <div className="a"></div>
 
         <div className="b">
           <div className="containerwb">

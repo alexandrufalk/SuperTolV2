@@ -87,8 +87,6 @@ const ProjectsTable = ({
                     if (confirmRemove) {
                       RemoveCase(n.ID);
                     }
-
-                    // forceUpdate();
                   }}
                 ></img>
               </td>
@@ -96,18 +94,6 @@ const ProjectsTable = ({
           ))}
       </table>
 
-      {/* Pagination */}
-      {/* <div className="pagination">
-        {Array.from({
-          length: Math.ceil(
-            databaseSummryFiltered[0].DataCase.length / itemsPerPage
-          ),
-        }).map((_, index) => (
-          <button key={index} onClick={() => paginate(index + 1)}>
-            {index + 1}
-          </button>
-        ))}
-      </div> */}
       <div className="pagination-container">
         <CustomPagination
           data={databaseSummryFiltered[0].DataCase}
