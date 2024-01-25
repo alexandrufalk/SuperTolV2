@@ -1194,16 +1194,28 @@ const Case = React.forwardRef(
                       </select>
                     </div>
                   )}
+                  <div>
+                    <div className="buttons-frame-add">
+                      <button
+                        className="button-add-dim"
+                        onClick={() => {
+                          setViewAddDimension(!viewAddDimension);
+                        }}
+                      >
+                        Cancel
+                      </button>
 
-                  <button
-                    className="button-add-dim"
-                    type="submit"
-                    onClick={(e) => {
-                      AddDim(e);
-                    }}
-                  >
-                    Add Dimension
-                  </button>
+                      <button
+                        className="button-add-dim"
+                        type="submit"
+                        onClick={(e) => {
+                          AddDim(e);
+                        }}
+                      >
+                        Add Dimension
+                      </button>
+                    </div>
+                  </div>
                 </div>
               )}
             </div>

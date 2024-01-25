@@ -278,3 +278,20 @@
   font-weight: 500;
   line-height: normal;}
 
+.buttons-frame-add{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 40px;
+  align-items: center;
+}
+
+.button-add-dim:hover{
+  display: flex;
+  padding: 12px 12px;
+  align-items: center;
+  gap: 6px;
+  align-self: stretch;
+  border-radius: 4px;
+  border: 0.38px solid #B86E9F;
+}
