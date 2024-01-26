@@ -43,6 +43,7 @@ const Case = React.forwardRef(
     const [isDataCaseDimFiltred, setIsDataCaseDimFilttred] = useState(false);
     const [viewsign, setViewSign] = useState(false);
     const [viewAddDimension, setViewAddDimension] = useState(false);
+    const [isCase, setIsCase] = useState(false);
 
     console.log("Case-databaseProjects", databaseProjects);
 
@@ -138,6 +139,14 @@ const Case = React.forwardRef(
         console.log("dataCaseFiltered:", false);
       }
     }, [dataCaseFiltered]);
+
+    useEffect(() => {
+      if (caseId == null) {
+        setIsCase(true);
+      } else {
+        setIsCase(false);
+      }
+    }, [caseId]);
 
     // const DatabaseCalculation = DatabaseCases[0].Data[0].CaseData;
     const DatabaseCalculation = dataCaseDimFiltred;
@@ -605,6 +614,13 @@ const Case = React.forwardRef(
       });
     };
 
+    const scrollToSummary = () => {
+      window.scrollTo({
+        top: 10,
+        behavior: "smooth", // Optional: Smooth scrolling animation
+      });
+    };
+
     console.log("check dualaxis", dualAxisChart);
 
     return (
@@ -618,6 +634,14 @@ const Case = React.forwardRef(
         {viewCae && (
           <>
             <div className="main-item-case">
+              {isCase && (
+                <div>
+                  <p>Case not selected, go to:</p>
+                  <button className="button-add" onClick={scrollToSummary}>
+                    Summary
+                  </button>
+                </div>
+              )}
               <div class="bottom-drop">
                 <label for="toleranceType" className="label-drop">
                   Select tolerance type
