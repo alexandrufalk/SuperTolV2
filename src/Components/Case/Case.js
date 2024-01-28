@@ -44,6 +44,7 @@ const Case = React.forwardRef(
     const [viewsign, setViewSign] = useState(false);
     const [viewAddDimension, setViewAddDimension] = useState(false);
     const [isCase, setIsCase] = useState(false);
+    const [windowWidth, setWindowswidth] = useState("1024");
 
     console.log("Case-databaseProjects", databaseProjects);
 
@@ -147,6 +148,17 @@ const Case = React.forwardRef(
         setIsCase(false);
       }
     }, [caseId]);
+
+    const handleResize = () => {
+      setWindowswidth(window.innerWidth);
+    };
+
+    // create an event listener
+    useEffect(() => {
+      window.addEventListener("resize", handleResize);
+    });
+
+    console.log("window width case", windowWidth);
 
     // const DatabaseCalculation = DatabaseCases[0].Data[0].CaseData;
     const DatabaseCalculation = dataCaseDimFiltred;
