@@ -623,6 +623,28 @@ const Case = React.forwardRef(
 
     console.log("check dualaxis", dualAxisChart);
 
+    //Paginatio
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const [itemsPerPage, setItemsPerPage] = useState(3);
+    const [isDropPag, setDropPag] = useState(false);
+
+    // Calculate the indexes of the items to be displayed on the current page
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentItems = dataCaseDimFiltred.slice(
+      indexOfFirstItem,
+      indexOfLastItem
+    );
+    console.log(
+      "Pagination items",
+      indexOfFirstItem,
+      indexOfLastItem,
+      currentItems
+    );
+    // Change page
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
     return (
       <div className="main-container-case" ref={ref}>
         <div className="database-header">
