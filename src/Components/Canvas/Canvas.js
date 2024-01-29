@@ -28,11 +28,11 @@ const Canvas = ({ canvasDatabse }) => {
 
   const referanceValue = Math.max(plusValues, minusValues);
 
-  console.log("referanceValue", referanceValue);
+  // console.log("referanceValue", referanceValue);
 
-  console.log("plusValues", plusValues);
-  console.log("minusValues", minusValues);
-  console.log("window.innerHeight", window.innerHeight);
+  // console.log("plusValues", plusValues);
+  // console.log("minusValues", minusValues);
+  // console.log("window.innerHeight", window.innerHeight);
 
   const clearCanvas = () => {
     if (ctx) {

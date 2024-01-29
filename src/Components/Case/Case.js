@@ -150,7 +150,13 @@ const Case = React.forwardRef(
     }, [caseId]);
 
     const handleResize = () => {
-      setWindowswidth(window.innerWidth);
+      if (window.innerWidth >= 1024) {
+        setItemsPerPage(6);
+      } else if (window.innerWidth >= 640 && window.innerWidth < 1024) {
+        setItemsPerPage(3);
+      } else if (window.innerWidth < 640) {
+        setItemsPerPage(2);
+      }
     };
 
     // create an event listener
