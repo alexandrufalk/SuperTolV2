@@ -5,6 +5,7 @@ import React, { useState, useEffect } from "react";
 import { Chart } from "react-google-charts";
 
 import Canvas from "../Canvas/Canvas";
+import CustomPagination from "../Table/CustomPagination";
 
 import { ToastContainer, toast, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -969,6 +970,12 @@ const Case = React.forwardRef(
             <div className="main-item-case2">
               <div className="template-container">
                 <div className="table-top">
+                  <CustomPagination
+                    data={dataCaseDimFiltred}
+                    itemsPerPage={itemsPerPage}
+                    currentPage={currentPage}
+                    paginate={paginate}
+                  />
                   <div
                     className="button-add"
                     onClick={() => {
