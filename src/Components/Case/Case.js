@@ -656,7 +656,7 @@ const Case = React.forwardRef(
       indexOfLastItem
     );
     console.log(
-      "Pagination items",
+      "Pagination items case",
       indexOfFirstItem,
       indexOfLastItem,
       currentItems
@@ -989,15 +989,13 @@ const Case = React.forwardRef(
                   <tbody>
                     <tr>
                       <th className="first-th">ID</th>
-                      {dataCaseDimFiltred.map((n, index) => (
+                      {currentItems.map((n, index) => (
                         <td
                           key={n.ID + "Projects"}
                           style={{
                             color: n.Color ? n.Color.toLowerCase() : "inherit",
                             borderTopRightRadius:
-                              index === dataCaseDimFiltred.length - 1
-                                ? "20px"
-                                : "0",
+                              index === currentItems.length - 1 ? "20px" : "0",
                           }}
                         >
                           {n.ID}
@@ -1006,7 +1004,7 @@ const Case = React.forwardRef(
                     </tr>
                     <tr>
                       <th>Name</th>
-                      {dataCaseDimFiltred.map((n) => (
+                      {currentItems.map((n) => (
                         <td
                           key={n.ID + n.Name}
                           style={{
@@ -1019,7 +1017,7 @@ const Case = React.forwardRef(
                     </tr>
                     <tr>
                       <th>Description</th>
-                      {dataCaseDimFiltred.map((n) => (
+                      {currentItems.map((n) => (
                         <td
                           key={n.ID + n.Description}
                           style={{
@@ -1032,7 +1030,7 @@ const Case = React.forwardRef(
                     </tr>
                     <tr>
                       <th>Unique Identifier</th>
-                      {dataCaseDimFiltred.map((n) => (
+                      {currentItems.map((n) => (
                         <td
                           key={n.ID + n.UniqueIdentifier}
                           style={{
@@ -1045,7 +1043,7 @@ const Case = React.forwardRef(
                     </tr>
                     <tr>
                       <th>Nominal Value</th>
-                      {dataCaseDimFiltred.map((n) => (
+                      {currentItems.map((n) => (
                         <td
                           key={n.ID + "NominalValue"}
                           style={{
@@ -1059,7 +1057,7 @@ const Case = React.forwardRef(
 
                     <tr>
                       <th>Upper Tolerance</th>
-                      {dataCaseDimFiltred.map((n) => (
+                      {currentItems.map((n) => (
                         <td
                           key={n.ID + "UpperTolerance"}
                           style={{
@@ -1073,7 +1071,7 @@ const Case = React.forwardRef(
 
                     <tr>
                       <th>Lower Tolerance</th>
-                      {dataCaseDimFiltred.map((n) => (
+                      {currentItems.map((n) => (
                         <td
                           key={n.ID + "LowerTolerance"}
                           style={{
@@ -1087,7 +1085,7 @@ const Case = React.forwardRef(
 
                     <tr>
                       <th>Sign</th>
-                      {dataCaseDimFiltred.map((n) => (
+                      {currentItems.map((n) => (
                         <td
                           key={n.ID + "Sign"}
                           style={{
@@ -1101,7 +1099,7 @@ const Case = React.forwardRef(
 
                     <tr>
                       <th>Distribution Type</th>
-                      {dataCaseDimFiltred.map((n) => (
+                      {currentItems.map((n) => (
                         <td
                           key={n.ID + "DistributionType"}
                           style={{
@@ -1115,7 +1113,7 @@ const Case = React.forwardRef(
 
                     <tr>
                       <th>Tolerance Type</th>
-                      {dataCaseDimFiltred.map((n) => (
+                      {currentItems.map((n) => (
                         <td
                           key={n.ID + "ToleranceType"}
                           style={{
@@ -1129,7 +1127,7 @@ const Case = React.forwardRef(
 
                     <tr>
                       <th>Influence %</th>
-                      {dataCaseDimFiltred.map((n) => (
+                      {currentItems.map((n) => (
                         <td
                           key={n.ID + "Influence"}
                           style={{
@@ -1148,7 +1146,7 @@ const Case = React.forwardRef(
 
                     <tr>
                       <th>Formula</th>
-                      {dataCaseDimFiltred.map((n) => (
+                      {currentItems.map((n) => (
                         <td
                           key={n.ID + "Formula"}
                           style={{
@@ -1162,14 +1160,12 @@ const Case = React.forwardRef(
 
                     <tr>
                       <th className="last-th">Action</th>
-                      {dataCaseDimFiltred.map((n, index) => (
+                      {currentItems.map((n, index) => (
                         <td
                           key={n.ID + "RemoveButton"}
                           style={{
                             borderBottomRightRadius:
-                              index === dataCaseDimFiltred.length - 1
-                                ? "20px"
-                                : "0",
+                              index === currentItems.length - 1 ? "20px" : "0",
                           }}
                         >
                           {/* <button
