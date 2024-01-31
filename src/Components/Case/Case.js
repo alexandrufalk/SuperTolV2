@@ -150,20 +150,32 @@ const Case = React.forwardRef(
       }
     }, [caseId]);
 
-    const handleResize = () => {
-      if (window.innerWidth >= 1024) {
-        setItemsPerPage(6);
-      } else if (window.innerWidth >= 640 && window.innerWidth < 1024) {
-        setItemsPerPage(3);
-      } else if (window.innerWidth < 640) {
-        setItemsPerPage(2);
+    const calculateItemsPerPage = () => {
+      const windowWidth = window.innerWidth;
+
+      if (windowWidth >= 1024) {
+        return 6;
+      } else if (windowWidth >= 640) {
+        return 3;
+      } else {
+        return 2;
       }
+    };
+
+    const handleResize = () => {
+      setItemsPerPage(calculateItemsPerPage);
     };
 
     // create an event listener
     useEffect(() => {
+      // Add event listener on mount
       window.addEventListener("resize", handleResize);
-    });
+
+      // Remove event listener on component unmount
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
+    }, []); // Empty dependency array means this effect runs only on mount and unmount
 
     console.log("window width case", windowWidth);
 
@@ -645,7 +657,7 @@ const Case = React.forwardRef(
     //Paginatio
 
     const [currentPage, setCurrentPage] = useState(1);
-    const [itemsPerPage, setItemsPerPage] = useState(3);
+    const [itemsPerPage, setItemsPerPage] = useState(calculateItemsPerPage);
     const [isDropPag, setDropPag] = useState(false);
 
     // Calculate the indexes of the items to be displayed on the current page

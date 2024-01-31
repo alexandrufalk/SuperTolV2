@@ -10,6 +10,8 @@ import ImageComponent from "../ImageComponent/ImageComponent";
 import ImageCropper2 from "../ImageComponent/ImageCropper2";
 import add from "../Summary/add.png";
 import del from "../DropDown/Delete.png";
+import edit from "../Table/🦆 icon _edit_.png";
+import image from "../Table/image.png";
 
 const Database = ({ CloseDatabase, viewDatabase }) => {
   const { databaseProjects, removeDim, removeImg } = useDatabaseProjects();
@@ -26,6 +28,7 @@ const Database = ({ CloseDatabase, viewDatabase }) => {
   const [isTemplate, setIsTemplate] = useState(false);
   const [componentData, setComponentData] = useState();
   const [isHovered, setIsHovered] = useState(false);
+  const [hoveredLabel, setHoveredLabel] = useState(null);
 
   // console.log("Database", Database);
 
@@ -186,6 +189,10 @@ const Database = ({ CloseDatabase, viewDatabase }) => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
   const handlePaginationNr = () => {
     setDropPag(!isDropPag);
+  };
+
+  const toggleLabel = (labelId) => {
+    setHoveredLabel(labelId);
   };
 
   return (
@@ -505,32 +512,45 @@ const Database = ({ CloseDatabase, viewDatabase }) => {
                       {currentItems.map((n, index) => (
                         <td
                           key={n.ID + "Remove case summary"}
+                          className="action-td" // Add a class for styling purposes
                           style={{
                             borderBottomRightRadius:
                               index === currentItems.length - 1 ? "20px" : "0",
                           }}
                         >
-                          {/* <button
-                            type="button"
-                            variant="outline-danger"
-                            onClick={() => {
-                              RemoveDim(n.ID);
-                              
-                            }}
-                          >
-                            X
-                          </button> */}
-                          <img
-                            src={del}
-                            onClick={() => {
-                              const confirmRemove = window.confirm(
-                                "Do you want to remove this component?"
-                              );
-                              if (confirmRemove) {
-                                RemoveDim(n.ID);
-                              }
-                            }}
-                          ></img>
+                          <div className="action-container">
+                            <div
+                              className={`label ${
+                                hoveredLabel === `label-${n.ID}`
+                                  ? "visible"
+                                  : ""
+                              }`}
+                              id={`label-${n.ID}`}
+                            >
+                              Image
+                            </div>
+                            <img
+                              className="action-img"
+                              src={del}
+                              alt="Delete"
+                              onMouseEnter={() => toggleLabel(`label-${n.ID}`)}
+                              onMouseLeave={() => toggleLabel(null)}
+                            ></img>
+                            <img
+                              className="action-img"
+                              src={edit}
+                              alt="Edit"
+                              onMouseEnter={() => toggleLabel(`label-${n.ID}`)}
+                              onMouseLeave={() => toggleLabel(null)}
+                            ></img>
+                            <img
+                              className="action-img"
+                              src={image}
+                              alt="Image"
+                              onMouseEnter={() => toggleLabel(`label-${n.ID}`)}
+                              onMouseLeave={() => toggleLabel(null)}
+                            ></img>
+                          </div>
                         </td>
                       ))}
                     </tr>
