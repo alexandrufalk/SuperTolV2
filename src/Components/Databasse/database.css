@@ -416,6 +416,7 @@
 
 
 .label {
+  
   display: none;
   position: absolute;
   background-color: #ffffff25;
@@ -424,6 +425,7 @@
   border-radius: 6px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   z-index: 1;
+  margin-bottom: 60px;
 }
 
 .label.visible {

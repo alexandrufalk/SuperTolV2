@@ -28,7 +28,7 @@ const Database = ({ CloseDatabase, viewDatabase }) => {
   const [isTemplate, setIsTemplate] = useState(false);
   const [componentData, setComponentData] = useState();
   const [isHovered, setIsHovered] = useState(false);
-  const [hoveredLabel, setHoveredLabel] = useState(null);
+  const [hoveredLabels, setHoveredLabels] = useState({});
 
   // console.log("Database", Database);
 
@@ -191,9 +191,36 @@ const Database = ({ CloseDatabase, viewDatabase }) => {
     setDropPag(!isDropPag);
   };
 
-  const toggleLabel = (labelId) => {
-    setHoveredLabel(labelId);
+  const toggleLabel = (tdIndex, labelText) => {
+    setHoveredLabels((prevLabels) => ({
+      ...prevLabels,
+      [tdIndex]: labelText,
+    }));
   };
+
+  const currentItemsLabel = [
+    {
+      ID: 1,
+      imgSrc: del,
+      labelText: "Delete",
+      altText: "Delete",
+      onClickFunction: (i) => alert(`Delete Selected ${i}`),
+    },
+    {
+      ID: 2,
+      imgSrc: edit,
+      labelText: "Edit",
+      altText: "Edit",
+      onClickFunction: (i) => alert(`Edit Selected ${i}`),
+    },
+    {
+      ID: 3,
+      imgSrc: image,
+      labelText: "Image",
+      altText: "Image",
+      onClickFunction: (i) => alert(`Image Selected ${i}`),
+    },
+  ];
 
   return (
     <div className="main-container-database">
@@ -509,47 +536,45 @@ const Database = ({ CloseDatabase, viewDatabase }) => {
 
                     <tr>
                       <th className="last-th">Action</th>
-                      {currentItems.map((n, index) => (
+                      {currentItems.map((item, tdIndex) => (
                         <td
-                          key={n.ID + "Remove case summary"}
-                          className="action-td" // Add a class for styling purposes
+                          key={item.ID + "Remove case summary"}
+                          className="action-td"
                           style={{
                             borderBottomRightRadius:
-                              index === currentItems.length - 1 ? "20px" : "0",
+                              tdIndex === currentItems.length - 1
+                                ? "20px"
+                                : "0",
                           }}
                         >
                           <div className="action-container">
-                            <div
-                              className={`label ${
-                                hoveredLabel === `label-${n.ID}`
-                                  ? "visible"
-                                  : ""
-                              }`}
-                              id={`label-${n.ID}`}
-                            >
-                              Image
-                            </div>
-                            <img
-                              className="action-img"
-                              src={del}
-                              alt="Delete"
-                              onMouseEnter={() => toggleLabel(`label-${n.ID}`)}
-                              onMouseLeave={() => toggleLabel(null)}
-                            ></img>
-                            <img
-                              className="action-img"
-                              src={edit}
-                              alt="Edit"
-                              onMouseEnter={() => toggleLabel(`label-${n.ID}`)}
-                              onMouseLeave={() => toggleLabel(null)}
-                            ></img>
-                            <img
-                              className="action-img"
-                              src={image}
-                              alt="Image"
-                              onMouseEnter={() => toggleLabel(`label-${n.ID}`)}
-                              onMouseLeave={() => toggleLabel(null)}
-                            ></img>
+                            {currentItemsLabel.map((label) => (
+                              <React.Fragment key={label.ID}>
+                                <div
+                                  className={`label ${
+                                    hoveredLabels[tdIndex] === label.labelText
+                                      ? "visible"
+                                      : ""
+                                  }`}
+                                  id={`label-${label.ID}`}
+                                >
+                                  {label.labelText}
+                                </div>
+
+                                <img
+                                  className="action-img"
+                                  src={label.imgSrc}
+                                  alt={label.altText}
+                                  onMouseEnter={() =>
+                                    toggleLabel(tdIndex, label.labelText)
+                                  }
+                                  onMouseLeave={() =>
+                                    toggleLabel(tdIndex, null)
+                                  }
+                                  onClick={() => label.onClickFunction(item.ID)}
+                                ></img>
+                              </React.Fragment>
+                            ))}
                           </div>
                         </td>
                       ))}
