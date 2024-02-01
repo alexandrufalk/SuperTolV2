@@ -204,7 +204,14 @@ const Database = ({ CloseDatabase, viewDatabase }) => {
       imgSrc: del,
       labelText: "Delete",
       altText: "Delete",
-      onClickFunction: (i) => alert(`Delete Selected ${i}`),
+      onClickFunction: (i) => {
+        const confirmRemove = window.confirm(
+          "Do you want to remove this component?"
+        );
+        if (confirmRemove) {
+          RemoveDim(i);
+        }
+      },
     },
     {
       ID: 2,
