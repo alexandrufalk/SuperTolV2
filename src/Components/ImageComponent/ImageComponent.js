@@ -21,7 +21,7 @@ function ImageComponent({ i, handleClick }) {
   };
 
   return (
-    <td key={i.ID}>
+    <div className="image-con">
       <div
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
@@ -96,7 +96,7 @@ function ImageComponent({ i, handleClick }) {
           </span>
         </div>
       )}
-    </td>
+    </div>
   );
 }
 

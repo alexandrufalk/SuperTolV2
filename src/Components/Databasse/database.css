@@ -435,3 +435,46 @@
 .action-img:hover + .label.visible {
   display: block;
 }
+
+.image-box{
+  display: flex;
+  width: 430px;
+  padding: 16px;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  border-radius: 25px;
+  background: linear-gradient(106deg, #2C313D 2.36%, #7C8492 98.06%);
+
+  .action-group{
+    display: flex;
+    padding: 0px 48px;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+  }
+  .button{
+    display: flex;
+    padding: 6px 12px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border-radius: 6px;
+    background: var(--White, #FFF);
+
+    /* sd-button/default */
+    box-shadow: 0px 0px 0px 1px rgba(70, 79, 96, 0.16), 0px 1px 1px 0px rgba(0, 0, 0, 0.10);
+
+    &&:hover{
+      display: flex;
+      padding: 12px 12px;
+      align-items: center;
+      gap: 6px;
+      align-self: stretch;
+      border-radius: 4px;
+      border: 0.38px solid #B86E9F;
+    }
+  }
+}

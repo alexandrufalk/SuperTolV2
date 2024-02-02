@@ -594,6 +594,12 @@ const Database = ({ CloseDatabase, viewDatabase }) => {
           )}
         </>
       )}
+      <div className="image-box">
+        <div className="action-group">
+          <button className="button">Cancel</button>
+          <button className="button">Add Image</button>
+        </div>
+      </div>
     </div>
   );
 };
