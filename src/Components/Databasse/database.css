@@ -449,6 +449,13 @@
   background: linear-gradient(106deg, #2C313D 2.36%, #7C8492 98.06%);
   z-index: 3;
 
+  .images-con{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
   .action-group{
     display: flex;
     padding: 0px 48px;
@@ -467,6 +474,8 @@
 
     /* sd-button/default */
     box-shadow: 0px 0px 0px 1px rgba(70, 79, 96, 0.16), 0px 1px 1px 0px rgba(0, 0, 0, 0.10);
+
+    
 
     &&:hover{
       display: flex;

@@ -30,7 +30,7 @@ function ImageComponent({ i, handleClick }) {
         <img
           src={i.Link}
           alt={`Image for ${i.ID}`}
-          style={{ width: "120px", height: "80px" }}
+          style={{ width: "120px", height: "80px", borderRadius: "5px" }}
         />
         {isHovered && (
           <div

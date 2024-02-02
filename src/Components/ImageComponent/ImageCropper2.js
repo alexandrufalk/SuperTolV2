@@ -153,8 +153,6 @@ const ImageCropper2 = ({
         />
         <button
           onClick={() => fileInputRef.current.click()} // Use fileInputRef to trigger click
-          variant="contained"
-          color="primary"
         >
           <img src={addImg} width="60" height="30"></img>
           {/* <Figure style={{ width: 60, height: 30 }}>

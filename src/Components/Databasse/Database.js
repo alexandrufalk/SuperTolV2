@@ -638,7 +638,7 @@ const Database = ({ CloseDatabase, viewDatabase }) => {
               </div>
               {viewImages && (
                 <div className="image-box">
-                  <div>
+                  <div className="images-con">
                     {currentItems[imageID - 1].Image.map((i) => (
                       <ImageComponent
                         key={i.ID}
