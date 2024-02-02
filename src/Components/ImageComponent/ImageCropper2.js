@@ -143,6 +143,7 @@ const ImageCropper2 = ({
   return (
     <div>
       <div>
+        <p>Dim ID {dimID}</p>
         <input
           type="file"
           accept="image/*"

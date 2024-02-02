@@ -447,6 +447,7 @@
   flex-wrap: wrap;
   border-radius: 25px;
   background: linear-gradient(106deg, #2C313D 2.36%, #7C8492 98.06%);
+  z-index: 3;
 
   .action-group{
     display: flex;
