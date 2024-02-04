@@ -437,6 +437,9 @@
 }
 
 .image-box{
+  position: fixed;
+  top: 50%;
+  left: 50%;
   display: flex;
   width: 430px;
   padding: 16px;
