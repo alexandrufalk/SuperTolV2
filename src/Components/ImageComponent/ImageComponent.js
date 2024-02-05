@@ -46,7 +46,17 @@ function ImageComponent({ i, handleClick }) {
               cursor: "pointer",
             }}
           >
-            <span className="text-danger" onClick={() => handleClick(i.ID)}>
+            <span
+              className="text-danger"
+              onClick={() => {
+                const confirmdelete = window.confirm(
+                  "Do you want to delete this component?"
+                );
+                if (confirmdelete) {
+                  handleClick(i.ID);
+                }
+              }}
+            >
               Delete
             </span>
             <span
