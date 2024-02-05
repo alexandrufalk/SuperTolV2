@@ -39,10 +39,10 @@ function ImageComponent({ i, handleClick }) {
               top: "50%",
               left: "50%",
               transform: "translate(-50%, -50%)",
-              background: "rgba(25, 123, 151, 0.31)",
-              color: "blue",
-              padding: "5px",
-              borderRadius: "50%",
+              background: "#D5DBE5",
+              color: "#3734A3",
+              padding: "8px",
+              borderRadius: "12px",
               cursor: "pointer",
             }}
           >
@@ -89,7 +89,10 @@ function ImageComponent({ i, handleClick }) {
               top: "10px",
               right: "10px",
               cursor: "pointer",
-              color: "blue",
+              background: "#D5DBE5",
+              color: "#3734A3",
+              borderRadius: "6px",
+              padding: "4px",
             }}
           >
             Close

@@ -143,7 +143,7 @@ const ImageCropper2 = ({
   return (
     <div>
       <div>
-        <p>Dim ID {dimID}</p>
+        {/* <p>Dim ID {dimID}</p> */}
         <input
           type="file"
           accept="image/*"
@@ -152,9 +152,10 @@ const ImageCropper2 = ({
           ref={fileInputRef} // Assign the ref here
         />
         <button
+          className="button"
           onClick={() => fileInputRef.current.click()} // Use fileInputRef to trigger click
         >
-          <img src={addImg} width="60" height="30"></img>
+          <img src={addImg} width="25" height="20"></img>
           {/* <Figure style={{ width: 60, height: 30 }}>
             <Figure.Image
               width={60}

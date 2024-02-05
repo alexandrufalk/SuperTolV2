@@ -654,7 +654,12 @@ const Database = ({ CloseDatabase, viewDatabase }) => {
                     ))}
                   </div>
                   <div className="action-group">
-                    <button className="button">Cancel</button>
+                    <button
+                      className="button"
+                      onClick={() => setViewImages(!viewImages)}
+                    >
+                      Cancel
+                    </button>
                     {/* <button className="button">Add Image</button> */}
                     <ImageCropper2
                       projectID={databaseFiltered[0].ID}
