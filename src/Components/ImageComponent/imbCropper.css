@@ -115,6 +115,23 @@ body {
     width: 300px;
     height: 300px;
     z-index: 9999;
+    
+  }
+
+  .button-img {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: var(--Gray-100, #D5DBE5);
+    cursor: pointer;
+    color: var(--Indigo-700, #3734A3);
+    &:hover{
+          
+      border-radius: 9.132px;
+      border: 0.38px solid #B86E9F;
+      
+  }
+
   }
 
   

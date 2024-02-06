@@ -257,8 +257,7 @@ const ImageCropper2 = ({
           <div className=" text-center">
             <button
               onClick={showCroppedImage}
-              variant="secondary"
-              color="primary"
+              className="button-img"
               // classes={{ root: classes.cropButton }}
             >
               Show Result
@@ -274,21 +273,15 @@ const ImageCropper2 = ({
             alt="Cropped Image" // You can set an alt attribute
             style={{ width: "100%", height: "100%", objectFit: "cover" }}
           />
-          <span
+          <button
+            className="button-img"
             onClick={() => {
               setViewResult(false);
               setViewCropper(true);
             }}
-            style={{
-              position: "absolute",
-              top: "10px",
-              right: "10px",
-              cursor: "pointer",
-              color: "blue",
-            }}
           >
             Close
-          </span>
+          </button>
           <div className="text-center">
             <button
               onClick={uploadToGCS}
