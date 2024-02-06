@@ -92,4 +92,29 @@ body {
     pointer-events: none;
     text-align: center;
   }
+
+  .cropper-container{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 400px;
+    height: 400px;
+    z-index: 9998;
+  }
+
+  .result-container{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 300px;
+    height: 300px;
+    z-index: 9999;
+  }
+
   

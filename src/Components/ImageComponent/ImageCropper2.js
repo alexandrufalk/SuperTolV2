@@ -168,19 +168,7 @@ const ImageCropper2 = ({
         </button>
       </div>
       {viewCropper && (
-        <div
-          style={{
-            position: "fixed",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            background: "white",
-            boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
-            width: "400px",
-            height: "400px",
-            zIndex: 9998,
-          }}
-        >
+        <div className="cropper-container">
           <div className="crop-container">
             <Cropper
               image={selectedImage}
@@ -280,19 +268,7 @@ const ImageCropper2 = ({
       )}
 
       {viewResult && (
-        <div
-          style={{
-            position: "fixed",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            background: "white",
-            boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
-            width: "300px",
-            height: "300px",
-            zIndex: 9999,
-          }}
-        >
+        <div className="result-container">
           <img
             src={croppedImageDataUrl}
             alt="Cropped Image" // You can set an alt attribute
