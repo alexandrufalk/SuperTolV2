@@ -228,6 +228,7 @@ const Database = ({ CloseDatabase, viewDatabase }) => {
       labelText: "Image",
       altText: "Image",
       onClickFunction: (i) => {
+        console.log("onClickFunction image", i);
         setImageID(i);
         setViewImages(!viewImages);
       },
@@ -639,19 +640,21 @@ const Database = ({ CloseDatabase, viewDatabase }) => {
               {viewImages && (
                 <div className="image-box">
                   <div className="images-con">
-                    {currentItems[imageID - 1].Image.map((i) => (
-                      <ImageComponent
-                        key={i.ID}
-                        i={i}
-                        handleClick={() => {
-                          handleClick(
-                            databaseFiltered[0].ID,
-                            currentItems.ID,
-                            i.ID
-                          );
-                        }}
-                      />
-                    ))}
+                    {databaseFiltered[0].DatabaseDim[imageID - 1].Image.map(
+                      (i) => (
+                        <ImageComponent
+                          key={i.ID}
+                          i={i}
+                          handleClick={() => {
+                            handleClick(
+                              databaseFiltered[0].ID,
+                              currentItems.ID,
+                              i.ID
+                            );
+                          }}
+                        />
+                      )
+                    )}
                   </div>
                   <div className="action-group">
                     <button

@@ -257,7 +257,8 @@ const ImageCropper2 = ({
           <div className=" text-center">
             <button
               onClick={showCroppedImage}
-              className="button-img"
+              variant="secondary"
+              color="primary"
               // classes={{ root: classes.cropButton }}
             >
               Show Result
@@ -274,7 +275,6 @@ const ImageCropper2 = ({
             style={{ width: "100%", height: "100%", objectFit: "cover" }}
           />
           <button
-            className="button-img"
             onClick={() => {
               setViewResult(false);
               setViewCropper(true);
