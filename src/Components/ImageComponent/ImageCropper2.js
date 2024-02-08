@@ -36,8 +36,6 @@ const ImageCropper2 = ({
     clearTimeout(touchTimeoutRef.current);
   }, []);
 
-  // const img = "https://storage.googleapis.com/supertolbucket/img1_1_3";
-
   const onCropComplete = (croppedArea, croppedAreaPixels) => {
     console.log(croppedArea, croppedAreaPixels);
     setCroppedAreaPixels(croppedAreaPixels);
@@ -256,7 +254,7 @@ const ImageCropper2 = ({
           </span>
           <div className=" text-center">
             <button
-              onClick={showCroppedImage}
+              onClick={() => showCroppedImage()}
               variant="secondary"
               color="primary"
               // classes={{ root: classes.cropButton }}

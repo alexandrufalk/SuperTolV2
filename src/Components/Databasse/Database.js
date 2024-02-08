@@ -8,6 +8,8 @@ import AddNewComponent from "../AddNew/AddNewComponent";
 import CustomPagination from "../Table/CustomPagination";
 import ImageComponent from "../ImageComponent/ImageComponent";
 import ImageCropper2 from "../ImageComponent/ImageCropper2";
+import ImageCropper3 from "../ImageComponent/ImageCropper3";
+import ImageCropper4 from "../ImageComponent/ImageCropper4";
 import add from "../Summary/add.png";
 import del from "../DropDown/Delete.png";
 import edit from "../Table/🦆 icon _edit_.png";
@@ -670,6 +672,8 @@ const Database = ({ CloseDatabase, viewDatabase }) => {
                       setDatabaseFiltered={setDatabaseFiltered}
                       databaseFiltered={databaseFiltered}
                     />
+                    <ImageCropper3 />
+                    <ImageCropper4 />
                   </div>
                 </div>
               )}
