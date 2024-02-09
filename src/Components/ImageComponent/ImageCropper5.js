@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect, ChangeEvent } from "react";
 import {
   Cropper,
   Coordinates,
@@ -11,13 +11,16 @@ import "react-advanced-cropper/dist/themes/corners.css";
 import "./styles.css";
 
 const ImageCropper5 = () => {
+  const inputRef = useRef(null);
   const cropperRef = useRef(null);
+
   const [coordinates, setCoordinates] = useState(null);
   const [image] = useState(require("./photo.jpg"));
   const [image2, setImage2] = useState();
+  const [image3, setImage3] = useState(require("./photo1.jpg"));
 
   const [src, setSrc] = useState(
-    "https://images.unsplash.com/photo-1599140849279-1014532882fe?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1300&q=80"
+    "https://storage.googleapis.com/supertolbucket/img1_1_1"
   );
 
   const onCrop = () => {
@@ -33,19 +36,32 @@ const ImageCropper5 = () => {
     }
   };
 
-  const onCrop2 = () => {
-    if (cropperRef.current) {
-      setCoordinates(cropperRef.current.getCoordinates());
-      // You are able to do different manipulations at a canvas
-      // but there we just get a cropped image, that can be used
-      // as src for <img/> to preview result
-      setImage2(cropperRef.current.getCanvas()?.toDataURL());
+  const onUpload = () => {
+    if (inputRef.current) {
+      inputRef.current.click();
     }
   };
 
+  const onLoadImage = (event) => {
+    const file = event.target.files && event.target.files[0];
+    if (file) {
+      setImage3(URL.createObjectURL(file));
+    }
+    event.target.value = "";
+  };
+
+  useEffect(() => {
+    // Revoke the object URL, to allow the garbage collector to destroy the uploaded before file
+    return () => {
+      if (image3) {
+        URL.revokeObjectURL(image3);
+      }
+    };
+  }, [image3]);
+
   return (
     <div className="example">
-      <div className="example__cropper-wrapper">
+      {/* <div className="example__cropper-wrapper">
         <FixedCropper
           ref={cropperRef}
           className="example__cropper"
@@ -63,11 +79,27 @@ const ImageCropper5 = () => {
           }}
           imageRestriction={ImageRestriction.stencil}
         />
-      </div>
+      </div> */}
       <div className="example__cropper-wrapper">
-        <Cropper ref={cropperRef} src={src} />;
+        <Cropper ref={cropperRef} src={image3} />;
       </div>
       <div className="example__buttons-wrapper">
+        {image && (
+          <button className="example__button" onClick={onCrop}>
+            Download result
+          </button>
+        )}
+      </div>
+      <div className="example__buttons-wrapper">
+        <button className="example__button" onClick={onUpload}>
+          <input
+            ref={inputRef}
+            type="file"
+            accept="image/*"
+            onChange={onLoadImage}
+          />
+          Upload image
+        </button>
         {image && (
           <button className="example__button" onClick={onCrop}>
             Download result

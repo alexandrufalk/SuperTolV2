@@ -19,6 +19,7 @@ function ImageComponent({ i, handleClick }) {
   const handleClosePreview = () => {
     setIsPreviewOpen(false);
   };
+  console.log("ImageComponent link", i.Link);
 
   return (
     <div className="image-con">
