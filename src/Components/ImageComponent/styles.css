@@ -1,5 +1,8 @@
 .example {
 	user-select: none;
+	width: 400px;
+	height: auto;
+	background-size: cover;
 	
   }
   
@@ -15,7 +18,11 @@
   }
   
   .example__cropper-wrapper {
-	position: relative;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	padding: 8px;
+	margin: 4px;
   }
   
   .example__buttons-wrapper {
@@ -24,23 +31,56 @@
   }
   
   .example__button {
-	border: none;
-	outline: solid transparent;
-	color: white;
-	font-size: 16px;
-	padding: 10px 20px;
-	background: #36393F;
 	cursor: pointer;
-	transition: background 0.5s;
-	width: 100%;
+	display: flex;
+	padding: 6px 12px;
+	justify-content: center;
+	align-items: center;
+	gap: 8px;
+	border-radius: 6px;
+	background: var(--Gray-100, #D5DBE5);
+
+	/* pr-button/default */
+	box-shadow: 0px 0px 0px 1px #5E5ADB, 0px 1px 1px 0px rgba(0, 0, 0, 0.10);
+	color: var(--Indigo-700, #3734A3);
+
+	/* Button/Default */
+	font-family: Inter;
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: 20px; /* 142.857% */
+	letter-spacing: 0.28px;
+	
   }
   
   .example__button:hover,
   .example__button:focus {
-	background: #20232A;
+	display: flex;
+	padding: 12px 12px;
+	align-items: center;
+	gap: 6px;
+	align-self: stretch;
+	border-radius: 4px;
+	border: 0.38px solid #B86E9F;
   }
   
   .example__button input {
 	display: none;
+  }
+
+  .action-group{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	gap: 8px;
+	img{
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 20px;
+		height: auto;
+	}
   }
   

@@ -115,13 +115,13 @@ const ImageCropper5 = () => {
       <div className="example__cropper-wrapper">
         <Cropper ref={cropperRef} src={image3} />;
       </div>
-      <div className="example__buttons-wrapper">
+      {/* <div className="example__buttons-wrapper">
         {image && (
           <button className="example__button" onClick={onCrop}>
             Download result
           </button>
         )}
-      </div>
+      </div> */}
       <div className="example__buttons-wrapper">
         <button className="example__button" onClick={onUpload}>
           <input
@@ -134,20 +134,22 @@ const ImageCropper5 = () => {
         </button>
         {image && (
           <>
-            <button className="example__button" onClick={onCrop}>
-              Download result
-            </button>
-            <button className="example__button" onClick={zoom}>
-              +
-            </button>
-            <button className="example__button" onClick={zoomOut}>
-              -
-            </button>
-            <div className="example__button" onClick={rotateLeft}>
-              <image src={rotateL} alt={"RoateL"}></image>
-            </div>
-            <div className="example__button" onClick={rotateRight}>
-              <image src={rotateR} alt={"RotateR"}></image>
+            <div className="action-group">
+              <button className="example__button" onClick={onCrop}>
+                Download result
+              </button>
+              <button className="example__button" onClick={zoom}>
+                +
+              </button>
+              <button className="example__button" onClick={zoomOut}>
+                -
+              </button>
+              <div className="example__button" onClick={rotateLeft}>
+                <img src={rotateL} alt={"RoateL"}></img>
+              </div>
+              <div className="example__button" onClick={rotateRight}>
+                <img src={rotateR} alt={"RotateR"}></img>
+              </div>
             </div>
           </>
         )}
