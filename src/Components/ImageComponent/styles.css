@@ -3,6 +3,7 @@
 	width: 400px;
 	height: auto;
 	background-size: cover;
+	border-radius: 20px;
 	
   }
   
@@ -27,7 +28,10 @@
   
   .example__buttons-wrapper {
 	display: flex;
-	justify-content: center;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	
   }
   
   .example__button {
@@ -39,6 +43,7 @@
 	gap: 8px;
 	border-radius: 6px;
 	background: var(--Gray-100, #D5DBE5);
+	margin: 4px;
 
 	/* pr-button/default */
 	box-shadow: 0px 0px 0px 1px #5E5ADB, 0px 1px 1px 0px rgba(0, 0, 0, 0.10);
