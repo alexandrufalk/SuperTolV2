@@ -9,6 +9,8 @@ import {
 import "react-advanced-cropper/dist/style.css";
 import "react-advanced-cropper/dist/themes/corners.css";
 import "./styles.css";
+import rotateL from "./circular-arrowL.svg";
+import rotateR from "./circular-arrowR.svg";
 
 const ImageCropper5 = () => {
   const inputRef = useRef(null);
@@ -59,6 +61,36 @@ const ImageCropper5 = () => {
     };
   }, [image3]);
 
+  const zoom = () => {
+    if (cropperRef.current) {
+      cropperRef.current.zoomImage(2); // zoom-in 2x
+    }
+  };
+
+  const zoomOut = () => {
+    if (cropperRef.current) {
+      cropperRef.current.zoomImage(1 / 2);
+    }
+  };
+
+  const move = () => {
+    if (cropperRef.current) {
+      cropperRef.current.moveImage(50, 100); // move x = 50, y = 100
+    }
+  };
+
+  const rotateLeft = () => {
+    if (cropperRef.current) {
+      cropperRef.current.rotateImage(-20);
+    }
+  };
+
+  const rotateRight = () => {
+    if (cropperRef.current) {
+      cropperRef.current.rotateImage(20);
+    }
+  };
+
   return (
     <div className="example">
       {/* <div className="example__cropper-wrapper">
@@ -101,9 +133,23 @@ const ImageCropper5 = () => {
           Upload image
         </button>
         {image && (
-          <button className="example__button" onClick={onCrop}>
-            Download result
-          </button>
+          <>
+            <button className="example__button" onClick={onCrop}>
+              Download result
+            </button>
+            <button className="example__button" onClick={zoom}>
+              +
+            </button>
+            <button className="example__button" onClick={zoomOut}>
+              -
+            </button>
+            <div className="example__button" onClick={rotateLeft}>
+              <image src={rotateL} alt={"RoateL"}></image>
+            </div>
+            <div className="example__button" onClick={rotateRight}>
+              <image src={rotateR} alt={"RotateR"}></image>
+            </div>
+          </>
         )}
       </div>
     </div>
