@@ -5,21 +5,34 @@ import {
   CropperRef,
   ImageRestriction,
   FixedCropper,
+  CropperPreviewRef,
+  CropperPreview,
 } from "react-advanced-cropper";
+import useDatabaseProjects from "../../Hooks/useDatabaseProject";
+
 import "react-advanced-cropper/dist/style.css";
 import "react-advanced-cropper/dist/themes/corners.css";
 import "./styles.css";
 import rotateL from "./circular-arrowL.svg";
 import rotateR from "./circular-arrowR.svg";
 
-const ImageCropper5 = () => {
+const ImageCropper5 = ({
+  projectID,
+  dimID,
+  setDatabaseFiltered,
+  databaseFiltered,
+}) => {
   const inputRef = useRef(null);
   const cropperRef = useRef(null);
+  const previewRef = useRef(null);
 
   const [coordinates, setCoordinates] = useState(null);
   const [image] = useState(require("./photo.jpg"));
   const [image2, setImage2] = useState();
   const [image3, setImage3] = useState(require("./photo1.jpg"));
+  const { addImage } = useDatabaseProjects();
+  const [croppedImageDataUrl, setCroppedImageDataUrl] = useState(null);
+  const [croppedImage, setCroppedImage] = useState(null);
 
   const [src, setSrc] = useState(
     "https://storage.googleapis.com/supertolbucket/img1_1_1"
@@ -27,10 +40,17 @@ const ImageCropper5 = () => {
 
   const onCrop = () => {
     const cropper = cropperRef.current;
+    console.log("cropperRef type", cropperRef.current.getImage().arrayBuffer);
+    const arr1 = new Uint8Array(cropperRef.current.getImage().arrayBuffer);
+    console.log("onCrop arr1", arr1);
+
     if (cropper) {
       const canvas = cropper.getCanvas({
         fillColor: "rgb(25,0,0)", // color
       });
+      console.log("canvas url from onCrop", canvas.toDataURL());
+      setCroppedImageDataUrl(canvas.toDataURL());
+      setCroppedImage(arr1);
       const newTab = window.open();
       if (newTab && canvas) {
         newTab.document.body.innerHTML = `<img src="${canvas.toDataURL()}"></img>`;
@@ -91,8 +111,39 @@ const ImageCropper5 = () => {
     }
   };
 
+  const uploadToGCS = () => {
+    const croppedImageBlob = new Blob([croppedImage], {
+      type: "image/jpeg",
+    });
+    console.log("Cropped image MIME type:", croppedImageBlob.type);
+
+    const lastID = Math.max(
+      ...databaseFiltered[0].DatabaseDim[dimID - 1].Image.map((o) => o.ID)
+    );
+    let newID = 0;
+    if (lastID === -Infinity) {
+      newID = 1;
+    } else {
+      newID = lastID + 1;
+    }
+
+    console.log("newID", newID);
+
+    addImage(projectID, dimID, croppedImageBlob);
+
+    databaseFiltered[0].DatabaseDim[dimID - 1].Image.push({
+      ID: newID,
+      Link: croppedImageDataUrl,
+    });
+    setDatabaseFiltered([...databaseFiltered]);
+    // setViewResult(false);
+  };
+  const onUpdate = () => {
+    previewRef.current?.refresh();
+  };
+
   return (
-    <div className="example">
+    <div className="main-con-wrapper">
       {/* <div className="example__cropper-wrapper">
         <FixedCropper
           ref={cropperRef}
@@ -112,8 +163,8 @@ const ImageCropper5 = () => {
           imageRestriction={ImageRestriction.stencil}
         />
       </div> */}
-      <div className="example__cropper-wrapper">
-        <Cropper ref={cropperRef} src={image3} />;
+      <div className="cropper-wrapper">
+        <Cropper ref={cropperRef} src={image3} onUpdate={onUpdate} />
       </div>
       {/* <div className="example__buttons-wrapper">
         {image && (
@@ -122,8 +173,15 @@ const ImageCropper5 = () => {
           </button>
         )}
       </div> */}
-      <div className="example__buttons-wrapper">
-        <button className="example__button" onClick={onUpload}>
+      <div>
+        <CropperPreview
+          ref={previewRef}
+          cropper={cropperRef}
+          className="preview"
+        />
+      </div>
+      <div className="buttons-wrapper">
+        <button className="button-wrapper" onClick={onUpload}>
           <input
             ref={inputRef}
             type="file"
@@ -135,19 +193,19 @@ const ImageCropper5 = () => {
         {image && (
           <>
             <div className="action-group">
-              <button className="example__button" onClick={onCrop}>
+              <button className="button-wrapper" onClick={onCrop}>
                 Download result
               </button>
-              <button className="example__button" onClick={zoom}>
+              <button className="button-wrapper" onClick={zoom}>
                 +
               </button>
-              <button className="example__button" onClick={zoomOut}>
+              <button className="button-wrapper" onClick={zoomOut}>
                 -
               </button>
-              <div className="example__button" onClick={rotateLeft}>
+              <div className="button-wrapper" onClick={rotateLeft}>
                 <img src={rotateL} alt={"RoateL"}></img>
               </div>
-              <div className="example__button" onClick={rotateRight}>
+              <div className="button-wrapper" onClick={rotateRight}>
                 <img src={rotateR} alt={"RotateR"}></img>
               </div>
             </div>

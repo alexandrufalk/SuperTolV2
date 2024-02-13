@@ -1,4 +1,4 @@
-.example {
+.main-con-wrapper {
 	user-select: none;
 	width: 400px;
 	height: auto;
@@ -7,18 +7,8 @@
 	
   }
   
-  .example__cropper {
-	border: solid 1px #36393F;
-	width: 100%;
-	background: white;
-	max-height: calc(100vh - 60px);
-  }
   
-  .example__cropper-background {
-	background: black;
-  }
-  
-  .example__cropper-wrapper {
+  .cropper-wrapper {
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
@@ -26,7 +16,7 @@
 	margin: 4px;
   }
   
-  .example__buttons-wrapper {
+  .buttons-wrapper{
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -34,9 +24,10 @@
 	
   }
   
-  .example__button {
+  .button-wrapper {
 	cursor: pointer;
 	display: flex;
+	flex-direction: row;
 	padding: 6px 12px;
 	justify-content: center;
 	align-items: center;
@@ -59,8 +50,8 @@
 	
   }
   
-  .example__button:hover,
-  .example__button:focus {
+  .button:hover,
+  .button:focus {
 	display: flex;
 	padding: 12px 12px;
 	align-items: center;
@@ -70,13 +61,13 @@
 	border: 0.38px solid #B86E9F;
   }
   
-  .example__button input {
+  .button-wrapper input {
 	display: none;
   }
 
   .action-group{
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
 	align-items: center;
 	justify-content: space-between;
 	gap: 8px;

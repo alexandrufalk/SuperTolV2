@@ -77,7 +77,7 @@ const ImageCropper2 = ({
         croppedAreaPixels,
         rotation
       );
-      console.log("donee", { croppedImage });
+      console.log("donee", croppedImage);
 
       setCroppedImage(croppedImage);
 
