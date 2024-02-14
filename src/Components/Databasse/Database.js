@@ -257,7 +257,7 @@ const Database = ({ CloseDatabase, viewDatabase }) => {
               //   Remove={RemoveProject}
               //   handleNew={handeleNewProject}
             />
-            <ImageCropper5 />
+
             {viewAddComponentData && (
               <AddNewComponent
                 databaseFiltered={databaseFiltered}
@@ -674,8 +674,14 @@ const Database = ({ CloseDatabase, viewDatabase }) => {
                       setDatabaseFiltered={setDatabaseFiltered}
                       databaseFiltered={databaseFiltered}
                     />
-                    <ImageCropper3 />
-                    <ImageCropper4 />
+                    {/* <ImageCropper3 />
+                    <ImageCropper4 /> */}
+                    <ImageCropper5
+                      projectID={databaseFiltered[0].ID}
+                      dimID={imageID}
+                      setDatabaseFiltered={setDatabaseFiltered}
+                      databaseFiltered={databaseFiltered}
+                    />
                   </div>
                 </div>
               )}

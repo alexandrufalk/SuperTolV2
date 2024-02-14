@@ -15,6 +15,7 @@ import "react-advanced-cropper/dist/themes/corners.css";
 import "./styles.css";
 import rotateL from "./circular-arrowL.svg";
 import rotateR from "./circular-arrowR.svg";
+import addImg from "./addImg.png";
 
 const ImageCropper5 = ({
   projectID,
@@ -33,6 +34,7 @@ const ImageCropper5 = ({
   const { addImage } = useDatabaseProjects();
   const [croppedImageDataUrl, setCroppedImageDataUrl] = useState(null);
   const [croppedImage, setCroppedImage] = useState(null);
+  const [viewCropper, setViewCropper] = useState(false);
 
   const [src, setSrc] = useState(
     "https://storage.googleapis.com/supertolbucket/img1_1_1"
@@ -143,8 +145,25 @@ const ImageCropper5 = ({
   };
 
   return (
-    <div className="main-con-wrapper">
-      {/* <div className="example__cropper-wrapper">
+    <>
+      <button
+        className="button"
+        onClick={() => setViewCropper(!viewCropper)} // Use fileInputRef to trigger click
+      >
+        <img src={addImg} width="25" height="20"></img>
+        {/* <Figure style={{ width: 60, height: 30 }}>
+            <Figure.Image
+              width={60}
+              height={30}
+              alt="Database"
+              src={addImg}
+              className="rounded"
+            />
+          </Figure> */}
+      </button>
+      {viewCropper && (
+        <div className="main-con-wrapper">
+          {/* <div className="example__cropper-wrapper">
         <FixedCropper
           ref={cropperRef}
           className="example__cropper"
@@ -163,56 +182,58 @@ const ImageCropper5 = ({
           imageRestriction={ImageRestriction.stencil}
         />
       </div> */}
-      <div className="cropper-wrapper">
-        <Cropper ref={cropperRef} src={image3} onUpdate={onUpdate} />
-      </div>
-      {/* <div className="example__buttons-wrapper">
+          <div className="cropper-wrapper">
+            <Cropper ref={cropperRef} src={image3} onUpdate={onUpdate} />
+          </div>
+          {/* <div className="example__buttons-wrapper">
         {image && (
           <button className="example__button" onClick={onCrop}>
             Download result
           </button>
         )}
       </div> */}
-      <div>
-        <CropperPreview
-          ref={previewRef}
-          cropper={cropperRef}
-          className="preview"
-        />
-      </div>
-      <div className="buttons-wrapper">
-        <button className="button-wrapper" onClick={onUpload}>
-          <input
-            ref={inputRef}
-            type="file"
-            accept="image/*"
-            onChange={onLoadImage}
-          />
-          Upload image
-        </button>
-        {image && (
-          <>
-            <div className="action-group">
-              <button className="button-wrapper" onClick={onCrop}>
-                Download result
-              </button>
-              <button className="button-wrapper" onClick={zoom}>
-                +
-              </button>
-              <button className="button-wrapper" onClick={zoomOut}>
-                -
-              </button>
-              <div className="button-wrapper" onClick={rotateLeft}>
-                <img src={rotateL} alt={"RoateL"}></img>
-              </div>
-              <div className="button-wrapper" onClick={rotateRight}>
-                <img src={rotateR} alt={"RotateR"}></img>
-              </div>
-            </div>
-          </>
-        )}
-      </div>
-    </div>
+          <div className="cropper-preview">
+            <CropperPreview
+              ref={previewRef}
+              cropper={cropperRef}
+              className="preview"
+            />
+          </div>
+          <div className="buttons-wrapper">
+            <button className="button-wrapper" onClick={onUpload}>
+              <input
+                ref={inputRef}
+                type="file"
+                accept="image/*"
+                onChange={onLoadImage}
+              />
+              Upload image
+            </button>
+            {image && (
+              <>
+                <div className="action-group-wrapper">
+                  <button className="button-wrapper" onClick={onCrop}>
+                    Download result
+                  </button>
+                  <button className="button-wrapper" onClick={zoom}>
+                    +
+                  </button>
+                  <button className="button-wrapper" onClick={zoomOut}>
+                    -
+                  </button>
+                  <div className="button-wrapper" onClick={rotateLeft}>
+                    <img src={rotateL} alt={"RoateL"}></img>
+                  </div>
+                  <div className="button-wrapper" onClick={rotateRight}>
+                    <img src={rotateR} alt={"RotateR"}></img>
+                  </div>
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

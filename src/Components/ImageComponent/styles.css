@@ -4,6 +4,10 @@
 	height: auto;
 	background-size: cover;
 	border-radius: 20px;
+	position: fixed;
+	top: 20%;
+	left: 50%;
+	z-index: 9998;
 	
   }
   
@@ -14,6 +18,11 @@
 	align-items: center;
 	padding: 8px;
 	margin: 4px;
+  }
+
+  .cropper-preview{
+	max-height: 400px;
+	max-width: auto;
   }
   
   .buttons-wrapper{
@@ -65,9 +74,9 @@
 	display: none;
   }
 
-  .action-group{
+  .action-group-wrapper{
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
 	align-items: center;
 	justify-content: space-between;
 	gap: 8px;
