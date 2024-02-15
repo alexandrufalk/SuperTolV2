@@ -163,6 +163,18 @@ const ImageCropper5 = ({
       </button>
       {viewCropper && (
         <div className="main-con-wrapper">
+          <div
+            className="button-wrapper"
+            onClick={() => setViewCropper(false)}
+            style={{
+              position: "absolute",
+              top: "-10px",
+              right: "-0px",
+              zIndex: "999",
+            }}
+          >
+            X
+          </div>
           {/* <div className="example__cropper-wrapper">
         <FixedCropper
           ref={cropperRef}

@@ -59,8 +59,8 @@
 	
   }
   
-  .button:hover,
-  .button:focus {
+  .button-wrapper:hover,
+  .button-wrapper:focus {
 	display: flex;
 	padding: 12px 12px;
 	align-items: center;
