@@ -16,6 +16,7 @@ import "./styles.css";
 import rotateL from "./circular-arrowL.svg";
 import rotateR from "./circular-arrowR.svg";
 import addImg from "./addImg.png";
+import google from "../LogIn/google.png";
 
 const ImageCropper5 = ({
   projectID,
@@ -224,8 +225,12 @@ const ImageCropper5 = ({
             {image && (
               <>
                 <div className="action-group-wrapper">
-                  <button className="button-wrapper" onClick={onCrop}>
-                    Download result
+                  <button className="button-wrapper" onClick={uploadToGCS}>
+                    <div
+                      className="googleLogo"
+                      style={{ backgroundImage: `url(${google})` }}
+                    ></div>
+                    Upload to GCS
                   </button>
                   <button className="button-wrapper" onClick={zoom}>
                     +
