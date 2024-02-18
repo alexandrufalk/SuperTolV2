@@ -686,208 +686,214 @@ const Case = React.forwardRef(
         </div>
         {viewCae && (
           <>
-            <div className="main-item-case">
-              {isCase && (
-                <div>
-                  <p>Case not selected, go to:</p>
-                  <button className="button-add" onClick={scrollToSummary}>
-                    Summary
+            {isCase && (
+              <div className="main-item-case">
+                <p>Case not selected, go to:</p>
+                <button className="button-add" onClick={scrollToSummary}>
+                  Summary
+                </button>
+              </div>
+            )}
+            {!isCase && (
+              <>
+                <div className="main-item-case">
+                  <div class="bottom-drop">
+                    <label for="toleranceType" className="label-drop">
+                      Select tolerance type
+                    </label>
+                    <select
+                      id="toleranceType"
+                      class="select-drop"
+                      name="Select Nr. of samples "
+                      value={nrSamples}
+                      onChange={(e) => {
+                        handleNrSamples(e);
+                      }}
+                    >
+                      <option value="Select Nr. of samples ">
+                        Select Nr. of samples{" "}
+                      </option>
+
+                      <option value="10000">10000</option>
+                      <option value="25000">25000</option>
+                      <option value="50000">50000</option>
+                      <option value="100000">100000</option>
+                    </select>
+                  </div>
+                  <div class="bottom-drop">
+                    <label for="distributionType" className="label-drop">
+                      Select distribution type
+                    </label>
+                    <select
+                      id="gapcpk"
+                      class="select-drop"
+                      name="Gap Cpk"
+                      value={gapCpk}
+                      onChange={(e) => {
+                        handleCpkChange(e);
+                      }}
+                    >
+                      <option value="Gap Cpk">Gap Cpk</option>
+                      <option value="1">Normal Cpk 1</option>
+                      <option value="1.33">Normal Cpk 1.33</option>
+                      <option value="1.67">Normal Cpk 1.67</option>
+                      <option value="2">Normal Cpk 2</option>
+                    </select>
+                  </div>
+                  <button
+                    className="button-add"
+                    onClick={() => {
+                      generateStatistic();
+                    }}
+                  >
+                    Generate Statistic
                   </button>
                 </div>
-              )}
-              <div class="bottom-drop">
-                <label for="toleranceType" className="label-drop">
-                  Select tolerance type
-                </label>
-                <select
-                  id="toleranceType"
-                  class="select-drop"
-                  name="Select Nr. of samples "
-                  value={nrSamples}
-                  onChange={(e) => {
-                    handleNrSamples(e);
-                  }}
-                >
-                  <option value="Select Nr. of samples ">
-                    Select Nr. of samples{" "}
-                  </option>
+                <div className="main-item-case">
+                  <table id="Database">
+                    <tbody>
+                      <tr>
+                        <th className="first-th">Worst Case</th>
 
-                  <option value="10000">10000</option>
-                  <option value="25000">25000</option>
-                  <option value="50000">50000</option>
-                  <option value="100000">100000</option>
-                </select>
-              </div>
-              <div class="bottom-drop">
-                <label for="distributionType" className="label-drop">
-                  Select distribution type
-                </label>
-                <select
-                  id="gapcpk"
-                  class="select-drop"
-                  name="Gap Cpk"
-                  value={gapCpk}
-                  onChange={(e) => {
-                    handleCpkChange(e);
-                  }}
-                >
-                  <option value="Gap Cpk">Gap Cpk</option>
-                  <option value="1">Normal Cpk 1</option>
-                  <option value="1.33">Normal Cpk 1.33</option>
-                  <option value="1.67">Normal Cpk 1.67</option>
-                  <option value="2">Normal Cpk 2</option>
-                </select>
-              </div>
-              <button
-                className="button-add"
-                onClick={() => {
-                  generateStatistic();
-                }}
-              >
-                Generate Statistic
-              </button>
-            </div>
-            <div className="main-item-case">
-              <table id="Database">
-                <tbody>
-                  <tr>
-                    <th className="first-th">Worst Case</th>
+                        <td
+                          key={"Nominal:"}
+                          style={{
+                            borderTopRightRadius: "20px",
+                          }}
+                        >
+                          {`${WorstCaseNominal.toFixed(3)}`}
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>Upper Tolerance</th>
 
-                    <td
-                      key={"Nominal:"}
-                      style={{
-                        borderTopRightRadius: "20px",
-                      }}
-                    >
-                      {`${WorstCaseNominal.toFixed(3)}`}
-                    </td>
-                  </tr>
-                  <tr>
-                    <th>Upper Tolerance</th>
+                        <td key={"UpperTolerance"}>
+                          {` ${WorstCaseTolerance.toFixed(3)}`}
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>Lower Tolerance</th>
 
-                    <td key={"UpperTolerance"}>
-                      {` ${WorstCaseTolerance.toFixed(3)}`}
-                    </td>
-                  </tr>
-                  <tr>
-                    <th>Lower Tolerance</th>
+                        <td key={"LowerTolerance"}>
+                          {`${-WorstCaseTolerance.toFixed(3)}`}
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>Upper Limit</th>
 
-                    <td key={"LowerTolerance"}>
-                      {`${-WorstCaseTolerance.toFixed(3)}`}
-                    </td>
-                  </tr>
-                  <tr>
-                    <th>Upper Limit</th>
+                        <td key={"UpperLimit"}>
+                          {`${(WorstCaseNominal + WorstCaseTolerance).toFixed(
+                            3
+                          )}`}
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>Lower Limit</th>
 
-                    <td key={"UpperLimit"}>
-                      {`${(WorstCaseNominal + WorstCaseTolerance).toFixed(3)}`}
-                    </td>
-                  </tr>
-                  <tr>
-                    <th>Lower Limit</th>
+                        <td key={"LowerLimit"}>
+                          {`${(WorstCaseNominal - WorstCaseTolerance).toFixed(
+                            3
+                          )}`}
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>Range</th>
 
-                    <td key={"LowerLimit"}>
-                      {`${(WorstCaseNominal - WorstCaseTolerance).toFixed(3)}`}
-                    </td>
-                  </tr>
-                  <tr>
-                    <th>Range</th>
+                        <td key={"Range"}>{`${(2 * WorstCaseTolerance).toFixed(
+                          3
+                        )}`}</td>
+                      </tr>
+                      <tr>
+                        <th className="last-th">Symmetric</th>
 
-                    <td key={"Range"}>{`${(2 * WorstCaseTolerance).toFixed(
-                      3
-                    )}`}</td>
-                  </tr>
-                  <tr>
-                    <th className="last-th">Symmetric</th>
+                        <td
+                          key={"Symmetric"}
+                          style={{
+                            borderBottomRightRadius: "20px",
+                          }}
+                        >
+                          {`${WorstCaseNominal.toFixed(
+                            3
+                          )} ±${WorstCaseTolerance.toFixed(3)}`}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                {isStatistic && (
+                  <div className="main-item-case">
+                    <table id="Database">
+                      <tbody>
+                        <tr>
+                          <th className="first-th">Mean</th>
 
-                    <td
-                      key={"Symmetric"}
-                      style={{
-                        borderBottomRightRadius: "20px",
-                      }}
-                    >
-                      {`${WorstCaseNominal.toFixed(
-                        3
-                      )} ±${WorstCaseTolerance.toFixed(3)}`}
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            {isStatistic && (
-              <div className="main-item-case">
-                <table id="Database">
-                  <tbody>
-                    <tr>
-                      <th className="first-th">Mean</th>
+                          <td
+                            key={"Mean:"}
+                            style={{
+                              borderTopRightRadius: "20px",
+                            }}
+                          >
+                            {`${meanStatistic.toFixed(4)}`}
+                          </td>
+                        </tr>
+                        <tr>
+                          <th>Upper Tolerance</th>
 
-                      <td
-                        key={"Mean:"}
-                        style={{
-                          borderTopRightRadius: "20px",
-                        }}
-                      >
-                        {`${meanStatistic.toFixed(4)}`}
-                      </td>
-                    </tr>
-                    <tr>
-                      <th>Upper Tolerance</th>
+                          <td key={"UpperToleranceS"}>
+                            {`${statisticalForm.UTS.toFixed(4)} `}
+                          </td>
+                        </tr>
+                        <tr>
+                          <th>Lower Tolerance</th>
 
-                      <td key={"UpperToleranceS"}>
-                        {`${statisticalForm.UTS.toFixed(4)} `}
-                      </td>
-                    </tr>
-                    <tr>
-                      <th>Lower Tolerance</th>
+                          <td key={"LowerToleranceS"}>
+                            {`${statisticalForm.LTS.toFixed(4)} `}
+                          </td>
+                        </tr>
+                        <tr>
+                          <th>Samples</th>
 
-                      <td key={"LowerToleranceS"}>
-                        {`${statisticalForm.LTS.toFixed(4)} `}
-                      </td>
-                    </tr>
-                    <tr>
-                      <th>Samples</th>
+                          <td key={"samples"}>100000</td>
+                        </tr>
+                        <tr>
+                          <th>Range</th>
 
-                      <td key={"samples"}>100000</td>
-                    </tr>
-                    <tr>
-                      <th>Range</th>
+                          <td key={"Range"}>
+                            {`${(
+                              statisticalForm.UTS - statisticalForm.LTS
+                            ).toFixed(4)}`}
+                          </td>
+                        </tr>
+                        <tr>
+                          <th>Pp</th>
 
-                      <td key={"Range"}>
-                        {`${(statisticalForm.UTS - statisticalForm.LTS).toFixed(
-                          4
-                        )}`}
-                      </td>
-                    </tr>
-                    <tr>
-                      <th>Pp</th>
+                          <td key={"Pp"}>{statisticalForm.Pp.toFixed(4)}</td>
+                        </tr>
+                        <tr>
+                          <th>Ppk</th>
 
-                      <td key={"Pp"}>{statisticalForm.Pp.toFixed(4)}</td>
-                    </tr>
-                    <tr>
-                      <th>Ppk</th>
+                          <td key={"Ppk"}>{statisticalForm.PpK.toFixed(4)}</td>
+                        </tr>
+                        <tr>
+                          <th>St.Dev[σ]</th>
 
-                      <td key={"Ppk"}>{statisticalForm.PpK.toFixed(4)}</td>
-                    </tr>
-                    <tr>
-                      <th>St.Dev[σ]</th>
+                          <td key={"St.Dev[σ]"}>
+                            {statisticalForm.SigmaInt.toFixed(4)}
+                          </td>
+                        </tr>
+                        <tr>
+                          <th className="last-th">Sigma intv.</th>
 
-                      <td key={"St.Dev[σ]"}>
-                        {statisticalForm.SigmaInt.toFixed(4)}
-                      </td>
-                    </tr>
-                    <tr>
-                      <th className="last-th">Sigma intv.</th>
-
-                      <td
-                        key={"Sigma intv."}
-                        style={{
-                          borderBottomRightRadius: "20px",
-                        }}
-                      >
-                        {statisticalForm.StDev.toFixed(4)}
-                      </td>
-                    </tr>
-                    {/* <tr>
+                          <td
+                            key={"Sigma intv."}
+                            style={{
+                              borderBottomRightRadius: "20px",
+                            }}
+                          >
+                            {statisticalForm.StDev.toFixed(4)}
+                          </td>
+                        </tr>
+                        {/* <tr>
                       <th>Parts less LSL</th>
 
                       <td key={"Parts less LSL"}></td>
@@ -902,285 +908,313 @@ const Case = React.forwardRef(
                         }}
                       ></td>
                     </tr> */}
-                  </tbody>
-                </table>
-              </div>
-            )}
-
-            {/* {isSpinner && <Spinner animation="border" variant="secondary" />} */}
-            <div className="main-item-case-chart">
-              {/*Google Chart*/}
-
-              {isStatistic && maxValue && (
-                <div className="chart-container">
-                  {/* <div className="container horizontal-scrollable"></div> */}
-                  <div className="boxgraph">
-                    <Chart
-                      width={"100%"} // Set the initial width to 100%
-                      height={"300px"} // Set the initial height
-                      chartType="ColumnChart"
-                      loader={<div>Loading Chart</div>}
-                      data={histogramDataGoogle}
-                      options={{
-                        title: "Histogram ",
-                        legend: { position: "none" },
-                        series: { 0: { color: "#5A6376" } },
-                        // backgroundColor: { fill: "#38403f" },
-                        animation: {
-                          startup: true,
-                          easing: "linear",
-                          duration: 1500,
-                        },
-                        hAxis: {
-                          textStyle: {
-                            color: "#171C26", // Set the text color for x-axis labels
-                          },
-                        },
-                        vAxis: {
-                          textStyle: { color: "#171C26" },
-                          ticks: [
-                            0,
-                            (0.25 * maxValue).toFixed(0),
-                            (0.5 * maxValue).toFixed(0),
-                            (0.75 * maxValue).toFixed(0),
-                            maxValue,
-                          ], // Set custom tick values to enforce the maximum value
-                        },
-                      }}
-                    />
+                      </tbody>
+                    </table>
                   </div>
+                )}
 
-                  <div className="boxgraph">
-                    <Chart
-                      width={"100%"}
-                      height={"300px"}
-                      chartType="LineChart"
-                      loader={<div>Loading Chart</div>}
-                      data={pdfDataGoogle}
-                      options={{
-                        legend: { position: "none" },
-                        series: { 0: { color: "#171C26" } },
-                        backgroundColor: { fill: "transparent" },
-                        animation: {
-                          startup: true,
-                          easing: "linear",
-                          duration: 1500,
-                        },
-                        hAxis: {
-                          textPosition: "none", // Hide x-axis labels and ticks
-                        },
-                        vAxis: {
-                          textPosition: "none", // Hide y-axis labels and ticks
-                        },
-                      }}
-                    />
-                  </div>
+                {/* {isSpinner && <Spinner animation="border" variant="secondary" />} */}
+                <div className="main-item-case-chart">
+                  {/*Google Chart*/}
+
+                  {isStatistic && maxValue && (
+                    <div className="chart-container">
+                      {/* <div className="container horizontal-scrollable"></div> */}
+                      <div className="boxgraph">
+                        <Chart
+                          width={"100%"} // Set the initial width to 100%
+                          height={"300px"} // Set the initial height
+                          chartType="ColumnChart"
+                          loader={<div>Loading Chart</div>}
+                          data={histogramDataGoogle}
+                          options={{
+                            title: "Histogram ",
+                            legend: { position: "none" },
+                            series: { 0: { color: "#5A6376" } },
+                            // backgroundColor: { fill: "#38403f" },
+                            animation: {
+                              startup: true,
+                              easing: "linear",
+                              duration: 1500,
+                            },
+                            hAxis: {
+                              textStyle: {
+                                color: "#171C26", // Set the text color for x-axis labels
+                              },
+                            },
+                            vAxis: {
+                              textStyle: { color: "#171C26" },
+                              ticks: [
+                                0,
+                                (0.25 * maxValue).toFixed(0),
+                                (0.5 * maxValue).toFixed(0),
+                                (0.75 * maxValue).toFixed(0),
+                                maxValue,
+                              ], // Set custom tick values to enforce the maximum value
+                            },
+                          }}
+                        />
+                      </div>
+
+                      <div className="boxgraph">
+                        <Chart
+                          width={"100%"}
+                          height={"300px"}
+                          chartType="LineChart"
+                          loader={<div>Loading Chart</div>}
+                          data={pdfDataGoogle}
+                          options={{
+                            legend: { position: "none" },
+                            series: { 0: { color: "#171C26" } },
+                            backgroundColor: { fill: "transparent" },
+                            animation: {
+                              startup: true,
+                              easing: "linear",
+                              duration: 1500,
+                            },
+                            hAxis: {
+                              textPosition: "none", // Hide x-axis labels and ticks
+                            },
+                            vAxis: {
+                              textPosition: "none", // Hide y-axis labels and ticks
+                            },
+                          }}
+                        />
+                      </div>
+                    </div>
+                  )}
                 </div>
-              )}
-            </div>
 
-            <div className="main-item-case2">
-              <div className="template-container">
-                <div className="table-top">
-                  <CustomPagination
-                    data={dataCaseDimFiltred}
-                    itemsPerPage={itemsPerPage}
-                    currentPage={currentPage}
-                    paginate={paginate}
-                  />
-                  <div
-                    className="button-add"
-                    onClick={() => {
-                      setViewAddDimension(!viewAddDimension);
-                    }}
-                  >
-                    <img src={add}></img>Add Dimension
-                  </div>
-                </div>
-                <table id="Database">
-                  <tbody>
-                    <tr>
-                      <th className="first-th">ID</th>
-                      {currentItems.map((n, index) => (
-                        <td
-                          key={n.ID + "Projects"}
-                          style={{
-                            color: n.Color ? n.Color.toLowerCase() : "inherit",
-                            borderTopRightRadius:
-                              index === currentItems.length - 1 ? "20px" : "0",
-                          }}
-                        >
-                          {n.ID}
-                        </td>
-                      ))}
-                    </tr>
-                    <tr>
-                      <th>Name</th>
-                      {currentItems.map((n) => (
-                        <td
-                          key={n.ID + n.Name}
-                          style={{
-                            color: n.Color ? n.Color.toLowerCase() : "inherit",
-                          }}
-                        >
-                          {n.Name}
-                        </td>
-                      ))}
-                    </tr>
-                    <tr>
-                      <th>Description</th>
-                      {currentItems.map((n) => (
-                        <td
-                          key={n.ID + n.Description}
-                          style={{
-                            color: n.Color ? n.Color.toLowerCase() : "inherit",
-                          }}
-                        >
-                          {n.Description}
-                        </td>
-                      ))}
-                    </tr>
-                    <tr>
-                      <th>Unique Identifier</th>
-                      {currentItems.map((n) => (
-                        <td
-                          key={n.ID + n.UniqueIdentifier}
-                          style={{
-                            color: n.Color ? n.Color.toLowerCase() : "inherit",
-                          }}
-                        >
-                          {n.UniqueIdentifier}
-                        </td>
-                      ))}
-                    </tr>
-                    <tr>
-                      <th>Nominal Value</th>
-                      {currentItems.map((n) => (
-                        <td
-                          key={n.ID + "NominalValue"}
-                          style={{
-                            color: n.Color ? n.Color.toLowerCase() : "inherit",
-                          }}
-                        >
-                          {n.NominalValue}
-                        </td>
-                      ))}
-                    </tr>
+                <div className="main-item-case2">
+                  <div className="template-container">
+                    <div className="table-top">
+                      <CustomPagination
+                        data={dataCaseDimFiltred}
+                        itemsPerPage={itemsPerPage}
+                        currentPage={currentPage}
+                        paginate={paginate}
+                      />
+                      <div
+                        className="button-add"
+                        onClick={() => {
+                          setViewAddDimension(!viewAddDimension);
+                        }}
+                      >
+                        <img src={add}></img>Add Dimension
+                      </div>
+                    </div>
+                    <table id="Database">
+                      <tbody>
+                        <tr>
+                          <th className="first-th">ID</th>
+                          {currentItems.map((n, index) => (
+                            <td
+                              key={n.ID + "Projects"}
+                              style={{
+                                color: n.Color
+                                  ? n.Color.toLowerCase()
+                                  : "inherit",
+                                borderTopRightRadius:
+                                  index === currentItems.length - 1
+                                    ? "20px"
+                                    : "0",
+                              }}
+                            >
+                              {n.ID}
+                            </td>
+                          ))}
+                        </tr>
+                        <tr>
+                          <th>Name</th>
+                          {currentItems.map((n) => (
+                            <td
+                              key={n.ID + n.Name}
+                              style={{
+                                color: n.Color
+                                  ? n.Color.toLowerCase()
+                                  : "inherit",
+                              }}
+                            >
+                              {n.Name}
+                            </td>
+                          ))}
+                        </tr>
+                        <tr>
+                          <th>Description</th>
+                          {currentItems.map((n) => (
+                            <td
+                              key={n.ID + n.Description}
+                              style={{
+                                color: n.Color
+                                  ? n.Color.toLowerCase()
+                                  : "inherit",
+                              }}
+                            >
+                              {n.Description}
+                            </td>
+                          ))}
+                        </tr>
+                        <tr>
+                          <th>Unique Identifier</th>
+                          {currentItems.map((n) => (
+                            <td
+                              key={n.ID + n.UniqueIdentifier}
+                              style={{
+                                color: n.Color
+                                  ? n.Color.toLowerCase()
+                                  : "inherit",
+                              }}
+                            >
+                              {n.UniqueIdentifier}
+                            </td>
+                          ))}
+                        </tr>
+                        <tr>
+                          <th>Nominal Value</th>
+                          {currentItems.map((n) => (
+                            <td
+                              key={n.ID + "NominalValue"}
+                              style={{
+                                color: n.Color
+                                  ? n.Color.toLowerCase()
+                                  : "inherit",
+                              }}
+                            >
+                              {n.NominalValue}
+                            </td>
+                          ))}
+                        </tr>
 
-                    <tr>
-                      <th>Upper Tolerance</th>
-                      {currentItems.map((n) => (
-                        <td
-                          key={n.ID + "UpperTolerance"}
-                          style={{
-                            color: n.Color ? n.Color.toLowerCase() : "inherit",
-                          }}
-                        >
-                          {n.UpperTolerance}
-                        </td>
-                      ))}
-                    </tr>
+                        <tr>
+                          <th>Upper Tolerance</th>
+                          {currentItems.map((n) => (
+                            <td
+                              key={n.ID + "UpperTolerance"}
+                              style={{
+                                color: n.Color
+                                  ? n.Color.toLowerCase()
+                                  : "inherit",
+                              }}
+                            >
+                              {n.UpperTolerance}
+                            </td>
+                          ))}
+                        </tr>
 
-                    <tr>
-                      <th>Lower Tolerance</th>
-                      {currentItems.map((n) => (
-                        <td
-                          key={n.ID + "LowerTolerance"}
-                          style={{
-                            color: n.Color ? n.Color.toLowerCase() : "inherit",
-                          }}
-                        >
-                          {n.LowerTolerance}
-                        </td>
-                      ))}
-                    </tr>
+                        <tr>
+                          <th>Lower Tolerance</th>
+                          {currentItems.map((n) => (
+                            <td
+                              key={n.ID + "LowerTolerance"}
+                              style={{
+                                color: n.Color
+                                  ? n.Color.toLowerCase()
+                                  : "inherit",
+                              }}
+                            >
+                              {n.LowerTolerance}
+                            </td>
+                          ))}
+                        </tr>
 
-                    <tr>
-                      <th>Sign</th>
-                      {currentItems.map((n) => (
-                        <td
-                          key={n.ID + "Sign"}
-                          style={{
-                            color: n.Color ? n.Color.toLowerCase() : "inherit",
-                          }}
-                        >
-                          {n.Sign}
-                        </td>
-                      ))}
-                    </tr>
+                        <tr>
+                          <th>Sign</th>
+                          {currentItems.map((n) => (
+                            <td
+                              key={n.ID + "Sign"}
+                              style={{
+                                color: n.Color
+                                  ? n.Color.toLowerCase()
+                                  : "inherit",
+                              }}
+                            >
+                              {n.Sign}
+                            </td>
+                          ))}
+                        </tr>
 
-                    <tr>
-                      <th>Distribution Type</th>
-                      {currentItems.map((n) => (
-                        <td
-                          key={n.ID + "DistributionType"}
-                          style={{
-                            color: n.Color ? n.Color.toLowerCase() : "inherit",
-                          }}
-                        >
-                          {n.DistributionType}
-                        </td>
-                      ))}
-                    </tr>
+                        <tr>
+                          <th>Distribution Type</th>
+                          {currentItems.map((n) => (
+                            <td
+                              key={n.ID + "DistributionType"}
+                              style={{
+                                color: n.Color
+                                  ? n.Color.toLowerCase()
+                                  : "inherit",
+                              }}
+                            >
+                              {n.DistributionType}
+                            </td>
+                          ))}
+                        </tr>
 
-                    <tr>
-                      <th>Tolerance Type</th>
-                      {currentItems.map((n) => (
-                        <td
-                          key={n.ID + "ToleranceType"}
-                          style={{
-                            color: n.Color ? n.Color.toLowerCase() : "inherit",
-                          }}
-                        >
-                          {n.ToleranceType}
-                        </td>
-                      ))}
-                    </tr>
+                        <tr>
+                          <th>Tolerance Type</th>
+                          {currentItems.map((n) => (
+                            <td
+                              key={n.ID + "ToleranceType"}
+                              style={{
+                                color: n.Color
+                                  ? n.Color.toLowerCase()
+                                  : "inherit",
+                              }}
+                            >
+                              {n.ToleranceType}
+                            </td>
+                          ))}
+                        </tr>
 
-                    <tr>
-                      <th>Influence %</th>
-                      {currentItems.map((n) => (
-                        <td
-                          key={n.ID + "Influence"}
-                          style={{
-                            color: n.Color ? n.Color.toLowerCase() : "inherit",
-                          }}
-                        >
-                          {Math.round(
-                            (((n.UpperTolerance - n.LowerTolerance) / 2) *
-                              100) /
-                              WorstCaseTolerance +
-                              Number.EPSILON
-                          ) / 100}
-                        </td>
-                      ))}
-                    </tr>
+                        <tr>
+                          <th>Influence %</th>
+                          {currentItems.map((n) => (
+                            <td
+                              key={n.ID + "Influence"}
+                              style={{
+                                color: n.Color
+                                  ? n.Color.toLowerCase()
+                                  : "inherit",
+                              }}
+                            >
+                              {Math.round(
+                                (((n.UpperTolerance - n.LowerTolerance) / 2) *
+                                  100) /
+                                  WorstCaseTolerance +
+                                  Number.EPSILON
+                              ) / 100}
+                            </td>
+                          ))}
+                        </tr>
 
-                    <tr>
-                      <th>Formula</th>
-                      {currentItems.map((n) => (
-                        <td
-                          key={n.ID + "Formula"}
-                          style={{
-                            color: n.Color ? n.Color.toLowerCase() : "inherit",
-                          }}
-                        >
-                          {n.Formula}
-                        </td>
-                      ))}
-                    </tr>
+                        <tr>
+                          <th>Formula</th>
+                          {currentItems.map((n) => (
+                            <td
+                              key={n.ID + "Formula"}
+                              style={{
+                                color: n.Color
+                                  ? n.Color.toLowerCase()
+                                  : "inherit",
+                              }}
+                            >
+                              {n.Formula}
+                            </td>
+                          ))}
+                        </tr>
 
-                    <tr>
-                      <th className="last-th">Action</th>
-                      {currentItems.map((n, index) => (
-                        <td
-                          key={n.ID + "RemoveButton"}
-                          style={{
-                            borderBottomRightRadius:
-                              index === currentItems.length - 1 ? "20px" : "0",
-                          }}
-                        >
-                          {/* <button
+                        <tr>
+                          <th className="last-th">Action</th>
+                          {currentItems.map((n, index) => (
+                            <td
+                              key={n.ID + "RemoveButton"}
+                              style={{
+                                borderBottomRightRadius:
+                                  index === currentItems.length - 1
+                                    ? "20px"
+                                    : "0",
+                              }}
+                            >
+                              {/* <button
                           type="button"
                           variant="outline-danger"
                           onClick={() => {
@@ -1189,123 +1223,127 @@ const Case = React.forwardRef(
                         >
                           X
                         </button> */}
-                          <img
-                            src={del}
-                            onClick={() => {
-                              const confirmRemove = window.confirm(
-                                "Do you want to remove this dimension?"
-                              );
-                              if (confirmRemove) {
-                                RemoveCaseDim(n.ID);
-                              }
+                              <img
+                                src={del}
+                                onClick={() => {
+                                  const confirmRemove = window.confirm(
+                                    "Do you want to remove this dimension?"
+                                  );
+                                  if (confirmRemove) {
+                                    RemoveCaseDim(n.ID);
+                                  }
+                                }}
+                              ></img>
+                            </td>
+                          ))}
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  {viewAddDimension && (
+                    <div className="main-item-case main-add-component">
+                      <div className="text-add">
+                        Add dimension to Case {caseId} (Project {projectId})
+                      </div>
+                      {isDatabaseProjects ? (
+                        <div class="bottom-drop">
+                          <label htmlFor="toleranceType" className="label-drop">
+                            Select Dimension
+                          </label>
+                          <select
+                            id="selectDimension"
+                            className="select-drop" // Use className instead of class
+                            name="Select Dimension"
+                            value={addComponent}
+                            onChange={(e) => {
+                              handleSelectDimData(e);
+                              setAddComponent(e.target.value);
                             }}
-                          ></img>
-                        </td>
-                      ))}
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              {viewAddDimension && (
-                <div className="main-item-case main-add-component">
-                  <div className="text-add">
-                    Add dimension to Case {caseId} (Project {projectId})
-                  </div>
-                  {isDatabaseProjects ? (
-                    <div class="bottom-drop">
-                      <label htmlFor="toleranceType" className="label-drop">
-                        Select Dimension
-                      </label>
-                      <select
-                        id="selectDimension"
-                        className="select-drop" // Use className instead of class
-                        name="Select Dimension"
-                        value={addComponent}
-                        onChange={(e) => {
-                          handleSelectDimData(e);
-                          setAddComponent(e.target.value);
-                        }}
-                      >
-                        <option value="Select Dimension">
-                          Select Dimension
-                        </option>
-                        {dataCaseFiltered.map((n) => (
-                          <option
-                            key={n.ID} // Make sure to use a unique key for each option
-                            value={n.ID}
                           >
-                            {`${n.Description} - ${n.Name} : ${
-                              n.NominalValue
-                            }±${(n.UpperTolerance - n.LowerTolerance) / 2}`}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-                  ) : (
-                    <>
-                      <p>No dimensions on the database</p>
-                      <button
-                        className="button-add-dim"
-                        onClick={() => {
-                          scrollToDatabase();
-                          // ViewDatabase();
-                        }}
-                      >
-                        Go to Database
-                      </button>
-                    </>
-                  )}
-                  {viewsign && (
-                    <div class="bottom-drop">
-                      <label htmlFor="toleranceType" className="label-drop">
-                        Select Sign
-                      </label>
-                      <select
-                        id="selectDimension"
-                        className="select-drop" // Use className instead of class
-                        name="Sign"
-                        value={formAddDim.Sign}
-                        onChange={(e) => handleChange(e)}
-                      >
-                        <option value="Select Dimension">Select Sign</option>
-                        <option value="+">+</option>
-                        <option value="-">-</option>
-                      </select>
-                    </div>
-                  )}
-                  <div>
-                    <div className="buttons-frame-add">
-                      <button
-                        className="button-add-dim"
-                        onClick={() => {
-                          setViewAddDimension(!viewAddDimension);
-                        }}
-                      >
-                        Cancel
-                      </button>
+                            <option value="Select Dimension">
+                              Select Dimension
+                            </option>
+                            {dataCaseFiltered.map((n) => (
+                              <option
+                                key={n.ID} // Make sure to use a unique key for each option
+                                value={n.ID}
+                              >
+                                {`${n.Description} - ${n.Name} : ${
+                                  n.NominalValue
+                                }±${(n.UpperTolerance - n.LowerTolerance) / 2}`}
+                              </option>
+                            ))}
+                          </select>
+                        </div>
+                      ) : (
+                        <>
+                          <p>No dimensions on the database</p>
+                          <button
+                            className="button-add-dim"
+                            onClick={() => {
+                              scrollToDatabase();
+                              // ViewDatabase();
+                            }}
+                          >
+                            Go to Database
+                          </button>
+                        </>
+                      )}
+                      {viewsign && (
+                        <div class="bottom-drop">
+                          <label htmlFor="toleranceType" className="label-drop">
+                            Select Sign
+                          </label>
+                          <select
+                            id="selectDimension"
+                            className="select-drop" // Use className instead of class
+                            name="Sign"
+                            value={formAddDim.Sign}
+                            onChange={(e) => handleChange(e)}
+                          >
+                            <option value="Select Dimension">
+                              Select Sign
+                            </option>
+                            <option value="+">+</option>
+                            <option value="-">-</option>
+                          </select>
+                        </div>
+                      )}
+                      <div>
+                        <div className="buttons-frame-add">
+                          <button
+                            className="button-add-dim"
+                            onClick={() => {
+                              setViewAddDimension(!viewAddDimension);
+                            }}
+                          >
+                            Cancel
+                          </button>
 
-                      <button
-                        className="button-add-dim"
-                        type="submit"
-                        onClick={(e) => {
-                          AddDim(e);
-                        }}
-                      >
-                        Add Dimension
-                      </button>
+                          <button
+                            className="button-add-dim"
+                            type="submit"
+                            onClick={(e) => {
+                              AddDim(e);
+                            }}
+                          >
+                            Add Dimension
+                          </button>
+                        </div>
+                      </div>
                     </div>
-                  </div>
+                  )}
                 </div>
-              )}
-            </div>
 
-            {isDataCaseDimFiltred && (
-              <div className="main-item-canvas">
-                <Canvas canvasDatabse={DatabaseCalculation} />
-              </div>
+                {isDataCaseDimFiltred && (
+                  <div className="main-item-canvas">
+                    <Canvas canvasDatabse={DatabaseCalculation} />
+                  </div>
+                )}
+
+                {/* <ImageCropper2 /> */}
+              </>
             )}
-
-            {/* <ImageCropper2 /> */}
           </>
         )}
       </div>
