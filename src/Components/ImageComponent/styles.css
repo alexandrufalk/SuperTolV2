@@ -6,8 +6,10 @@
 	border-radius: 20px;
 	position: fixed;
 	top: 20%;
-	left: 50%;
+	left: 30%;
 	z-index: 9998;
+	padding: 16px;
+	background: linear-gradient(180deg, rgba(23, 28, 38, 0.85) 60.26%, rgba(90, 99, 118, 0.85) 87.88%);
 	
   }
   
@@ -23,6 +25,8 @@
   .cropper-preview{
 	max-height: 400px;
 	max-width: auto;
+	padding: 8px;
+	margin: 4px;
   }
   
   .buttons-wrapper{
@@ -77,6 +81,7 @@
   .action-group-wrapper{
 	display: flex;
 	flex-direction: row;
+	flex-wrap: wrap;
 	align-items: center;
 	justify-content: space-between;
 	gap: 8px;

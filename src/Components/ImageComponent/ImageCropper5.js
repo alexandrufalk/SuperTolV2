@@ -213,25 +213,22 @@ const ImageCropper5 = ({
             />
           </div>
           <div className="buttons-wrapper">
-            <button className="button-wrapper" onClick={onUpload}>
-              <input
-                ref={inputRef}
-                type="file"
-                accept="image/*"
-                onChange={onLoadImage}
-              />
-              Upload image
-            </button>
             {image && (
               <>
+                <button className="button-wrapper" onClick={onUpload}>
+                  <input
+                    ref={inputRef}
+                    type="file"
+                    accept="image/*"
+                    onChange={onLoadImage}
+                  />
+                  Upload image
+                </button>
+                <button className="button-wrapper" onClick={uploadToGCS}>
+                  <img src={google}></img>
+                  Upload to GCS
+                </button>
                 <div className="action-group-wrapper">
-                  <button className="button-wrapper" onClick={uploadToGCS}>
-                    <div
-                      className="googleLogo"
-                      style={{ backgroundImage: `url(${google})` }}
-                    ></div>
-                    Upload to GCS
-                  </button>
                   <button className="button-wrapper" onClick={zoom}>
                     +
                   </button>

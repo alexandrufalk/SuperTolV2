@@ -328,7 +328,9 @@ const AddNewComponent = ({
           >
             Cancel
           </button>
-          <button className="button">Add Component</button>
+          <button className="button" onClick={AddComponent}>
+            Add Component
+          </button>
         </div>
       </div>
     </div>
