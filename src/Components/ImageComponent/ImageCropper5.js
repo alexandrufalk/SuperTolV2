@@ -169,8 +169,8 @@ const ImageCropper5 = ({
             onClick={() => setViewCropper(false)}
             style={{
               position: "absolute",
-              top: "-10px",
-              right: "-0px",
+              top: "-5px",
+              right: "-5px",
               zIndex: "999",
             }}
           >
@@ -205,6 +205,24 @@ const ImageCropper5 = ({
           </button>
         )}
       </div> */}
+          <div className="buttons-wrapper">
+            {image && (
+              <div className="action-group-wrapper">
+                <button className="button-wrapper" onClick={zoom}>
+                  +
+                </button>
+                <button className="button-wrapper" onClick={zoomOut}>
+                  -
+                </button>
+                <div className="button-wrapper" onClick={rotateLeft}>
+                  <img src={rotateL} alt={"RoateL"}></img>
+                </div>
+                <div className="button-wrapper" onClick={rotateRight}>
+                  <img src={rotateR} alt={"RotateR"}></img>
+                </div>
+              </div>
+            )}
+          </div>
           <div className="cropper-preview">
             <CropperPreview
               ref={previewRef}
@@ -225,23 +243,9 @@ const ImageCropper5 = ({
                   Upload image
                 </button>
                 <button className="button-wrapper" onClick={uploadToGCS}>
-                  <img src={google}></img>
+                  <img src={google} className="google-wrapper"></img>
                   Upload to GCS
                 </button>
-                <div className="action-group-wrapper">
-                  <button className="button-wrapper" onClick={zoom}>
-                    +
-                  </button>
-                  <button className="button-wrapper" onClick={zoomOut}>
-                    -
-                  </button>
-                  <div className="button-wrapper" onClick={rotateLeft}>
-                    <img src={rotateL} alt={"RoateL"}></img>
-                  </div>
-                  <div className="button-wrapper" onClick={rotateRight}>
-                    <img src={rotateR} alt={"RotateR"}></img>
-                  </div>
-                </div>
               </>
             )}
           </div>
