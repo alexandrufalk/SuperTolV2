@@ -79,6 +79,33 @@ const Database = ({ CloseDatabase, viewDatabase }) => {
     }
   }, [DatabaseUpdate]);
 
+  const calculateItemsPerPage = () => {
+    const windowWidth = window.innerWidth;
+
+    if (windowWidth >= 1280) {
+      return 6;
+    } else if (windowWidth >= 640) {
+      return 3;
+    } else {
+      return 2;
+    }
+  };
+
+  const handleResize = () => {
+    setItemsPerPage(calculateItemsPerPage);
+  };
+
+  // create an event listener
+  useEffect(() => {
+    // Add event listener on mount
+    window.addEventListener("resize", handleResize);
+
+    // Remove event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   console.log("Database databaseProjects:", databaseProjects);
 
   const SetViewAdd = () => {
@@ -175,7 +202,7 @@ const Database = ({ CloseDatabase, viewDatabase }) => {
   //Paginatio
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(3);
+  const [itemsPerPage, setItemsPerPage] = useState(calculateItemsPerPage);
   const [isDropPag, setDropPag] = useState(false);
 
   // Calculate the indexes of the items to be displayed on the current page
