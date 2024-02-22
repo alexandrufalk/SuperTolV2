@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./LogIn.css";
 import backgroundImageUrl from "./backgrounfg2.jpg";
 
@@ -7,6 +7,8 @@ import googleL from "./google.png";
 import { useNavigate } from "react-router-dom";
 
 const LogIn = () => {
+  const [isSignUp, setIsSignUp] = useState(false);
+
   const navigate = useNavigate();
 
   const navigateToApp = () => {
@@ -18,23 +20,33 @@ const LogIn = () => {
         <div className="a"></div>
 
         <div className="b">
-          <div className="containerwb">
-            <p className="wb">Welcome back</p>
-            <p className="wb2">
-              We've missed you! Please sign in to catch up on what you've missed
-            </p>
-          </div>
-          <div className="login2">
-            <div className="containerGoogle">
-              <div className="googlebt" onClick={navigateToApp}>
-                <div
-                  className="googleLogo"
-                  style={{ backgroundImage: `url(${googleL})` }}
-                ></div>
-                <div className="googleLI">Log in with Google</div>
-              </div>
-              <p className="or">or</p>
+          {!isSignUp && (
+            <div className="containerwb">
+              <p className="wb">Welcome back</p>
+              <p className="wb2">
+                We've missed you! Please sign in to catch up on what you've
+                missed
+              </p>
             </div>
+          )}
+          {isSignUp && (
+            <div className="containerwb">
+              <p className="wb">Sign Up</p>
+            </div>
+          )}
+          <div className="login2">
+            {!isSignUp && (
+              <div className="containerGoogle">
+                <div className="googlebt" onClick={navigateToApp}>
+                  <div
+                    className="googleLogo"
+                    style={{ backgroundImage: `url(${googleL})` }}
+                  ></div>
+                  <div className="googleLI">Log in with Google</div>
+                </div>
+                <p className="or">or</p>
+              </div>
+            )}
 
             <div className="containerLI">
               <div className="containerLI1">
@@ -66,9 +78,26 @@ const LogIn = () => {
 
           <div className="containerbottom">
             <div className="bottomTxt">Don't have an account yet? </div>
-            <div className="bottomSignUp">Sign up</div>
+            <div
+              className="bottomSignUp"
+              onClick={() => setIsSignUp(!isSignUp)}
+            >
+              Sign up
+            </div>
             <div className="bottomTxt">now to join our community</div>
           </div>
+          {isSignUp && (
+            <div className="containerGoogle">
+              <p className="or">or</p>
+              <div className="googlebt" onClick={navigateToApp}>
+                <div
+                  className="googleLogo"
+                  style={{ backgroundImage: `url(${googleL})` }}
+                ></div>
+                <div className="googleLI">Log in with Google</div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>
