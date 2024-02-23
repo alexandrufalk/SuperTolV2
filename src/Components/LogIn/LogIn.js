@@ -70,22 +70,31 @@ const LogIn = () => {
                 </div>
                 <div className="forgot">Forgot Password</div>
               </div>
-              <div className="btnLogin">
-                <div className="LoginTxt">Log in</div>
-              </div>
+              {!isSignUp && (
+                <div className="btnLogin">
+                  <div className="LoginTxt">Log in</div>
+                </div>
+              )}
+              {isSignUp && (
+                <div className="btnLogin">
+                  <div className="LoginTxt">Sign Up</div>
+                </div>
+              )}
             </div>
           </div>
 
-          <div className="containerbottom">
-            <div className="bottomTxt">Don't have an account yet? </div>
-            <div
-              className="bottomSignUp"
-              onClick={() => setIsSignUp(!isSignUp)}
-            >
-              Sign up
+          {!isSignUp && (
+            <div className="containerbottom">
+              <div className="bottomTxt">Don't have an account yet? </div>
+              <div
+                className="bottomSignUp"
+                onClick={() => setIsSignUp(!isSignUp)}
+              >
+                Sign up
+              </div>
+              <div className="bottomTxt">now to join our community</div>
             </div>
-            <div className="bottomTxt">now to join our community</div>
-          </div>
+          )}
           {isSignUp && (
             <div className="containerGoogle">
               <p className="or">or</p>
