@@ -45,7 +45,14 @@ const ImageCropper5 = ({
 
   const onCrop = () => {
     const cropper = cropperRef.current;
-    console.log("cropperRef type", cropperRef.current.getImage().arrayBuffer);
+    console.log(
+      "cropperRef arrayBuffer",
+      cropperRef.current.getImage().arrayBuffer
+    );
+    // console.log(
+    //   "previewRef arrayBuffer",
+    //   previewRef.current.refresh().arrayBuffer
+    // );
     const arr1 = new Uint8Array(cropperRef.current.getImage().arrayBuffer);
     console.log("onCrop arr1", arr1);
 
@@ -56,9 +63,8 @@ const ImageCropper5 = ({
       const croppedImageDataUrl = `data:image/jpeg;base64,${btoa(
         String.fromCharCode.apply(null, arr1)
       )}`;
-      uploadToGCS();
       setCroppedImageDataUrl(croppedImageDataUrl);
-      setViewCropper(false);
+      // setViewCropper(false);
     }
 
     // if (cropper) {
@@ -160,6 +166,22 @@ const ImageCropper5 = ({
     previewRef.current?.refresh();
   };
 
+  useEffect(() => {
+    if (cropperRef.current) {
+      console.log("On cropper change", cropperRef.current.getState());
+    } else {
+      console.error("Cropper ref is not defined.");
+    }
+  }, []);
+
+  // const onChange = (cropper) => {
+  //   if (cropper.current) {
+  //     console.log(cropper.current.getState());
+  //   } else {
+  //     console.error("Cropper ref is not defined.");
+  //   }
+  // };
+
   return (
     <>
       <button
@@ -211,7 +233,12 @@ const ImageCropper5 = ({
         />
       </div> */}
           <div className="cropper-wrapper">
-            <Cropper ref={cropperRef} src={image3} onUpdate={onUpdate} />
+            <Cropper
+              ref={cropperRef}
+              src={image3}
+              onUpdate={onUpdate}
+              // onChange={onChange}
+            />
           </div>
           {/* <div className="example__buttons-wrapper">
         {image && (
@@ -258,6 +285,10 @@ const ImageCropper5 = ({
                   Upload image
                 </button>
                 <button className="button-wrapper" onClick={onCrop}>
+                  <img src={google} className="google-wrapper"></img>
+                  Set Crop
+                </button>
+                <button className="button-wrapper" onClick={uploadToGCS}>
                   <img src={google} className="google-wrapper"></img>
                   Upload to GCS
                 </button>
