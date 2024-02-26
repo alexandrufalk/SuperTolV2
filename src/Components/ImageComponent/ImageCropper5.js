@@ -41,24 +41,39 @@ const ImageCropper5 = ({
     "https://storage.googleapis.com/supertolbucket/img1_1_1"
   );
 
+  console.log("previewRef", previewRef, "cropperRef", cropperRef);
+
   const onCrop = () => {
     const cropper = cropperRef.current;
     console.log("cropperRef type", cropperRef.current.getImage().arrayBuffer);
     const arr1 = new Uint8Array(cropperRef.current.getImage().arrayBuffer);
     console.log("onCrop arr1", arr1);
 
-    if (cropper) {
-      const canvas = cropper.getCanvas({
-        fillColor: "rgb(25,0,0)", // color
-      });
-      console.log("canvas url from onCrop", canvas.toDataURL());
-      setCroppedImageDataUrl(canvas.toDataURL());
+    if (arr1) {
       setCroppedImage(arr1);
-      const newTab = window.open();
-      if (newTab && canvas) {
-        newTab.document.body.innerHTML = `<img src="${canvas.toDataURL()}"></img>`;
-      }
+
+      // Create a new constant to store the data URL
+      const croppedImageDataUrl = `data:image/jpeg;base64,${btoa(
+        String.fromCharCode.apply(null, arr1)
+      )}`;
+      uploadToGCS();
+      setCroppedImageDataUrl(croppedImageDataUrl);
+      setViewCropper(false);
     }
+
+    // if (cropper) {
+    //   const canvas = cropper.getCanvas({
+    //     fillColor: "rgb(25,0,0)", // color
+    //   });
+    //   console.log("canvas url from onCrop", canvas.toDataURL());
+    //   setCroppedImageDataUrl(canvas.toDataURL());
+    //   setCroppedImage(arr1);
+
+    //   const newTab = window.open();
+    //   if (newTab && canvas) {
+    //     newTab.document.body.innerHTML = `<img src="${canvas.toDataURL()}"></img>`;
+    //   }
+    // }
   };
 
   const onUpload = () => {
@@ -118,7 +133,7 @@ const ImageCropper5 = ({
     const croppedImageBlob = new Blob([croppedImage], {
       type: "image/jpeg",
     });
-    console.log("Cropped image MIME type:", croppedImageBlob.type);
+    console.log("Cropped image to GSC", croppedImageBlob);
 
     const lastID = Math.max(
       ...databaseFiltered[0].DatabaseDim[dimID - 1].Image.map((o) => o.ID)
@@ -242,7 +257,7 @@ const ImageCropper5 = ({
                   />
                   Upload image
                 </button>
-                <button className="button-wrapper" onClick={uploadToGCS}>
+                <button className="button-wrapper" onClick={onCrop}>
                   <img src={google} className="google-wrapper"></img>
                   Upload to GCS
                 </button>

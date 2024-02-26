@@ -97,7 +97,7 @@ const ImageCropper2 = ({
     const croppedImageBlob = new Blob([croppedImage], {
       type: "image/jpeg",
     });
-    console.log("Cropped image MIME type:", croppedImageBlob.type);
+    console.log("Cropped image to GSC2", croppedImageBlob);
 
     const lastID = Math.max(
       ...databaseFiltered[0].DatabaseDim[dimID - 1].Image.map((o) => o.ID)
