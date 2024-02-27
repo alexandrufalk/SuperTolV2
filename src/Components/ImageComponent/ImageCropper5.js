@@ -164,15 +164,16 @@ const ImageCropper5 = ({
   };
   const onUpdate = () => {
     previewRef.current?.refresh();
+    console.log("onUpdate", previewRef.current);
   };
 
-  useEffect(() => {
-    if (cropperRef.current) {
-      console.log("On cropper change", cropperRef.current.getState());
-    } else {
-      console.error("Cropper ref is not defined.");
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (cropperRef.current) {
+  //     console.log("On cropper change", cropperRef.current.getState());
+  //   } else {
+  //     console.error("Cropper ref is not defined.");
+  //   }
+  // }, []);
 
   // const onChange = (cropper) => {
   //   if (cropper.current) {
@@ -181,6 +182,27 @@ const ImageCropper5 = ({
   //     console.error("Cropper ref is not defined.");
   //   }
   // };
+  // const onChange = () => {
+  //   setCoordinates(cropperRef.getCoordinates());
+  //   console.log("Coordinates changed", cropperRef.getCoordinates());
+  //   setImage2(cropperRef.getCanvas()?.toDataURL());
+  //   console.log("Image URL", cropperRef.getCanvas()?.toDataURL());
+  // };
+
+  const onCrop2 = () => {
+    if (cropperRef.current) {
+      setCoordinates(cropperRef.current.getCoordinates());
+      // You are able to do different manipulations at a canvas
+      // but there we just get a cropped image, that can be used
+      // as src for <img/> to preview result
+      setImage2(cropperRef.current.getCanvas()?.toDataURL());
+      console.log(
+        "onCrop2",
+        cropperRef.current.getCoordinates(),
+        cropperRef.current.getCanvas()?.toDataURL()
+      );
+    }
+  };
 
   return (
     <>
@@ -287,6 +309,10 @@ const ImageCropper5 = ({
                 <button className="button-wrapper" onClick={onCrop}>
                   <img src={google} className="google-wrapper"></img>
                   Set Crop
+                </button>
+                <button className="button-wrapper" onClick={onCrop2}>
+                  <img src={google} className="google-wrapper"></img>
+                  Set Crop2
                 </button>
                 <button className="button-wrapper" onClick={uploadToGCS}>
                   <img src={google} className="google-wrapper"></img>
