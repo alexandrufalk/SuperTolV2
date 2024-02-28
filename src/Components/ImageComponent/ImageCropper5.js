@@ -162,6 +162,51 @@ const ImageCropper5 = ({
     setDatabaseFiltered([...databaseFiltered]);
     // setViewResult(false);
   };
+
+  const uploadToGCS2 = () => {
+    const base64ImageData = cropperRef.current.getCanvas()?.toDataURL();
+
+    console.log("base64ImageData", base64ImageData);
+
+    // Extract the base64-encoded part
+    const base64Data = base64ImageData.split(",")[1];
+    // Decode the base64 data
+    const binaryData = atob(base64Data);
+
+    // Create a Uint8Array from the binary data
+    const uint8ArrayImageData = new Uint8Array(binaryData.length);
+    for (let i = 0; i < binaryData.length; i++) {
+      uint8ArrayImageData[i] = binaryData.charCodeAt(i);
+    }
+
+    // Create a Blob from the Uint8Array data
+    const croppedImageBlob = new Blob([uint8ArrayImageData], {
+      type: "image/png",
+    });
+    console.log("Cropped image to GSC", croppedImageBlob);
+
+    const lastID = Math.max(
+      ...databaseFiltered[0].DatabaseDim[dimID - 1].Image.map((o) => o.ID)
+    );
+    let newID = 0;
+    if (lastID === -Infinity) {
+      newID = 1;
+    } else {
+      newID = lastID + 1;
+    }
+
+    console.log("newID", newID);
+
+    addImage(projectID, dimID, croppedImageBlob);
+
+    databaseFiltered[0].DatabaseDim[dimID - 1].Image.push({
+      ID: newID,
+      Link: base64ImageData,
+    });
+    setDatabaseFiltered([...databaseFiltered]);
+    // setViewResult(false);
+  };
+
   const onUpdate = () => {
     previewRef.current?.refresh();
     console.log("onUpdate", previewRef.current);
@@ -192,6 +237,27 @@ const ImageCropper5 = ({
   const onCrop2 = () => {
     if (cropperRef.current) {
       setCoordinates(cropperRef.current.getCoordinates());
+
+      const base64ImageData = cropperRef.current.getCanvas()?.toDataURL();
+
+      console.log("base64ImageData", base64ImageData);
+
+      // Extract the base64-encoded part
+      const base64Data = base64ImageData.split(",")[1];
+      // Decode the base64 data
+      const binaryData = atob(base64Data);
+
+      // Create a Uint8Array from the binary data
+      const uint8ArrayImageData = new Uint8Array(binaryData.length);
+      for (let i = 0; i < binaryData.length; i++) {
+        uint8ArrayImageData[i] = binaryData.charCodeAt(i);
+      }
+
+      // Create a Blob from the Uint8Array data
+      const blob = new Blob([uint8ArrayImageData], { type: "image/png" });
+
+      console.log("uint8ArrayImageData", uint8ArrayImageData, "blob", blob);
+
       // You are able to do different manipulations at a canvas
       // but there we just get a cropped image, that can be used
       // as src for <img/> to preview result
