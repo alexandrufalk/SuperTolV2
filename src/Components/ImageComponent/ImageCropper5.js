@@ -372,15 +372,15 @@ const ImageCropper5 = ({
                   />
                   Upload image
                 </button>
-                <button className="button-wrapper" onClick={onCrop}>
+                {/* <button className="button-wrapper" onClick={onCrop}>
                   <img src={google} className="google-wrapper"></img>
                   Set Crop
                 </button>
                 <button className="button-wrapper" onClick={onCrop2}>
                   <img src={google} className="google-wrapper"></img>
                   Set Crop2
-                </button>
-                <button className="button-wrapper" onClick={uploadToGCS}>
+                </button> */}
+                <button className="button-wrapper" onClick={uploadToGCS2}>
                   <img src={google} className="google-wrapper"></img>
                   Upload to GCS
                 </button>
