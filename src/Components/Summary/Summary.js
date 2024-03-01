@@ -537,6 +537,12 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
   // }, [databaseSummryFiltered]);
   return (
     <div className="main-container">
+      <div className="database-header">
+        <p className="fs-3 ">Database</p>
+
+        {viewSumary && <button onClick={CloseSummary}>X</button>}
+        {!viewSumary && <button onClick={CloseSummary}>ᐁ</button>}
+      </div>
       {/* Your grid content for Main */}
       <div className="main-item">
         <ToastContainer transition={Bounce} autoClose={2000} />

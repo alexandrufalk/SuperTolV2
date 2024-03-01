@@ -17,6 +17,11 @@ const Main = () => {
     }
   };
 
+  const CloseSummary = () => {
+    setViewDatabase(!viewDatabase);
+  };
+  1;
+
   const CloseDatabase = () => {
     setViewDatabase(!viewDatabase);
   };
