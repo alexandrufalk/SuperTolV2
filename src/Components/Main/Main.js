@@ -8,6 +8,7 @@ const Main = () => {
   const [projectId, setProjectId] = useState(null);
   const [caseId, setCaseId] = useState(null);
   const [viewAddTemplate, setViewAddTemplate] = useState(false);
+  const [viewSummary, setViewSummary] = useState(true);
   const [viewDatabase, setViewDatabase] = useState(true);
   const [viewCase, setViewCase] = useState(true);
 
@@ -20,7 +21,6 @@ const Main = () => {
   const CloseSummary = () => {
     setViewDatabase(!viewDatabase);
   };
-  1;
 
   const CloseDatabase = () => {
     setViewDatabase(!viewDatabase);
@@ -35,6 +35,8 @@ const Main = () => {
         NewTemplate={NewTemplate}
         setProjectId={setProjectId}
         setCaseId={setCaseId}
+        viewSummary={viewSummary}
+        CloseSummary={CloseSummary}
       />
       <Database CloseDatabase={CloseDatabase} viewDatabase={viewDatabase} />
       <Case

@@ -15,7 +15,13 @@ import TemplateTable from "../Table/TemplateTable";
 import add from "./add.png";
 import AddNew from "../AddNew/AddNew";
 
-const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
+const Summary = ({
+  NewTemplate,
+  setProjectId,
+  setCaseId,
+  CloseSummary,
+  viewSumary,
+}) => {
   const [viewItems, setViewItems] = useState(false);
   const toggleDown = () => {
     setViewItems(!viewItems);
@@ -538,7 +544,7 @@ const Summary = ({ NewTemplate, setProjectId, setCaseId }) => {
   return (
     <div className="main-container">
       <div className="database-header">
-        <p className="fs-3 ">Database</p>
+        <p className="fs-3 ">Summary</p>
 
         {viewSumary && <button onClick={CloseSummary}>X</button>}
         {!viewSumary && <button onClick={CloseSummary}>ᐁ</button>}
