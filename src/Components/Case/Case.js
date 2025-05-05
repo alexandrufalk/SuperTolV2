@@ -7,7 +7,7 @@ import { Chart } from "react-google-charts";
 import Canvas from "../Canvas/Canvas";
 import CustomPagination from "../Table/CustomPagination";
 
-import { ToastContainer, toast, Bounce } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 // import Canvas2 from "../Canvas/Canvas2";
 import "./case.css";
@@ -182,7 +182,7 @@ const Case = React.forwardRef(
     // const DatabaseCalculation = DatabaseCases[0].Data[0].CaseData;
     const DatabaseCalculation = dataCaseDimFiltred;
 
-    //Worst case nominal
+    //Worst case nominal calculation
     const WorstCaseNominal = DatabaseCalculation.map((n) =>
       Number(
         n.Sign + (n.NominalValue + (n.LowerTolerance + n.UpperTolerance) / 2)
